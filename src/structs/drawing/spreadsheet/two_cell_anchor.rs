@@ -170,7 +170,7 @@ impl TwoCellAnchor {
 
     #[inline]
     pub(crate) fn is_support(&self) -> bool {
-        self.graphic_frame.as_ref().map_or(true, |v| {
+        self.graphic_frame.as_ref().is_none_or(|v| {
             v.get_graphic()
                 .get_graphic_data()
                 .get_chart_space()

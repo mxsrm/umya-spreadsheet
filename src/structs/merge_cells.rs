@@ -35,11 +35,11 @@ impl MergeCells {
     pub(crate) fn _has_vertical(&self, row_num: u32) -> bool {
         self.get_range_collection().iter().any(|range| {
             let start_num = range
-                .get_coordinate_start_row()
-                .map_or(true, |v| v.get_num() <= row_num);
+                .get_coordinate_start_col()
+                .is_none_or(|v| v.get_num() <= row_num);
             let end_num = range
-                .get_coordinate_end_row()
-                .map_or(true, |v| v.get_num() >= row_num);
+                .get_coordinate_end_col()
+                .is_none_or(|v| v.get_num() >= row_num);
             start_num && end_num && start_num != end_num
         })
     }
@@ -48,10 +48,10 @@ impl MergeCells {
         self.get_range_collection().iter().any(|range| {
             let start_num = range
                 .get_coordinate_start_col()
-                .map_or(true, |v| v.get_num() <= col_num);
+                .is_none_or(|v| v.get_num() <= col_num);
             let end_num = range
                 .get_coordinate_end_col()
-                .map_or(true, |v| v.get_num() >= col_num);
+                .is_none_or(|v| v.get_num() >= col_num);
             start_num && end_num && start_num != end_num
         })
     }

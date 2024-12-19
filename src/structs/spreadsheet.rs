@@ -631,7 +631,7 @@ impl Spreadsheet {
         &mut self,
         value: impl Into<Vec<(String, String)>>,
     ) -> &mut Self {
-        self.backup_context_types = value.into().into_iter().map(|(a, b)| (a, b)).collect();
+        self.backup_context_types = value.into().into_iter().collect();
         self
     }
 
