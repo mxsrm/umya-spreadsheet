@@ -7,7 +7,6 @@ use crate::structs::VerticalAlignmentRunValues;
 use html_parser::{Dom, Node};
 use std::collections::HashMap;
 
-
 /// Generate rich text from html.
 /// # Arguments
 /// * `html` - HTML String.

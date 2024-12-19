@@ -17,7 +17,7 @@ use std::io::Cursor;
 
 #[derive(Clone, Default, Debug)]
 pub struct RunProperties {
-    text: Box<str>,
+    text: String,
     kumimoji: StringValue,
     language: StringValue,
     alternative_language: StringValue,
@@ -44,7 +44,7 @@ impl RunProperties {
 
     #[inline]
     pub fn set_text<S: Into<String>>(&mut self, value: S) -> &mut Self {
-        self.text = value.into().into_boxed_str();
+        self.text = value.into();
         self
     }
 

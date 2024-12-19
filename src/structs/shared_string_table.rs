@@ -10,7 +10,6 @@ use quick_xml::Writer;
 use std::collections::HashMap;
 use std::io::Cursor;
 
-
 #[derive(Clone, Default, Debug)]
 pub(crate) struct SharedStringTable {
     shared_string_item: Vec<SharedStringItem>,

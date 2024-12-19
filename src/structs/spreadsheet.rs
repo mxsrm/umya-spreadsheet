@@ -18,7 +18,6 @@ use crate::StringValue;
 use std::sync::Arc;
 use std::sync::RwLock;
 
-
 /// A Spreadsheet Object.
 /// The starting point of all struct.
 #[derive(Clone, Default, Debug)]
@@ -32,8 +31,8 @@ pub struct Spreadsheet {
     stylesheet: Stylesheet,
     shared_string_table: Arc<RwLock<SharedStringTable>>,
     workbook_view: WorkbookView,
-    backup_context_types: Vec<(Box<str>, Box<str>)>,
-    pivot_caches: Vec<(Box<str>, Box<str>, Box<str>)>,
+    backup_context_types: Vec<(String, String)>,
+    pivot_caches: Vec<(String, String, String)>,
     workbook_protection: Option<Box<WorkbookProtection>>,
     defined_names: Vec<DefinedName>,
 }
@@ -623,7 +622,7 @@ impl Spreadsheet {
     }
 
     #[inline]
-    pub(crate) fn get_backup_context_types(&self) -> &[(Box<str>, Box<str>)] {
+    pub(crate) fn get_backup_context_types(&self) -> &[(String, String)] {
         &self.backup_context_types
     }
 
@@ -632,11 +631,7 @@ impl Spreadsheet {
         &mut self,
         value: impl Into<Vec<(String, String)>>,
     ) -> &mut Self {
-        self.backup_context_types = value
-            .into()
-            .into_iter()
-            .map(|(a, b)| (a.into_boxed_str(), b.into_boxed_str()))
-            .collect();
+        self.backup_context_types = value.into().into_iter().map(|(a, b)| (a, b)).collect();
         self
     }
 
@@ -659,11 +654,7 @@ impl Spreadsheet {
 
     #[inline]
     pub(crate) fn add_pivot_caches(&mut self, value: (String, String, String)) -> &mut Self {
-        self.pivot_caches.push((
-            value.0.into_boxed_str(),
-            value.1.into_boxed_str(),
-            value.2.into_boxed_str(),
-        ));
+        self.pivot_caches.push((value.0, value.1, value.2));
         self
     }
 
@@ -671,7 +662,7 @@ impl Spreadsheet {
     pub(crate) fn update_pivot_caches(&mut self, key: String, value: String) -> &mut Self {
         self.pivot_caches.iter_mut().for_each(|(val1, _, val3)| {
             if **val1 == key {
-                *val3 = value.clone().into_boxed_str()
+                *val3 = value.clone()
             };
         });
         self

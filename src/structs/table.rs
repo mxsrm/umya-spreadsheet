@@ -7,9 +7,9 @@ use crate::helper::coordinate::*;
 
 #[derive(Clone, Default, Debug)]
 pub struct Table {
-    name: Box<str>,
+    name: String,
     area: (Coordinate, Coordinate),
-    display_name: Box<str>,
+    display_name: String,
     columns: Vec<TableColumn>,
     style_info: Option<Box<TableStyleInfo>>,
     totals_row_shown: BooleanValue,
@@ -23,7 +23,7 @@ impl Table {
     {
         let coord_beg = Self::cell_coord_to_coord(area.0);
         let coord_end = Self::cell_coord_to_coord(area.1);
-        let name: Box<str> = name.into();
+        let name: String = name.into();
         Self {
             area: (coord_beg, coord_end),
             name: name.clone(),

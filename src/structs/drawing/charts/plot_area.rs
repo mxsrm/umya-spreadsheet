@@ -29,7 +29,6 @@ use quick_xml::Reader;
 use quick_xml::Writer;
 use std::io::Cursor;
 
-
 #[derive(Clone, Default, Debug)]
 pub struct PlotArea {
     layout: Layout,

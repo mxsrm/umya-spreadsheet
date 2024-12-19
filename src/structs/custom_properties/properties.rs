@@ -8,7 +8,6 @@ use quick_xml::Reader;
 use quick_xml::Writer;
 use std::io::Cursor;
 
-
 #[derive(Default, Debug, Clone)]
 pub struct Properties {
     custom_document_property_list: Vec<CustomDocumentProperty>,
@@ -21,9 +20,7 @@ impl Properties {
     }
 
     #[inline]
-    pub fn get_custom_document_property_list_mut(
-        &mut self,
-    ) -> &mut Vec<CustomDocumentProperty> {
+    pub fn get_custom_document_property_list_mut(&mut self) -> &mut Vec<CustomDocumentProperty> {
         &mut self.custom_document_property_list
     }
 

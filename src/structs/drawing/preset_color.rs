@@ -9,7 +9,7 @@ use std::io::Cursor;
 
 #[derive(Clone, Default, Debug)]
 pub struct PresetColor {
-    val: Box<str>,
+    val: String,
     alpha: Option<Alpha>,
 }
 
@@ -21,7 +21,7 @@ impl PresetColor {
 
     #[inline]
     pub fn set_val<S: Into<String>>(&mut self, value: S) {
-        self.val = value.into().into_boxed_str();
+        self.val = value.into();
     }
 
     #[inline]

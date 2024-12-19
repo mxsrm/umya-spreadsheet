@@ -84,20 +84,20 @@ impl CellValue {
 
     #[inline]
     pub fn set_value_lazy<S: Into<String>>(&mut self, value: S) -> &mut Self {
-        self.raw_value = CellRawValue::Lazy(value.into().into_boxed_str());
+        self.raw_value = CellRawValue::Lazy(value.into());
         self
     }
 
     #[inline]
     pub fn set_value_string<S: Into<String>>(&mut self, value: S) -> &mut Self {
-        self.raw_value = CellRawValue::String(value.into().into_boxed_str());
+        self.raw_value = CellRawValue::String(value.into());
         self.remove_formula();
         self
     }
 
     #[inline]
     pub(crate) fn set_value_string_crate<S: Into<String>>(&mut self, value: S) -> &mut Self {
-        self.raw_value = CellRawValue::String(value.into().into_boxed_str());
+        self.raw_value = CellRawValue::String(value.into());
         self
     }
 

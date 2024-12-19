@@ -8,7 +8,6 @@ use quick_xml::Reader;
 use quick_xml::Writer;
 use std::io::Cursor;
 
-
 #[derive(Clone, Default, Debug)]
 pub struct DataBar {
     cfvo_collection: Vec<ConditionalFormatValueObject>,
@@ -22,10 +21,7 @@ impl DataBar {
     }
 
     #[inline]
-    pub fn set_cfvo_collection(
-        &mut self,
-        value: Vec<ConditionalFormatValueObject>,
-    ) -> &mut Self {
+    pub fn set_cfvo_collection(&mut self, value: Vec<ConditionalFormatValueObject>) -> &mut Self {
         self.cfvo_collection = value;
         self
     }

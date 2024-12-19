@@ -11,12 +11,11 @@ use quick_xml::Reader;
 use quick_xml::Writer;
 use std::io::Cursor;
 
-
 #[derive(Clone, Default, Debug)]
 pub struct OleObject {
     requires: StringValue,
     prog_id: StringValue,
-    object_extension: Box<str>,
+    object_extension: String,
     object_data: Option<Vec<u8>>,
     embedded_object_properties: EmbeddedObjectProperties,
     two_cell_anchor: TwoCellAnchor,
@@ -53,7 +52,7 @@ impl OleObject {
 
     #[inline]
     pub fn set_object_extension<S: Into<String>>(&mut self, value: S) {
-        self.object_extension = value.into().into_boxed_str();
+        self.object_extension = value.into();
     }
 
     #[inline]

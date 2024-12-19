@@ -8,7 +8,7 @@ use std::io::Cursor;
 
 #[derive(Clone, Default, Debug)]
 pub struct Run {
-    text: Box<str>,
+    text: String,
     run_properties: RunProperties,
 }
 
@@ -20,7 +20,7 @@ impl Run {
 
     #[inline]
     pub fn set_text<S: Into<String>>(&mut self, value: S) {
-        self.text = value.into().into_boxed_str();
+        self.text = value.into();
     }
 
     #[inline]

@@ -7,7 +7,7 @@ use fancy_regex::Regex;
 
 #[derive(Clone, Default, Debug)]
 pub struct Address {
-    sheet_name: Box<str>,
+    sheet_name: String,
     range: Range,
 }
 
@@ -19,7 +19,7 @@ impl Address {
 
     #[inline]
     pub fn set_sheet_name<S: Into<String>>(&mut self, value: S) -> &mut Self {
-        self.sheet_name = value.into().into_boxed_str();
+        self.sheet_name = value.into();
         self
     }
 
@@ -75,7 +75,7 @@ impl Address {
             }
             if sheet_name.contains("'") {
                 with_space_char = "'";
-                sheet_name = sheet_name.replace("'", "''").into_boxed_str();
+                sheet_name = sheet_name.replace("'", "''");
             }
             if sheet_name.contains(r#"""#) {
                 with_space_char = "'";

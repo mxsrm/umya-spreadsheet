@@ -1,7 +1,6 @@
 use super::Range;
 use crate::traits::AdjustmentCoordinate;
 
-
 #[derive(Default, Debug, Clone)]
 pub struct SequenceOfReferences {
     range_collection: Vec<Range>,

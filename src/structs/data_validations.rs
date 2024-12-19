@@ -7,7 +7,6 @@ use quick_xml::Reader;
 use quick_xml::Writer;
 use std::io::Cursor;
 
-
 #[derive(Default, Debug, Clone)]
 pub struct DataValidations {
     data_validation_list: Vec<DataValidation>,
@@ -25,10 +24,7 @@ impl DataValidations {
     }
 
     #[inline]
-    pub fn set_data_validation_list(
-        &mut self,
-        value: impl Into<Vec<DataValidation>>,
-    ) -> &mut Self {
+    pub fn set_data_validation_list(&mut self, value: impl Into<Vec<DataValidation>>) -> &mut Self {
         self.data_validation_list = value.into();
         self
     }

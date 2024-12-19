@@ -9,7 +9,7 @@ use std::io::Cursor;
 
 #[derive(Clone, Default, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub(crate) struct Text {
-    value: Box<str>,
+    value: String,
 }
 
 impl Text {
@@ -20,7 +20,7 @@ impl Text {
 
     #[inline]
     pub(crate) fn set_value<S: Into<String>>(&mut self, value: S) -> &mut Self {
-        self.value = value.into().into_boxed_str();
+        self.value = value.into();
         self
     }
 

@@ -9,7 +9,6 @@ use std::borrow::Cow;
 use std::fmt::Write;
 use std::io::Cursor;
 
-
 #[derive(Clone, Default, Debug, PartialEq, PartialOrd)]
 pub struct RichText {
     rich_text_elements: Vec<TextElement>,

@@ -1,6 +1,5 @@
 use super::AreaChartSeries;
 
-
 #[derive(Clone, Default, Debug)]
 pub struct AreaChartSeriesList {
     area_chart_series: Vec<AreaChartSeries>,
@@ -14,10 +13,7 @@ impl AreaChartSeriesList {
         &mut self.area_chart_series
     }
 
-    pub fn set_area_chart_series(
-        &mut self,
-        value: impl Into<Vec<AreaChartSeries>>,
-    ) -> &mut Self {
+    pub fn set_area_chart_series(&mut self, value: impl Into<Vec<AreaChartSeries>>) -> &mut Self {
         self.area_chart_series = value.into();
         self
     }

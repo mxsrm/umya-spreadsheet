@@ -10,7 +10,6 @@ use quick_xml::Reader;
 use quick_xml::Writer;
 use std::io::Cursor;
 
-
 #[derive(Default, Debug, Clone)]
 pub struct ConditionalFormatting {
     sequence_of_references: SequenceOfReferences,

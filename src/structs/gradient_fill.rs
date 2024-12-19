@@ -10,7 +10,6 @@ use quick_xml::Writer;
 use std::fmt::Write;
 use std::io::Cursor;
 
-
 #[derive(Default, Debug, Clone, PartialEq, PartialOrd)]
 pub struct GradientFill {
     degree: DoubleValue,

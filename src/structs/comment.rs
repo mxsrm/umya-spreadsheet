@@ -22,7 +22,7 @@ use quick_xml::Reader;
 #[derive(Clone, Default, Debug)]
 pub struct Comment {
     coordinate: Coordinate,
-    author: Box<str>,
+    author: String,
     text: RichText,
     shape: Shape,
 }
@@ -45,7 +45,7 @@ impl Comment {
 
     #[inline]
     pub fn set_author<S: Into<String>>(&mut self, value: S) -> &mut Self {
-        self.author = value.into().into_boxed_str();
+        self.author = value.into();
         self
     }
 

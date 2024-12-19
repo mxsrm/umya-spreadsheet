@@ -9,7 +9,7 @@ use std::io::Cursor;
 
 #[derive(Clone, Default, Debug)]
 pub struct StyleMatrixReferenceType {
-    index: Box<str>,
+    index: String,
     scheme_color: Option<Box<SchemeColor>>,
 }
 
@@ -21,7 +21,7 @@ impl StyleMatrixReferenceType {
 
     #[inline]
     pub fn set_index<S: Into<String>>(&mut self, value: S) {
-        self.index = value.into().into_boxed_str();
+        self.index = value.into();
     }
 
     #[inline]

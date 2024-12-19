@@ -9,7 +9,7 @@ use std::io::Cursor;
 
 #[derive(Clone, Default, Debug)]
 pub struct PresetGeometry {
-    geometry: Box<str>,
+    geometry: String,
     adjust_value_list: AdjustValueList,
 }
 
@@ -210,7 +210,7 @@ impl PresetGeometry {
 
     #[inline]
     pub fn set_geometry<S: Into<String>>(&mut self, value: S) {
-        self.geometry = value.into().into_boxed_str();
+        self.geometry = value.into();
     }
 
     #[inline]

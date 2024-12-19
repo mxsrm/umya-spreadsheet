@@ -5,7 +5,6 @@ use crate::structs::WriterManager;
 use crate::structs::XlsxError;
 use std::io;
 
-
 #[derive(Clone, Debug, Default)]
 pub(crate) struct RawWorksheet {
     worksheet_file: RawFile,

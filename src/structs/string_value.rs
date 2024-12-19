@@ -1,6 +1,6 @@
 #[derive(Clone, Default, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub struct StringValue {
-    value: Option<Box<str>>,
+    value: Option<String>,
 }
 impl StringValue {
     #[inline]
@@ -15,7 +15,7 @@ impl StringValue {
 
     #[inline]
     pub(crate) fn set_value<S: Into<String>>(&mut self, value: S) -> &mut StringValue {
-        self.value = Some(value.into().into_boxed_str());
+        self.value = Some(value.into());
         self
     }
 

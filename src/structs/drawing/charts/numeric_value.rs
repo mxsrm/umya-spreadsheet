@@ -8,7 +8,7 @@ use std::io::Cursor;
 
 #[derive(Clone, Default, Debug)]
 pub struct NumericValue {
-    text: Box<str>,
+    text: String,
 }
 
 impl NumericValue {
@@ -17,7 +17,7 @@ impl NumericValue {
     }
 
     pub fn set_text<S: Into<String>>(&mut self, value: S) -> &mut NumericValue {
-        self.text = value.into().into_boxed_str();
+        self.text = value.into();
         self
     }
 

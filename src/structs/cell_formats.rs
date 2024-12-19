@@ -7,7 +7,6 @@ use quick_xml::Reader;
 use quick_xml::Writer;
 use std::io::Cursor;
 
-
 #[derive(Clone, Default, Debug)]
 pub(crate) struct CellFormats {
     cell_format: Vec<CellFormat>,

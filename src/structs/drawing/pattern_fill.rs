@@ -10,7 +10,7 @@ use std::io::Cursor;
 
 #[derive(Clone, Debug)]
 pub struct PatternFill {
-    preset: Box<str>,
+    preset: String,
     foreground_color: ForegroundColor,
     background_color: BackgroundColor,
 }
@@ -34,7 +34,7 @@ impl PatternFill {
 
     #[inline]
     pub fn set_preset(&mut self, value: String) -> &mut PatternFill {
-        self.preset = value.into_boxed_str();
+        self.preset = value;
         self
     }
 

@@ -12,7 +12,7 @@ use std::io::Cursor;
 #[derive(Clone, Default, Debug)]
 pub struct ListStyle {
     effect_list: Option<Box<EffectList>>,
-    text_paragraph_properties_type: HashMap<Box<str>, Box<TextParagraphPropertiesType>>,
+    text_paragraph_properties_type: HashMap<String, Box<TextParagraphPropertiesType>>,
 }
 
 impl ListStyle {
@@ -54,7 +54,7 @@ impl ListStyle {
         value: TextParagraphPropertiesType,
     ) -> &mut Self {
         self.text_paragraph_properties_type
-            .insert(String::from("def").into_boxed_str(), Box::new(value));
+            .insert(String::from("def"), Box::new(value));
         self
     }
 
@@ -80,7 +80,7 @@ impl ListStyle {
         value: TextParagraphPropertiesType,
     ) -> &mut Self {
         self.text_paragraph_properties_type
-            .insert(String::from("lv1").into_boxed_str(), Box::new(value));
+            .insert(String::from("lv1"), Box::new(value));
         self
     }
 
@@ -106,7 +106,7 @@ impl ListStyle {
         value: TextParagraphPropertiesType,
     ) -> &mut Self {
         self.text_paragraph_properties_type
-            .insert(String::from("lv2").into_boxed_str(), Box::new(value));
+            .insert(String::from("lv2"), Box::new(value));
         self
     }
 
@@ -132,7 +132,7 @@ impl ListStyle {
         value: TextParagraphPropertiesType,
     ) -> &mut Self {
         self.text_paragraph_properties_type
-            .insert(String::from("lv3").into_boxed_str(), Box::new(value));
+            .insert(String::from("lv3"), Box::new(value));
         self
     }
 
@@ -158,7 +158,7 @@ impl ListStyle {
         value: TextParagraphPropertiesType,
     ) -> &mut Self {
         self.text_paragraph_properties_type
-            .insert(String::from("lv4").into_boxed_str(), Box::new(value));
+            .insert(String::from("lv4"), Box::new(value));
         self
     }
 
@@ -184,7 +184,7 @@ impl ListStyle {
         value: TextParagraphPropertiesType,
     ) -> &mut Self {
         self.text_paragraph_properties_type
-            .insert(String::from("lv5").into_boxed_str(), Box::new(value));
+            .insert(String::from("lv5"), Box::new(value));
         self
     }
 
@@ -210,7 +210,7 @@ impl ListStyle {
         value: TextParagraphPropertiesType,
     ) -> &mut Self {
         self.text_paragraph_properties_type
-            .insert(String::from("lv6").into_boxed_str(), Box::new(value));
+            .insert(String::from("lv6"), Box::new(value));
         self
     }
 
@@ -236,7 +236,7 @@ impl ListStyle {
         value: TextParagraphPropertiesType,
     ) -> &mut Self {
         self.text_paragraph_properties_type
-            .insert(String::from("lv7").into_boxed_str(), Box::new(value));
+            .insert(String::from("lv7"), Box::new(value));
         self
     }
 
@@ -262,7 +262,7 @@ impl ListStyle {
         value: TextParagraphPropertiesType,
     ) -> &mut Self {
         self.text_paragraph_properties_type
-            .insert(String::from("lv8").into_boxed_str(), Box::new(value));
+            .insert(String::from("lv8"), Box::new(value));
         self
     }
 
@@ -288,7 +288,7 @@ impl ListStyle {
         value: TextParagraphPropertiesType,
     ) -> &mut Self {
         self.text_paragraph_properties_type
-            .insert(String::from("lv9").into_boxed_str(), Box::new(value));
+            .insert(String::from("lv9"), Box::new(value));
         self
     }
 

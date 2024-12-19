@@ -4,7 +4,7 @@ use crate::structs::CsvEncodeValues;
 #[derive(Clone, Default, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub struct CsvWriterOption {
     pub(crate) csv_encode_values: EnumValue<CsvEncodeValues>,
-    pub(crate) wrap_with_char: Box<str>,
+    pub(crate) wrap_with_char: String,
     pub(crate) do_trim: bool,
 }
 impl CsvWriterOption {
@@ -26,7 +26,7 @@ impl CsvWriterOption {
 
     #[inline]
     pub fn set_wrap_with_char<S: Into<String>>(&mut self, value: S) -> &mut Self {
-        self.wrap_with_char = value.into().into_boxed_str();
+        self.wrap_with_char = value.into();
         self
     }
 

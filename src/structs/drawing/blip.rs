@@ -12,7 +12,7 @@ use std::io::Cursor;
 #[derive(Clone, Default, Debug)]
 pub struct Blip {
     image: MediaObject,
-    cstate: Box<str>,
+    cstate: String,
 }
 
 impl Blip {
@@ -39,7 +39,7 @@ impl Blip {
 
     #[inline]
     pub fn set_cstate<S: Into<String>>(&mut self, value: S) -> &mut Self {
-        self.cstate = value.into().into_boxed_str();
+        self.cstate = value.into();
         self
     }
 

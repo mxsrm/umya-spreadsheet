@@ -48,20 +48,19 @@ use crate::traits::AdjustmentValue;
 use crate::StringValue;
 use std::collections::HashMap;
 
-
 /// A Worksheet Object.
 #[derive(Clone, Debug, Default)]
 pub struct Worksheet {
     raw_data_of_worksheet: Option<RawWorksheet>,
-    r_id: Box<str>,
-    sheet_id: Box<str>,
-    title: Box<str>,
+    r_id: String,
+    sheet_id: String,
+    title: String,
     state: EnumValue<SheetStateValues>,
     cell_collection: Cells,
     row_dimensions: Rows,
     column_dimensions: Columns,
     worksheet_drawing: WorksheetDrawing,
-    sheet_state: Box<str>,
+    sheet_state: String,
     page_setup: PageSetup,
     page_margins: PageMargins,
     header_footer: HeaderFooter,
@@ -70,7 +69,7 @@ pub struct Worksheet {
     merge_cells: MergeCells,
     auto_filter: Option<AutoFilter>,
     comments: Vec<Comment>,
-    active_cell: Box<str>,
+    active_cell: String,
     tab_color: Option<Color>,
     code_name: StringValue,
     ole_objects: OleObjects,
@@ -1053,7 +1052,7 @@ impl Worksheet {
     /// * `cell` - Cell ex) "A1"
     #[inline]
     pub fn set_active_cell<S: Into<String>>(&mut self, cell: S) {
-        self.active_cell = cell.into().into_boxed_str();
+        self.active_cell = cell.into();
     }
 
     /// Get R Id.
@@ -1066,7 +1065,7 @@ impl Worksheet {
     /// Set r Id.
     #[inline]
     pub(crate) fn set_r_id<S: Into<String>>(&mut self, value: S) {
-        self.r_id = value.into().into_boxed_str();
+        self.r_id = value.into();
     }
 
     /// Get Sheet Id.
@@ -1079,7 +1078,7 @@ impl Worksheet {
     /// Set Sheet Id.
     #[inline]
     pub(crate) fn set_sheet_id<S: Into<String>>(&mut self, value: S) {
-        self.sheet_id = value.into().into_boxed_str();
+        self.sheet_id = value.into();
     }
 
     /// Has Code Name.
@@ -1162,7 +1161,7 @@ impl Worksheet {
     /// # Arguments
     /// * `sheet_name` - Sheet Name. [Caution] no duplicate other worksheet.
     pub fn set_name<S: Into<String>>(&mut self, sheet_name: S) -> &mut Self {
-        self.title = sheet_name.into().into_boxed_str();
+        self.title = sheet_name.into();
         let title = self.get_name().to_string();
         for defined_name in self.get_defined_names_mut() {
             defined_name.set_sheet_name(&title);
@@ -1207,7 +1206,7 @@ impl Worksheet {
     /// * `value` - Sheet State.
     #[inline]
     pub fn set_sheet_state(&mut self, value: String) -> &mut Self {
-        self.sheet_state = value.into_boxed_str();
+        self.sheet_state = value;
         self
     }
 

@@ -1,7 +1,7 @@
 #[derive(Clone, Default, Debug, Eq, Ord, PartialEq, PartialOrd)]
 pub struct Hyperlink {
-    url: Box<str>,
-    tooltip: Box<str>,
+    url: String,
+    tooltip: String,
     location: bool,
 }
 impl Hyperlink {
@@ -12,7 +12,7 @@ impl Hyperlink {
 
     #[inline]
     pub fn set_url<S: Into<String>>(&mut self, value: S) -> &mut Hyperlink {
-        self.url = value.into().into_boxed_str();
+        self.url = value.into();
         self
     }
 
@@ -23,7 +23,7 @@ impl Hyperlink {
 
     #[inline]
     pub fn set_tooltip<S: Into<String>>(&mut self, value: S) -> &mut Hyperlink {
-        self.tooltip = value.into().into_boxed_str();
+        self.tooltip = value.into();
         self
     }
 

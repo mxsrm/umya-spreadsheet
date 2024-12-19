@@ -7,7 +7,6 @@ use quick_xml::Writer;
 use std::io::Cursor;
 use std::vec;
 
-
 #[derive(Default, Debug, Clone)]
 pub struct ReferenceSequence {
     value: Vec<Range>,

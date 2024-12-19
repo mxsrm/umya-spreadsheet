@@ -5,7 +5,6 @@ use crate::XlsxError;
 use std::io;
 use std::io::Read;
 
-
 #[derive(Clone, Default, Debug)]
 pub(crate) struct RawFile {
     file_target: StringValue,

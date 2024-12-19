@@ -8,7 +8,6 @@ use quick_xml::Reader;
 use quick_xml::Writer;
 use std::io::Cursor;
 
-
 #[derive(Clone, Default, Debug)]
 pub(crate) struct DifferentialFormats {
     differential_format: Vec<DifferentialFormat>,

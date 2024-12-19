@@ -8,7 +8,7 @@ use std::io::Cursor;
 
 #[derive(Clone, Default, Debug)]
 pub struct Alpha {
-    val: Box<str>,
+    val: String,
 }
 impl Alpha {
     #[inline]
@@ -18,7 +18,7 @@ impl Alpha {
 
     #[inline]
     pub fn set_val<S: Into<String>>(&mut self, value: S) {
-        self.val = value.into().into_boxed_str();
+        self.val = value.into();
     }
 
     #[inline]

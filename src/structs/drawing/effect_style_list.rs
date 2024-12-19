@@ -6,7 +6,6 @@ use quick_xml::Reader;
 use quick_xml::Writer;
 use std::io::Cursor;
 
-
 #[derive(Clone, Default, Debug)]
 pub struct EffectStyleList {
     effect_style_collection: Vec<EffectStyle>,
@@ -24,10 +23,7 @@ impl EffectStyleList {
     }
 
     #[inline]
-    pub fn set_effect_style_collection(
-        &mut self,
-        value: impl Into<Vec<EffectStyle>>,
-    ) -> &mut Self {
+    pub fn set_effect_style_collection(&mut self, value: impl Into<Vec<EffectStyle>>) -> &mut Self {
         self.effect_style_collection = value.into();
         self
     }

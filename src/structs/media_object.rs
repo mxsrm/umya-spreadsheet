@@ -1,9 +1,7 @@
-
-
 #[derive(Clone, Default, Debug)]
 pub struct MediaObject {
-    image_title: Box<str>,
-    image_name: Box<str>,
+    image_title: String,
+    image_name: String,
     image_data: Vec<u8>,
 }
 impl MediaObject {
@@ -14,7 +12,7 @@ impl MediaObject {
 
     #[inline]
     pub fn set_image_title<S: Into<String>>(&mut self, value: S) -> &mut Self {
-        self.image_title = value.into().into_boxed_str();
+        self.image_title = value.into();
         self
     }
 
@@ -25,7 +23,7 @@ impl MediaObject {
 
     #[inline]
     pub fn set_image_name<S: Into<String>>(&mut self, value: S) -> &mut Self {
-        self.image_name = value.into().into_boxed_str();
+        self.image_name = value.into();
         self
     }
 
