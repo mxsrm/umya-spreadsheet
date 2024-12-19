@@ -13,7 +13,7 @@ use quick_xml::events::{BytesStart, Event};
 use quick_xml::Reader;
 use quick_xml::Writer;
 use std::io::Cursor;
-use thin_vec::ThinVec;
+
 
 #[derive(Clone, Default, Debug)]
 pub struct BubbleChart {
@@ -22,7 +22,7 @@ pub struct BubbleChart {
     data_labels: DataLabels,
     bubble_scale: BubbleScale,
     show_negative_bubbles: ShowNegativeBubbles,
-    axis_id: ThinVec<AxisId>,
+    axis_id: Vec<AxisId>,
 }
 
 impl BubbleChart {
@@ -95,11 +95,11 @@ impl BubbleChart {
         &self.axis_id
     }
 
-    pub fn get_axis_id_mut(&mut self) -> &mut ThinVec<AxisId> {
+    pub fn get_axis_id_mut(&mut self) -> &mut Vec<AxisId> {
         &mut self.axis_id
     }
 
-    pub fn set_axis_id(&mut self, value: impl Into<ThinVec<AxisId>>) -> &mut BubbleChart {
+    pub fn set_axis_id(&mut self, value: impl Into<Vec<AxisId>>) -> &mut BubbleChart {
         self.axis_id = value.into();
         self
     }

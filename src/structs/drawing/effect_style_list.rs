@@ -5,11 +5,11 @@ use quick_xml::events::{BytesStart, Event};
 use quick_xml::Reader;
 use quick_xml::Writer;
 use std::io::Cursor;
-use thin_vec::ThinVec;
+
 
 #[derive(Clone, Default, Debug)]
 pub struct EffectStyleList {
-    effect_style_collection: ThinVec<EffectStyle>,
+    effect_style_collection: Vec<EffectStyle>,
 }
 
 impl EffectStyleList {
@@ -19,14 +19,14 @@ impl EffectStyleList {
     }
 
     #[inline]
-    pub fn get_effect_style_collection_mut(&mut self) -> &mut ThinVec<EffectStyle> {
+    pub fn get_effect_style_collection_mut(&mut self) -> &mut Vec<EffectStyle> {
         &mut self.effect_style_collection
     }
 
     #[inline]
     pub fn set_effect_style_collection(
         &mut self,
-        value: impl Into<ThinVec<EffectStyle>>,
+        value: impl Into<Vec<EffectStyle>>,
     ) -> &mut Self {
         self.effect_style_collection = value.into();
         self

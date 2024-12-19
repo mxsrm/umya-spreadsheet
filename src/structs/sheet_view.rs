@@ -12,7 +12,7 @@ use quick_xml::events::{BytesStart, Event};
 use quick_xml::Reader;
 use quick_xml::Writer;
 use std::io::Cursor;
-use thin_vec::ThinVec;
+
 
 #[derive(Clone, Default, Debug)]
 pub struct SheetView {
@@ -26,7 +26,7 @@ pub struct SheetView {
     zoom_scale_page_layout_view: UInt32Value,
     zoom_scale_sheet_layout_view: UInt32Value,
     top_left_cell: StringValue,
-    selection: ThinVec<Selection>,
+    selection: Vec<Selection>,
 }
 
 impl SheetView {
@@ -151,7 +151,7 @@ impl SheetView {
     }
 
     #[inline]
-    pub fn get_selection_mut(&mut self) -> &mut ThinVec<Selection> {
+    pub fn get_selection_mut(&mut self) -> &mut Vec<Selection> {
         &mut self.selection
     }
 

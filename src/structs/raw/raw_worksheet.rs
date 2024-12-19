@@ -4,12 +4,12 @@ use crate::structs::raw::RawRelationships;
 use crate::structs::WriterManager;
 use crate::structs::XlsxError;
 use std::io;
-use thin_vec::ThinVec;
+
 
 #[derive(Clone, Debug, Default)]
 pub(crate) struct RawWorksheet {
     worksheet_file: RawFile,
-    relationships_list: ThinVec<RawRelationships>,
+    relationships_list: Vec<RawRelationships>,
 }
 impl RawWorksheet {
     #[inline]
@@ -28,7 +28,7 @@ impl RawWorksheet {
     }
 
     #[inline]
-    pub(crate) fn _get_relationships_list_mut(&mut self) -> &mut ThinVec<RawRelationships> {
+    pub(crate) fn _get_relationships_list_mut(&mut self) -> &mut Vec<RawRelationships> {
         &mut self.relationships_list
     }
 

@@ -9,12 +9,12 @@ use quick_xml::Reader;
 use quick_xml::Writer;
 use std::fmt::Write;
 use std::io::Cursor;
-use thin_vec::ThinVec;
+
 
 #[derive(Default, Debug, Clone, PartialEq, PartialOrd)]
 pub struct GradientFill {
     degree: DoubleValue,
-    gradient_stop: ThinVec<GradientStop>,
+    gradient_stop: Vec<GradientStop>,
 }
 
 impl GradientFill {
@@ -35,7 +35,7 @@ impl GradientFill {
     }
 
     #[inline]
-    pub fn get_gradient_stop_mut(&mut self) -> &mut ThinVec<GradientStop> {
+    pub fn get_gradient_stop_mut(&mut self) -> &mut Vec<GradientStop> {
         &mut self.gradient_stop
     }
 

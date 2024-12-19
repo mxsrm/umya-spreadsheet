@@ -7,12 +7,12 @@ use quick_xml::events::Event;
 use quick_xml::Reader;
 use quick_xml::Writer;
 use std::io::Cursor;
-use thin_vec::ThinVec;
+
 
 #[derive(Clone, Default, Debug)]
 pub struct DataBar {
-    cfvo_collection: ThinVec<ConditionalFormatValueObject>,
-    color_collection: ThinVec<Color>,
+    cfvo_collection: Vec<ConditionalFormatValueObject>,
+    color_collection: Vec<Color>,
 }
 
 impl DataBar {
@@ -24,7 +24,7 @@ impl DataBar {
     #[inline]
     pub fn set_cfvo_collection(
         &mut self,
-        value: ThinVec<ConditionalFormatValueObject>,
+        value: Vec<ConditionalFormatValueObject>,
     ) -> &mut Self {
         self.cfvo_collection = value;
         self
@@ -42,7 +42,7 @@ impl DataBar {
     }
 
     #[inline]
-    pub fn set_color_collection(&mut self, value: impl Into<ThinVec<Color>>) -> &mut Self {
+    pub fn set_color_collection(&mut self, value: impl Into<Vec<Color>>) -> &mut Self {
         self.color_collection = value.into();
         self
     }

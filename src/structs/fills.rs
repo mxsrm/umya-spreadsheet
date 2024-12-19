@@ -7,11 +7,11 @@ use quick_xml::events::{BytesStart, Event};
 use quick_xml::Reader;
 use quick_xml::Writer;
 use std::io::Cursor;
-use thin_vec::ThinVec;
+
 
 #[derive(Clone, Default, Debug)]
 pub(crate) struct Fills {
-    fill: ThinVec<Fill>,
+    fill: Vec<Fill>,
 }
 
 impl Fills {
@@ -22,7 +22,7 @@ impl Fills {
 
     #[inline]
     #[allow(dead_code)]
-    pub(crate) fn get_fill_mut(&mut self) -> &mut ThinVec<Fill> {
+    pub(crate) fn get_fill_mut(&mut self) -> &mut Vec<Fill> {
         &mut self.fill
     }
 
