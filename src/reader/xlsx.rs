@@ -2,14 +2,11 @@ use std::{
     fs::File,
     io,
     path::Path,
-    sync::{
-        Arc,
-        RwLock,
-    },
 };
 
 use super::driver;
 use crate::{
+    SharedStringTableArc,
     XlsxError,
     helper::const_str::{
         COMMENTS_NS,
@@ -19,7 +16,6 @@ use crate::{
         VML_DRAWING_NS,
     },
     structs::{
-        SharedStringTable,
         Stylesheet,
         Workbook,
         Worksheet,
@@ -131,7 +127,7 @@ pub fn lazy_read(path: &Path) -> Result<Workbook, XlsxError> {
 
 pub(crate) fn raw_to_deserialize_by_worksheet(
     worksheet: &mut Worksheet,
-    shared_string_table: &Arc<RwLock<SharedStringTable>>,
+    shared_string_table: &SharedStringTableArc,
     stylesheet: &Stylesheet,
 ) {
     if worksheet.is_deserialized() {
@@ -139,7 +135,6 @@ pub(crate) fn raw_to_deserialize_by_worksheet(
     }
 
     let raw_data_of_worksheet = worksheet.get_raw_data_of_worksheet().clone();
-    let shared_string_table = &*shared_string_table.read().unwrap();
     worksheet::read(
         worksheet,
         &raw_data_of_worksheet,

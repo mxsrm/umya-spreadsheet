@@ -6,6 +6,7 @@ use quick_xml::{
 };
 
 use super::{
+    SharedStringTableArc,
     XlsxError,
     driver::{
         get_attribute,
@@ -23,7 +24,6 @@ use crate::{
         Hyperlink,
         OleObjects,
         Row,
-        SharedStringTable,
         SheetProtection,
         Stylesheet,
         Worksheet,
@@ -38,7 +38,7 @@ use crate::{
 pub(crate) fn read(
     worksheet: &mut Worksheet,
     raw_data_of_worksheet: &RawWorksheet,
-    shared_string_table: &SharedStringTable,
+    shared_string_table: &SharedStringTableArc,
     stylesheet: &Stylesheet,
 ) -> Result<(), XlsxError> {
     let data = std::io::Cursor::new(raw_data_of_worksheet.get_worksheet_file().get_file_data());
@@ -234,7 +234,7 @@ pub(crate) fn read(
 
 pub(crate) fn read_lite(
     raw_data_of_worksheet: &RawWorksheet,
-    shared_string_table: &SharedStringTable,
+    shared_string_table: &SharedStringTableArc,
     stylesheet: &Stylesheet,
 ) -> Cells {
     let data = std::io::Cursor::new(raw_data_of_worksheet.get_worksheet_file().get_file_data());

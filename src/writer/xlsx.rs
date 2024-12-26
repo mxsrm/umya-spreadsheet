@@ -4,7 +4,13 @@ use std::{
     io,
     io::Read,
     path::Path,
+    sync::{
+        Arc,
+        RwLock,
+    },
 };
+
+use rayon::prelude::*;
 
 use super::driver;
 use crate::{
@@ -43,23 +49,27 @@ mod worksheet_rels;
 fn make_buffer(wb: &Workbook, is_light: bool) -> Result<Vec<u8>, XlsxError> {
     let cursor = io::Cursor::new(Vec::new());
     let mut arv = zip::ZipWriter::new(cursor);
-    let mut writer_manager = WriterManager::new(&mut arv);
-    writer_manager.set_is_light(is_light);
+    let writer_manager = Arc::new(RwLock::new(WriterManager::new(&mut arv)));
 
-    // Add docProps
-    doc_props_app::write(wb, &mut writer_manager)?;
-    doc_props_core::write(wb, &mut writer_manager)?;
-    doc_props_custom::write(wb, &mut writer_manager)?;
-    vba_project_bin::write(wb, &mut writer_manager)?;
-    rels::write(wb, &mut writer_manager)?;
-    theme::write(wb.get_theme(), &mut writer_manager)?;
+    {
+        let mut wm = writer_manager.write().unwrap();
+        wm.set_is_light(is_light);
+
+        // Add docProps
+        doc_props_app::write(wb, &mut wm)?;
+        doc_props_core::write(wb, &mut wm)?;
+        doc_props_custom::write(wb, &mut wm)?;
+        vba_project_bin::write(wb, &mut wm)?;
+        rels::write(wb, &mut wm)?;
+        theme::write(wb.get_theme(), &mut wm)?;
+    }
 
     let shared_string_table = wb.get_shared_string_table();
-    let mut stylesheet = wb.get_stylesheet().clone();
+    let stylesheet = Arc::new(RwLock::new(wb.get_stylesheet().clone()));
 
     // Process each worksheet
     wb.get_sheet_collection_no_check()
-        .iter()
+        .par_iter()
         .enumerate()
         .try_for_each(|(index, worksheet)| {
             let worksheet_no = index + 1;
@@ -68,20 +78,21 @@ fn make_buffer(wb: &Workbook, is_light: bool) -> Result<Vec<u8>, XlsxError> {
                     worksheet_no.try_into().unwrap(),
                     worksheet,
                     &shared_string_table,
-                    &mut stylesheet,
+                    &mut stylesheet.write().unwrap(),
                     wb.get_has_macros(),
-                    &mut writer_manager,
+                    &mut writer_manager.write().unwrap(),
                 )
             } else {
-                worksheet
-                    .get_raw_data_of_worksheet()
-                    .write(worksheet_no.try_into().unwrap(), &mut writer_manager)
+                worksheet.get_raw_data_of_worksheet().write(
+                    worksheet_no.try_into().unwrap(),
+                    &mut writer_manager.write().unwrap(),
+                )
             }
         })?;
 
     // Process objects associated with worksheets
     wb.get_sheet_collection_no_check()
-        .iter()
+        .par_iter()
         .enumerate()
         .try_for_each(|(index, worksheet)| {
             let worksheet_no = index + 1;
@@ -89,50 +100,43 @@ fn make_buffer(wb: &Workbook, is_light: bool) -> Result<Vec<u8>, XlsxError> {
                 return Ok(());
             }
 
+            let mut wm = writer_manager.write().unwrap();
+
             // Add charts
-            let chart_no_list: Result<Vec<String>, XlsxError> = worksheet
+            let chart_no_list: Vec<String> = worksheet
                 .get_worksheet_drawing()
                 .get_chart_collection()
                 .iter()
-                .map(|chart| chart::write(chart.get_chart_space(), wb, &mut writer_manager))
-                .collect();
-
-            let chart_no_list = chart_no_list?;
+                .map(|chart| chart::write(chart.get_chart_space(), wb, &mut wm))
+                .collect::<Result<Vec<String>, XlsxError>>()?;
 
             // Add drawing and its relationships
-            let (drawing_no, rel_list) = drawing::write(worksheet, &mut writer_manager)?;
-            drawing_rels::write(
-                worksheet,
-                &drawing_no,
-                &chart_no_list,
-                &rel_list,
-                &mut writer_manager,
-            )?;
+            let (drawing_no, rel_list) = drawing::write(worksheet, &mut wm)?;
+            drawing_rels::write(worksheet, &drawing_no, &chart_no_list, &rel_list, &mut wm)?;
 
             // Add vml drawing and its relationships
-            let (vml_drawing_no, rel_list) = vml_drawing::write(worksheet, &mut writer_manager)?;
-            vml_drawing_rels::write(worksheet, &vml_drawing_no, &rel_list, &mut writer_manager)?;
+            let (vml_drawing_no, rel_list) = vml_drawing::write(worksheet, &mut wm)?;
+            vml_drawing_rels::write(worksheet, &vml_drawing_no, &rel_list, &mut wm)?;
 
             // Add comments
-            let comment_no = comment::write(worksheet, &mut writer_manager)?;
+            let comment_no = comment::write(worksheet, &mut wm)?;
 
             // Add ole_object and excel
-            let (ole_object_no_list, excel_no_list) =
-                embeddings::write(worksheet, &mut writer_manager)?;
+            let (ole_object_no_list, excel_no_list) = embeddings::write(worksheet, &mut wm)?;
 
             // Add Media
-            media::write(worksheet, &mut writer_manager)?;
+            media::write(worksheet, &mut wm)?;
 
             // Add printer settings
             let printer_settings_no = worksheet
                 .get_page_setup()
                 .get_object_data()
                 .map_or_else(String::new, |_| {
-                    printer_settings::write(worksheet, &mut writer_manager).unwrap_or_default()
+                    printer_settings::write(worksheet, &mut wm).unwrap_or_default()
                 });
 
             // Add tables
-            let table_no_list = table::write(worksheet, &mut writer_manager)?;
+            let table_no_list = table::write(worksheet, &mut wm)?;
 
             // Add worksheet relationships
             worksheet_rels::write(
@@ -145,19 +149,23 @@ fn make_buffer(wb: &Workbook, is_light: bool) -> Result<Vec<u8>, XlsxError> {
                 &excel_no_list,
                 &printer_settings_no,
                 &table_no_list,
-                &mut writer_manager,
+                &mut wm,
             )
         })?;
 
     // Finalize file list and add remaining components
-    writer_manager.file_list_sort();
-    shared_strings::write(&shared_string_table, &mut writer_manager)?;
-    styles::write(&stylesheet, &mut writer_manager)?;
-    workbook::write(wb, &mut writer_manager)?;
+    {
+        let mut wm = writer_manager.write().unwrap();
 
-    let has_shared_string_table = shared_string_table.read().unwrap().has_value();
-    workbook_rels::write(wb, has_shared_string_table, &mut writer_manager)?;
-    content_types::write(wb, &mut writer_manager)?;
+        wm.file_list_sort();
+        shared_strings::write(&shared_string_table, &mut wm)?;
+        styles::write(&stylesheet.write().unwrap(), &mut wm)?;
+        workbook::write(wb, &mut wm)?;
+
+        let has_shared_string_table = shared_string_table.read().unwrap().has_value();
+        workbook_rels::write(wb, has_shared_string_table, &mut wm)?;
+        content_types::write(wb, &mut wm)?;
+    }
 
     arv.finish().map(io::Cursor::into_inner).map_err(Into::into)
 }

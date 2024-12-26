@@ -2,10 +2,6 @@ use std::{
     borrow::Cow,
     collections::HashMap,
     io::Cursor,
-    sync::{
-        Arc,
-        RwLock,
-    },
 };
 
 use quick_xml::{
@@ -42,7 +38,7 @@ use crate::{
         NumberingFormat,
         RichText,
         SharedStringItem,
-        SharedStringTable,
+        SharedStringTableArc,
         Style,
         Stylesheet,
         UInt32Value,
@@ -397,7 +393,7 @@ impl Cell {
         &mut self,
         reader: &mut Reader<R>,
         e: &BytesStart,
-        shared_string_table: &SharedStringTable,
+        shared_string_table: &SharedStringTableArc,
         stylesheet: &Stylesheet,
         empty_flag: bool,
         formula_shared_list: &mut HashMap<u32, (String, Vec<FormulaToken>)>,
@@ -461,10 +457,9 @@ impl Cell {
                         }
                         "s" => {
                             let index = string_value.parse::<usize>().unwrap();
-                            let shared_string_item = shared_string_table
-                                .get_shared_string_item()
-                                .get(index)
-                                .unwrap();
+                            let sst = shared_string_table.read().unwrap();
+                            let shared_string_item =
+                                sst.get_shared_string_item().get(index).unwrap();
                             self.set_shared_string_item(shared_string_item);
                         }
                         "b" => {
@@ -501,7 +496,7 @@ impl Cell {
     pub(crate) fn write_to(
         &self,
         writer: &mut Writer<Cursor<Vec<u8>>>,
-        shared_string_table: &Arc<RwLock<SharedStringTable>>,
+        shared_string_table: &SharedStringTableArc,
         stylesheet: &mut Stylesheet,
         formula_shared_list: &HashMap<u32, (String, Option<String>)>,
     ) {

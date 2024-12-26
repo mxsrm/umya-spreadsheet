@@ -2,6 +2,10 @@
 use std::{
     collections::HashMap,
     io::Cursor,
+    sync::{
+        Arc,
+        RwLock,
+    },
 };
 
 use quick_xml::{
@@ -27,11 +31,14 @@ use crate::{
 };
 
 #[derive(Clone, Default, Debug)]
+
 pub(crate) struct SharedStringTable {
     shared_string_item: Vec<SharedStringItem>,
     map:                HashMap<u64, usize>,
     regist_count:       usize,
 }
+
+pub type SharedStringTableArc = Arc<RwLock<SharedStringTable>>;
 
 impl SharedStringTable {
     #[inline]

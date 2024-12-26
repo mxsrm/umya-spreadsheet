@@ -1,5 +1,6 @@
 use std::collections::HashMap;
 
+use super::SharedStringTableArc;
 use crate::{
     StringValue,
     helper::{
@@ -45,7 +46,6 @@ use crate::{
         Row,
         RowBreaks,
         Rows,
-        SharedStringTable,
         SheetFormatProperties,
         SheetProtection,
         SheetStateValues,
@@ -212,7 +212,7 @@ impl Worksheet {
 
     pub(crate) fn get_cells_stream(
         &self,
-        shared_string_table: &SharedStringTable,
+        shared_string_table: &SharedStringTableArc,
         stylesheet: &Stylesheet,
     ) -> Cells {
         assert!(!self.is_deserialized(), "This Worksheet is Deserialized.");

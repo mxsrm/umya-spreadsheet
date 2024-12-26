@@ -1,10 +1,6 @@
 use std::{
     collections::HashMap,
     io,
-    sync::{
-        Arc,
-        RwLock,
-    },
 };
 
 use quick_xml::{
@@ -36,7 +32,7 @@ use crate::{
     },
     structs::{
         Cell,
-        SharedStringTable,
+        SharedStringTableArc,
         Stylesheet,
         Worksheet,
         WriterManager,
@@ -62,7 +58,7 @@ type InternalWriter = Writer<io::Cursor<Vec<u8>>>;
 pub(crate) fn write<W: io::Seek + io::Write>(
     sheet_no: i32,
     worksheet: &Worksheet,
-    shared_string_table: &Arc<RwLock<SharedStringTable>>,
+    shared_string_table: &SharedStringTableArc,
     stylesheet: &mut Stylesheet,
     has_macros: bool,
     writer_mng: &mut WriterManager<W>,
@@ -180,7 +176,7 @@ fn write_dimension_and_views(writer: &mut InternalWriter, worksheet: &Worksheet)
 fn write_columns_and_rows(
     writer: &mut InternalWriter,
     worksheet: &Worksheet,
-    shared_string_table: &Arc<RwLock<SharedStringTable>>,
+    shared_string_table: &SharedStringTableArc,
     stylesheet: &mut Stylesheet,
 ) {
     let mut column_dimensions = worksheet.get_column_dimensions_crate().clone();
@@ -204,7 +200,7 @@ fn write_columns_and_rows(
 fn write_sheet_data(
     writer: &mut InternalWriter,
     worksheet: &Worksheet,
-    shared_string_table: &Arc<RwLock<SharedStringTable>>,
+    shared_string_table: &SharedStringTableArc,
     stylesheet: &mut Stylesheet,
 ) {
     let has_sheet_data = worksheet.has_sheet_data();
@@ -335,7 +331,7 @@ fn write_rows_and_cells(
     writer: &mut InternalWriter,
     row_dimensions: &[&Row],
     cells: &[&Cell],
-    shared_string_table: &Arc<RwLock<SharedStringTable>>,
+    shared_string_table: &SharedStringTableArc,
     stylesheet: &mut Stylesheet,
     formula_shared_list: &HashMap<u32, (String, Option<String>)>,
 ) {
@@ -376,7 +372,7 @@ fn write_row_with_cells(
     writer: &mut InternalWriter,
     row: &Row,
     cells_in_row: &[&Cell],
-    shared_string_table: &Arc<RwLock<SharedStringTable>>,
+    shared_string_table: &SharedStringTableArc,
     stylesheet: &mut Stylesheet,
     formula_shared_list: &HashMap<u32, (String, Option<String>)>,
 ) {
@@ -527,9 +523,16 @@ fn write_tables_and_objects(writer: &mut InternalWriter, worksheet: &Worksheet, 
 
 #[cfg(test)]
 mod tests {
-    use std::io::Cursor;
+    use std::{
+        io::Cursor,
+        sync::{
+            Arc,
+            RwLock,
+        },
+    };
 
     use super::*;
+    use crate::SharedStringTable;
 
     fn setup_test_writer() -> InternalWriter {
         Writer::new(Cursor::new(Vec::new()))
@@ -541,7 +544,7 @@ mod tests {
         ws
     }
 
-    fn setup_shared_string_table() -> Arc<RwLock<SharedStringTable>> {
+    fn setup_shared_string_table() -> SharedStringTableArc {
         Arc::new(RwLock::new(SharedStringTable::default()))
     }
 

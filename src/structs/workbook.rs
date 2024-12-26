@@ -436,9 +436,7 @@ impl Workbook {
         let shared_string_table = self.get_shared_string_table();
         self.work_sheet_collection
             .get(index)
-            .map(|v| {
-                v.get_cells_stream(&shared_string_table.read().unwrap(), self.get_stylesheet())
-            })
+            .map(|v| v.get_cells_stream(&shared_string_table, self.get_stylesheet()))
             .ok_or("Not found.")
     }
 
