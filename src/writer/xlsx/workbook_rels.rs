@@ -117,7 +117,7 @@ pub(crate) fn write<W: io::Seek + io::Write>(
     write_end_tag(&mut writer, root_tag_name);
     make_file_from_writer(
         PKG_WORKBOOK_RELS,
-        writer_mng.get_arv_mut(),
+        writer_mng.get_arv(),
         writer,
         None,
         is_light,

@@ -690,8 +690,7 @@ mod tests {
     #[test]
     fn test_write_complete_worksheet() {
         let cursor = Cursor::new(Vec::new());
-        let mut arv = zip::ZipWriter::new(cursor);
-        let mut writer_manager = WriterManager::new(&mut arv);
+        let mut writer_manager = WriterManager::new(zip::ZipWriter::new(cursor));
         let worksheet = setup_test_worksheet();
         let shared_string_table = setup_shared_string_table();
         let mut stylesheet = setup_stylesheet();

@@ -1,6 +1,12 @@
 use std::{
-    io,
-    io::Cursor,
+    io::{
+        self,
+        Cursor,
+    },
+    sync::{
+        Arc,
+        RwLock,
+    },
 };
 
 use quick_xml::Writer;
@@ -37,19 +43,20 @@ use crate::{
         make_file_from_writer,
     },
 };
-pub struct WriterManager<'a, W: io::Seek + io::Write> {
+
+pub struct WriterManager<W: io::Seek + io::Write> {
     files:    Vec<String>,
-    arv:      &'a mut zip::ZipWriter<W>,
+    arv:      Arc<RwLock<zip::ZipWriter<W>>>,
     is_light: bool,
     table_no: i32,
 }
 
-impl<'a, W: io::Seek + io::Write> WriterManager<'a, W> {
+impl<W: io::Seek + io::Write> WriterManager<W> {
     #[inline]
-    pub fn new(arv: &'a mut zip::ZipWriter<W>) -> Self {
+    pub fn new(arv: zip::ZipWriter<W>) -> Self {
         WriterManager {
-            files: Vec::new(),
-            arv,
+            files:    Vec::new(),
+            arv:      Arc::new(RwLock::new(arv)),
             is_light: false,
             table_no: 0,
         }
@@ -86,7 +93,7 @@ impl<'a, W: io::Seek + io::Write> WriterManager<'a, W> {
         writer: Writer<Cursor<Vec<u8>>>,
     ) -> Result<(), XlsxError> {
         if !self.check_file_exist(target) {
-            make_file_from_writer(target, self.arv, writer, None, self.is_light)?;
+            make_file_from_writer(target, &self.arv, writer, None, self.is_light)?;
             self.files.push(target.to_string());
         }
         Ok(())
@@ -95,14 +102,19 @@ impl<'a, W: io::Seek + io::Write> WriterManager<'a, W> {
     #[inline]
     pub(crate) fn add_bin(&mut self, target: &str, data: &[u8]) -> Result<(), XlsxError> {
         if !self.check_file_exist(target) {
-            make_file_from_bin(target, self.arv, data, None, self.is_light)?;
+            make_file_from_bin(target, &self.arv, data, None, self.is_light)?;
             self.files.push(target.to_string());
         }
         Ok(())
     }
 
     #[inline]
-    pub(crate) fn get_arv_mut(&mut self) -> &mut zip::ZipWriter<W> {
+    pub(crate) fn get_arv(&self) -> &Arc<RwLock<zip::ZipWriter<W>>> {
+        &self.arv
+    }
+
+    #[inline]
+    pub(crate) fn get_arv_consume(self) -> Arc<RwLock<zip::ZipWriter<W>>> {
         self.arv
     }
 

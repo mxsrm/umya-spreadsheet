@@ -48,8 +48,7 @@ mod worksheet_rels;
 
 fn make_buffer(wb: &Workbook, is_light: bool) -> Result<Vec<u8>, XlsxError> {
     let cursor = io::Cursor::new(Vec::new());
-    let mut arv = zip::ZipWriter::new(cursor);
-    let writer_manager = Arc::new(RwLock::new(WriterManager::new(&mut arv)));
+    let writer_manager = Arc::new(RwLock::new(WriterManager::new(zip::ZipWriter::new(cursor))));
 
     {
         let mut wm = writer_manager.write().unwrap();
@@ -167,7 +166,20 @@ fn make_buffer(wb: &Workbook, is_light: bool) -> Result<Vec<u8>, XlsxError> {
         content_types::write(wb, &mut wm)?;
     }
 
-    arv.finish().map(io::Cursor::into_inner).map_err(Into::into)
+    {
+        let wm = Arc::<RwLock<WriterManager<io::Cursor<Vec<u8>>>>>::into_inner(writer_manager)
+            .unwrap()
+            .into_inner()
+            .unwrap();
+
+        let arv =
+            Arc::<RwLock<zip::ZipWriter<io::Cursor<Vec<u8>>>>>::into_inner(wm.get_arv_consume())
+                .unwrap()
+                .into_inner()
+                .unwrap();
+
+        arv.finish().map(io::Cursor::into_inner).map_err(Into::into)
+    }
 }
 
 /// write spreadsheet file to arbitrary writer.

@@ -1,9 +1,13 @@
 use std::{
     borrow::Cow,
-    io,
     io::{
+        self,
         Cursor,
         Write,
+    },
+    sync::{
+        Arc,
+        RwLock,
     },
 };
 
@@ -84,7 +88,7 @@ pub(crate) fn write_new_line(writer: &mut Writer<Cursor<Vec<u8>>>) {
 #[inline]
 pub(crate) fn make_file_from_writer<W: io::Seek + Write>(
     path: &str,
-    arv: &mut zip::ZipWriter<W>,
+    arv: &Arc<RwLock<zip::ZipWriter<W>>>,
     writer: Writer<Cursor<Vec<u8>>>,
     dir: Option<&str>,
     is_light: bool,
@@ -95,7 +99,7 @@ pub(crate) fn make_file_from_writer<W: io::Seek + Write>(
 #[inline]
 pub(crate) fn make_file_from_bin<W: io::Seek + Write>(
     path: &str,
-    arv: &mut zip::ZipWriter<W>,
+    arv: &Arc<RwLock<zip::ZipWriter<W>>>,
     writer: &[u8],
     dir: Option<&str>,
     is_light: bool,
@@ -105,8 +109,10 @@ pub(crate) fn make_file_from_bin<W: io::Seek + Write>(
     } else {
         zip::write::SimpleFileOptions::default().compression_method(zip::CompressionMethod::DEFLATE)
     };
-    arv.start_file(to_path(path, dir), zip_opt)?;
-    arv.write_all(writer)
+
+    let mut handle_arv = arv.write().unwrap();
+    handle_arv.start_file(to_path(path, dir), zip_opt)?;
+    handle_arv.write_all(writer)
 }
 
 #[inline]
