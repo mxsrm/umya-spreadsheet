@@ -150,7 +150,7 @@ pub(crate) fn raw_to_deserialize_by_worksheet(
 
     if let Some(v) = raw_data_of_worksheet.get_worksheet_relationships() {
         for relationship in v.get_relationship_list() {
-            match relationship.get_type() {
+            match relationship.get_type().as_ref() {
                 // drawing, chart
                 DRAWINGS_NS => {
                     drawing::read(

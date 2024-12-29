@@ -1,3 +1,5 @@
+use std::borrow::Cow;
+
 use super::Range;
 use crate::{
     helper::{
@@ -20,8 +22,8 @@ pub struct Address {
 impl Address {
     #[inline]
     #[must_use]
-    pub fn get_sheet_name(&self) -> std::borrow::Cow<str> {
-        &self.sheet_name
+    pub fn get_sheet_name(&self) -> Cow<str> {
+        Cow::Borrowed(&*self.sheet_name)
     }
 
     #[inline]
@@ -108,6 +110,7 @@ impl Address {
         )
     }
 }
+
 impl AdjustmentCoordinateWithSheet for Address {
     #[inline]
     fn adjustment_insert_coordinate_with_sheet(
