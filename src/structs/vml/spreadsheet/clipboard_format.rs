@@ -62,7 +62,7 @@ impl ClipboardFormat {
     pub(crate) fn write_to(&self, writer: &mut Writer<Cursor<Vec<u8>>>) {
         // x:CF
         write_start_tag(writer, "x:CF", vec![], false);
-        write_text_node(writer, self.value.get_value_string());
+        write_text_node(writer, self.value.get_value_string().as_ref());
         write_end_tag(writer, "x:CF");
     }
 }

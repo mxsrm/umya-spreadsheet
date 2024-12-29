@@ -75,7 +75,7 @@ impl Transform {
     #[inline]
     #[must_use]
     pub fn get_rotation(&self) -> i32 {
-        self.rotation.get_value()
+        self.rotation.get_value_unchecked()
     }
 
     #[inline]
@@ -86,7 +86,7 @@ impl Transform {
     #[inline]
     #[must_use]
     pub fn get_vertical_flip(&self) -> bool {
-        self.vertical_flip.get_value()
+        self.vertical_flip.get_value_unchecked()
     }
 
     #[inline]
@@ -97,7 +97,7 @@ impl Transform {
     #[inline]
     #[must_use]
     pub fn get_horizontal_flip(&self) -> bool {
-        self.horizontal_flip.get_value()
+        self.horizontal_flip.get_value_unchecked()
     }
 
     #[inline]

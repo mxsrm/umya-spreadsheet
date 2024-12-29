@@ -37,7 +37,7 @@ impl GradientStop {
     #[inline]
     #[must_use]
     pub fn get_position(&self) -> f64 {
-        self.position.get_value()
+        self.position.get_value_unchecked()
     }
 
     #[inline]

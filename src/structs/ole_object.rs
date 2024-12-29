@@ -46,7 +46,7 @@ impl OleObject {
     #[inline]
     #[must_use]
     pub fn get_requires(&self) -> &str {
-        self.requires.get_value_str()
+        self.requires.get_value_string()
     }
 
     #[inline]
@@ -58,7 +58,7 @@ impl OleObject {
     #[inline]
     #[must_use]
     pub fn get_prog_id(&self) -> &str {
-        self.prog_id.get_value_str()
+        self.prog_id.get_value_string()
     }
 
     #[inline]
@@ -222,7 +222,7 @@ impl OleObject {
         write_start_tag(
             writer,
             "mc:Choice",
-            vec![("Requires", self.requires.get_value_str()).into()],
+            vec![("Requires", self.requires.get_value_string()).into()],
             false,
         );
 
@@ -230,9 +230,9 @@ impl OleObject {
         let r_id_str = format!("rId{r_id}");
         let shape_id_str = format!("{ole_id}");
         let attributes = vec![
-            ("progId", self.prog_id.get_value_str()).into(),
-            ("shapeId", shape_id_str.as_str()).into(),
-            ("r:id", r_id_str.as_str()).into(),
+            ("progId", self.prog_id.get_value_string()).into(),
+            ("shapeId", shape_id_str).into(),
+            ("r:id", r_id_str).into(),
         ];
         write_start_tag(writer, "oleObject", attributes, false);
 
@@ -249,9 +249,9 @@ impl OleObject {
         // oleObject
         let r_id_str = format!("rId{r_id}");
         let attributes = vec![
-            ("progId", self.prog_id.get_value_str()).into(),
-            ("shapeId", shape_id_str.as_str()).into(),
-            ("r:id", r_id_str.as_str()).into(),
+            ("progId", self.prog_id.get_value_string()).into(),
+            ("shapeId", shape_id_str).into(),
+            ("r:id", r_id_str).into(),
         ];
         write_start_tag(writer, "oleObject", attributes, true);
 

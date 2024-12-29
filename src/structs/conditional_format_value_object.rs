@@ -45,7 +45,7 @@ impl ConditionalFormatValueObject {
     #[inline]
     #[must_use]
     pub fn get_val(&self) -> &str {
-        self.val.get_value_str()
+        self.val.get_value_string()
     }
 
     #[inline]
@@ -85,7 +85,7 @@ impl ConditionalFormatValueObject {
         if self.r#type.has_value() {
             attributes.push(("type", ctype).into());
         }
-        let val = self.val.get_value_str();
+        let val = self.val.get_value_string();
         if self.val.has_value() {
             attributes.push(("val", val).into());
         }

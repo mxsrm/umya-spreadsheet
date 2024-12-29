@@ -47,7 +47,7 @@ impl RawFile {
 
     #[inline]
     pub(crate) fn get_file_target(&self) -> &str {
-        self.file_target.get_value_str()
+        self.file_target.get_value_string()
     }
 
     #[inline]

@@ -180,10 +180,10 @@ impl TabColor {
             "{:x}",
             md5::Md5::digest(format!(
                 "{}{}{}{}",
-                &self.indexed.get_hash_string(),
-                &self.theme_index.get_hash_string(),
-                &self.argb.get_hash_string(),
-                &self.tint.get_hash_string()
+                &self.indexed.get_value_string(),
+                &self.theme_index.get_value_string(),
+                &self.argb.get_value_string(),
+                &self.tint.get_value_string()
             ))
         )
     }

@@ -286,7 +286,7 @@ impl Workbook {
     #[inline]
     #[must_use]
     pub fn get_code_name(&self) -> Option<&str> {
-        self.code_name.get_value()
+        self.code_name.get_value_unchecked()
     }
 
     /// (This method is crate only.)

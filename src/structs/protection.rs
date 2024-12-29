@@ -27,7 +27,7 @@ impl Protection {
     #[inline]
     #[must_use]
     pub fn get_locked(&self) -> bool {
-        self.locked.get_value()
+        self.locked.get_value_unchecked()
     }
 
     #[inline]
@@ -37,7 +37,7 @@ impl Protection {
 
     #[inline]
     pub fn get_hidden(&mut self) -> bool {
-        self.hidden.get_value()
+        self.hidden.get_value_unchecked()
     }
 
     #[inline]
@@ -52,8 +52,8 @@ impl Protection {
             "{:x}",
             md5::Md5::digest(format!(
                 "{}{}",
-                &self.locked.get_hash_string(),
-                &self.hidden.get_hash_string()
+                &self.locked.get_value_string(),
+                &self.hidden.get_value_string()
             ))
         )
     }

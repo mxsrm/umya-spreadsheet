@@ -49,7 +49,7 @@ impl SheetProtection {
     #[inline]
     #[must_use]
     pub fn get_algorithm_name(&self) -> &str {
-        self.algorithm_name.get_value_str()
+        self.algorithm_name.get_value_string()
     }
 
     #[inline]
@@ -61,7 +61,7 @@ impl SheetProtection {
     #[inline]
     #[must_use]
     pub fn get_hash_value(&self) -> &str {
-        self.hash_value.get_value_str()
+        self.hash_value.get_value_string()
     }
 
     #[inline]
@@ -73,7 +73,7 @@ impl SheetProtection {
     #[inline]
     #[must_use]
     pub fn get_salt_value(&self) -> &str {
-        self.salt_value.get_value_str()
+        self.salt_value.get_value_string()
     }
 
     #[inline]
@@ -85,7 +85,7 @@ impl SheetProtection {
     #[inline]
     #[must_use]
     pub fn get_spin_count(&self) -> u32 {
-        self.spin_count.get_value()
+        self.spin_count.get_value_unchecked()
     }
 
     #[inline]
@@ -97,7 +97,7 @@ impl SheetProtection {
     #[inline]
     #[must_use]
     pub fn get_password_raw(&self) -> &str {
-        self.password.get_value_str()
+        self.password.get_value_string()
     }
 
     #[inline]
@@ -115,7 +115,7 @@ impl SheetProtection {
     #[inline]
     #[must_use]
     pub fn get_sheet(&self) -> bool {
-        self.sheet.get_value()
+        self.sheet.get_value_unchecked()
     }
 
     #[inline]
@@ -127,7 +127,7 @@ impl SheetProtection {
     #[inline]
     #[must_use]
     pub fn get_objects(&self) -> bool {
-        self.objects.get_value()
+        self.objects.get_value_unchecked()
     }
 
     #[inline]
@@ -139,7 +139,7 @@ impl SheetProtection {
     #[inline]
     #[must_use]
     pub fn get_delete_rows(&self) -> bool {
-        self.delete_rows.get_value()
+        self.delete_rows.get_value_unchecked()
     }
 
     #[inline]
@@ -151,7 +151,7 @@ impl SheetProtection {
     #[inline]
     #[must_use]
     pub fn get_insert_columns(&self) -> bool {
-        self.insert_columns.get_value()
+        self.insert_columns.get_value_unchecked()
     }
 
     #[inline]
@@ -163,7 +163,7 @@ impl SheetProtection {
     #[inline]
     #[must_use]
     pub fn get_delete_columns(&self) -> bool {
-        self.delete_columns.get_value()
+        self.delete_columns.get_value_unchecked()
     }
 
     #[inline]
@@ -175,7 +175,7 @@ impl SheetProtection {
     #[inline]
     #[must_use]
     pub fn get_insert_hyperlinks(&self) -> bool {
-        self.insert_hyperlinks.get_value()
+        self.insert_hyperlinks.get_value_unchecked()
     }
 
     #[inline]
@@ -187,7 +187,7 @@ impl SheetProtection {
     #[inline]
     #[must_use]
     pub fn get_auto_filter(&self) -> bool {
-        self.auto_filter.get_value()
+        self.auto_filter.get_value_unchecked()
     }
 
     #[inline]
@@ -199,7 +199,7 @@ impl SheetProtection {
     #[inline]
     #[must_use]
     pub fn get_scenarios(&self) -> bool {
-        self.scenarios.get_value()
+        self.scenarios.get_value_unchecked()
     }
 
     #[inline]
@@ -211,7 +211,7 @@ impl SheetProtection {
     #[inline]
     #[must_use]
     pub fn get_format_cells(&self) -> bool {
-        self.format_cells.get_value()
+        self.format_cells.get_value_unchecked()
     }
 
     #[inline]
@@ -223,7 +223,7 @@ impl SheetProtection {
     #[inline]
     #[must_use]
     pub fn get_format_columns(&self) -> bool {
-        self.format_columns.get_value()
+        self.format_columns.get_value_unchecked()
     }
 
     #[inline]
@@ -235,7 +235,7 @@ impl SheetProtection {
     #[inline]
     #[must_use]
     pub fn get_insert_rows(&self) -> bool {
-        self.insert_rows.get_value()
+        self.insert_rows.get_value_unchecked()
     }
 
     #[inline]
@@ -247,7 +247,7 @@ impl SheetProtection {
     #[inline]
     #[must_use]
     pub fn get_format_rows(&self) -> bool {
-        self.format_rows.get_value()
+        self.format_rows.get_value_unchecked()
     }
 
     #[inline]
@@ -259,7 +259,7 @@ impl SheetProtection {
     #[inline]
     #[must_use]
     pub fn get_pivot_tables(&self) -> bool {
-        self.pivot_tables.get_value()
+        self.pivot_tables.get_value_unchecked()
     }
 
     #[inline]
@@ -271,7 +271,7 @@ impl SheetProtection {
     #[inline]
     #[must_use]
     pub fn get_select_locked_cells(&self) -> bool {
-        self.select_locked_cells.get_value()
+        self.select_locked_cells.get_value_unchecked()
     }
 
     #[inline]
@@ -283,7 +283,7 @@ impl SheetProtection {
     #[inline]
     #[must_use]
     pub fn get_select_unlocked_cells(&self) -> bool {
-        self.select_unlocked_cells.get_value()
+        self.select_unlocked_cells.get_value_unchecked()
     }
 
     #[inline]
@@ -295,7 +295,7 @@ impl SheetProtection {
     #[inline]
     #[must_use]
     pub fn get_sort(&self) -> bool {
-        self.sort.get_value()
+        self.sort.get_value_unchecked()
     }
 
     #[inline]
@@ -342,20 +342,20 @@ impl SheetProtection {
         // sheetProtection
         let mut attributes: crate::structs::AttrCollection = Vec::new();
         if self.algorithm_name.has_value() {
-            attributes.push(("algorithmName", self.algorithm_name.get_value_str()).into());
+            attributes.push(("algorithmName", self.algorithm_name.get_value_string()).into());
         }
         if self.hash_value.has_value() {
-            attributes.push(("hashValue", self.hash_value.get_value_str()).into());
+            attributes.push(("hashValue", self.hash_value.get_value_string()).into());
         }
         if self.salt_value.has_value() {
-            attributes.push(("saltValue", self.salt_value.get_value_str()).into());
+            attributes.push(("saltValue", self.salt_value.get_value_string()).into());
         }
         let spin_count = self.spin_count.get_value_string();
         if self.spin_count.has_value() {
             attributes.push(("spinCount", &spin_count).into());
         }
         if self.password.has_value() {
-            attributes.push(("password", self.password.get_value_str()).into());
+            attributes.push(("password", self.password.get_value_string()).into());
         }
         if self.sheet.has_value() {
             attributes.push(("sheet", self.sheet.get_value_string()).into());

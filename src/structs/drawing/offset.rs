@@ -22,7 +22,7 @@ impl Offset {
     #[inline]
     #[must_use]
     pub fn get_x(&self) -> i64 {
-        self.x.get_value()
+        self.x.get_value_unchecked()
     }
 
     #[inline]
@@ -33,7 +33,7 @@ impl Offset {
     #[inline]
     #[must_use]
     pub fn get_y(&self) -> i64 {
-        self.y.get_value()
+        self.y.get_value_unchecked()
     }
 
     #[inline]

@@ -1,3 +1,5 @@
+use std::borrow::Cow;
+
 use crate::{
     helper::{
         address::{
@@ -55,12 +57,12 @@ pub enum FormulaTokenSubTypes {
 }
 
 #[derive(Clone, Debug)]
-pub struct FormulaToken {
-    value:          StringValue,
+pub struct FormulaToken<'a> {
+    value:          StringValue<'a>,
     token_type:     FormulaTokenTypes,
     token_sub_type: FormulaTokenSubTypes,
 }
-impl Default for FormulaToken {
+impl Default for FormulaToken<'_> {
     #[inline]
     fn default() -> Self {
         Self {
@@ -70,16 +72,16 @@ impl Default for FormulaToken {
         }
     }
 }
-impl FormulaToken {
+impl<'a> FormulaToken<'a> {
     #[inline]
     #[must_use]
-    pub fn get_value(&self) -> &str {
-        self.value.get_value_str()
+    pub fn get_value(&self) -> Cow<'a, str> {
+        self.value.get_value_string()
     }
 
     #[inline]
     pub fn set_value<S: Into<String>>(&mut self, value: S) -> &mut Self {
-        self.value.set_value(value);
+        self.value.set_value(Cow::Owned(value.into()));
         self
     }
 
@@ -140,7 +142,7 @@ macro_rules! token {
     }};
 }
 
-pub(crate) fn parse_to_tokens<S: Into<String>>(formula: S) -> Vec<FormulaToken> {
+pub(crate) fn parse_to_tokens<S: Into<String>>(formula: S) -> Vec<FormulaToken<'static>> {
     let formula_str = formula.into();
     let formula_length = formula_str.chars().count();
 
@@ -149,14 +151,16 @@ pub(crate) fn parse_to_tokens<S: Into<String>>(formula: S) -> Vec<FormulaToken> 
         return Vec::new();
     }
 
-    let (_, tokens2) = parse_into_intermediate_tokens(&formula_str);
-    finalize_tokens(&tokens2)
+    let (_, tokens2) = parse_into_intermediate_tokens(formula_str.as_str());
+    finalize_tokens(tokens2)
 }
 
-fn parse_into_intermediate_tokens(formula: &str) -> (Vec<FormulaToken>, Vec<FormulaToken>) {
-    let mut tokens1: Vec<FormulaToken> = Vec::new();
-    let mut tokens2: Vec<FormulaToken> = Vec::new();
-    let mut stack: Vec<FormulaToken> = Vec::new();
+fn parse_into_intermediate_tokens<'a>(
+    formula: &'a str,
+) -> (Vec<FormulaToken<'a>>, Vec<FormulaToken<'a>>) {
+    let mut tokens1: Vec<FormulaToken<'a>> = Vec::new();
+    let mut tokens2: Vec<FormulaToken<'a>> = Vec::new();
+    let mut stack: Vec<FormulaToken<'a>> = Vec::new();
 
     // state flags
     let mut in_string = false;
@@ -237,10 +241,10 @@ fn parse_into_intermediate_tokens(formula: &str) -> (Vec<FormulaToken>, Vec<Form
     (tokens1, tokens2)
 }
 
-fn finalize_tokens(tokens_in: &[FormulaToken]) -> Vec<FormulaToken> {
-    let mut tokens: Vec<FormulaToken> = Vec::new();
+fn finalize_tokens<'a>(tokens_in: Vec<FormulaToken<'a>>) -> Vec<FormulaToken<'a>> {
+    let mut tokens: Vec<FormulaToken<'a>> = Vec::new();
     let token_count = tokens_in.len();
-    let mut previous_token: Option<FormulaToken>;
+    let mut previous_token: Option<FormulaToken<'a>>;
 
     for i in 0..token_count {
         let mut token = tokens_in[i].clone();
@@ -417,12 +421,12 @@ fn handle_scientific_notation(formula: &str, index: &mut usize, value: &mut Stri
 }
 
 #[allow(clippy::too_many_arguments)]
-fn handle_special_characters(
+fn handle_special_characters<'a>(
     formula: &str,
     index: &mut usize,
     value: &mut String,
-    tokens1: &mut Vec<FormulaToken>,
-    stack: &mut Vec<FormulaToken>,
+    tokens1: &mut Vec<FormulaToken<'a>>,
+    stack: &mut Vec<FormulaToken<'a>>,
     in_string: &mut bool,
     in_range: &mut bool,
     in_error: &mut bool,
@@ -873,7 +877,8 @@ pub fn adjustment_formula_coordinate(
         if token.get_token_type() == &FormulaTokenTypes::Operand
             && token.get_token_sub_type() == &FormulaTokenSubTypes::Range
         {
-            let (sheet_name, range) = split_address(token.get_value());
+            let tmp = token.get_value();
+            let (sheet_name, range) = split_address(&tmp);
             let mut coordinate_list_new: Vec<String> = Vec::new();
             let coordinate_list = get_split_range(range);
             let mut has_error = false;
@@ -935,7 +940,8 @@ pub fn adjustment_insert_formula_coordinate(
         if token.get_token_type() == &FormulaTokenTypes::Operand
             && token.get_token_sub_type() == &FormulaTokenSubTypes::Range
         {
-            let (sheet_name, range) = split_address(token.get_value());
+            let tmp = token.get_value();
+            let (sheet_name, range) = split_address(&tmp);
             if ignore_worksheet
                 || (sheet_name.is_empty() && worksheet_name == self_worksheet_name)
                 || (sheet_name == worksheet_name)
@@ -991,7 +997,8 @@ pub fn adjustment_remove_formula_coordinate(
         if token.get_token_type() == &FormulaTokenTypes::Operand
             && token.get_token_sub_type() == &FormulaTokenSubTypes::Range
         {
-            let (sheet_name, range) = split_address(token.get_value());
+            let tmp = token.get_value();
+            let (sheet_name, range) = split_address(&tmp);
             if ignore_worksheet
                 || (sheet_name.is_empty() && worksheet_name == self_worksheet_name)
                 || (sheet_name == worksheet_name)

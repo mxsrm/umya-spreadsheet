@@ -27,7 +27,7 @@ impl Rotation {
     #[inline]
     #[must_use]
     pub fn get_latitude(&self) -> i32 {
-        self.latitude.get_value()
+        self.latitude.get_value_unchecked()
     }
 
     #[inline]
@@ -39,7 +39,7 @@ impl Rotation {
     #[inline]
     #[must_use]
     pub fn get_longitude(&self) -> i32 {
-        self.longitude.get_value()
+        self.longitude.get_value_unchecked()
     }
 
     #[inline]
@@ -51,7 +51,7 @@ impl Rotation {
     #[inline]
     #[must_use]
     pub fn get_revolution(&self) -> i32 {
-        self.revolution.get_value()
+        self.revolution.get_value_unchecked()
     }
 
     #[inline]

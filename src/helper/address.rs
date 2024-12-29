@@ -1,13 +1,24 @@
 use crate::helper::utils::compile_regex;
 
 #[must_use]
-pub fn split_address(address: &str) -> (&str, &str) {
-    address
-        .rsplit_once('!')
-        .map_or(("", address), |(sheet_name, range)| {
-            (sheet_name.trim_matches(&['\'', '"'][..]), range)
-        })
+pub fn split_address<'a, S: AsRef<str> + ?Sized>(address: &'a S) -> (&'a str, &'a str) {
+    address.as_ref().rsplit_once('!').map_or_else(
+        || ("", address.as_ref()),
+        |(sheet_name, range)| (sheet_name.trim_matches(&['\'', '"'][..]), range),
+    )
 }
+
+// pub fn split_address<'a, S: AsRef<str> + Into<String> + ToString>(address: S)
+// -> (String, String) {     address.as_ref().rsplit_once('!').map_or_else(
+//         || ("".to_string(), address.to_string()),
+//         |(sheet_name, range)| {
+//             (
+//                 sheet_name.trim_matches(&['\'', '"'][..]).to_string(),
+//                 range.to_string(),
+//             )
+//         },
+//     )
+// }
 
 #[must_use]
 pub fn join_address(sheet_name: &str, address: &str) -> String {

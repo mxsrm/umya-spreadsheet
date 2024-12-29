@@ -22,7 +22,7 @@ impl StartConnection {
     #[inline]
     #[must_use]
     pub fn get_id(&self) -> u32 {
-        self.id.get_value()
+        self.id.get_value_unchecked()
     }
 
     #[inline]
@@ -33,7 +33,7 @@ impl StartConnection {
     #[inline]
     #[must_use]
     pub fn get_index(&self) -> u32 {
-        self.index.get_value()
+        self.index.get_value_unchecked()
     }
 
     #[inline]

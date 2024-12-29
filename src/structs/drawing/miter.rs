@@ -25,7 +25,7 @@ impl Miter {
     #[inline]
     #[must_use]
     pub fn get_limit(&self) -> i32 {
-        self.limit.get_value()
+        self.limit.get_value_unchecked()
     }
 
     #[inline]

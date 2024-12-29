@@ -36,7 +36,7 @@ impl PageSetup {
     #[inline]
     #[must_use]
     pub fn get_paper_size(&self) -> u32 {
-        self.paper_size.get_value()
+        self.paper_size.get_value_unchecked()
     }
 
     #[inline]
@@ -60,7 +60,7 @@ impl PageSetup {
     #[inline]
     #[must_use]
     pub fn get_scale(&self) -> u32 {
-        self.scale.get_value()
+        self.scale.get_value_unchecked()
     }
 
     #[inline]
@@ -72,7 +72,7 @@ impl PageSetup {
     #[inline]
     #[must_use]
     pub fn get_fit_to_height(&self) -> u32 {
-        self.fit_to_height.get_value()
+        self.fit_to_height.get_value_unchecked()
     }
 
     #[inline]
@@ -84,7 +84,7 @@ impl PageSetup {
     #[inline]
     #[must_use]
     pub fn get_fit_to_width(&self) -> u32 {
-        self.fit_to_width.get_value()
+        self.fit_to_width.get_value_unchecked()
     }
 
     #[inline]
@@ -96,7 +96,7 @@ impl PageSetup {
     #[inline]
     #[must_use]
     pub fn get_horizontal_dpi(&self) -> u32 {
-        self.horizontal_dpi.get_value()
+        self.horizontal_dpi.get_value_unchecked()
     }
 
     #[inline]
@@ -108,7 +108,7 @@ impl PageSetup {
     #[inline]
     #[must_use]
     pub fn get_vertical_dpi(&self) -> u32 {
-        self.vertical_dpi.get_value()
+        self.vertical_dpi.get_value_unchecked()
     }
 
     #[inline]
@@ -203,7 +203,7 @@ impl PageSetup {
                 attributes.push(("verticalDpi", &vertical_dpi).into());
             }
             if self.object_data.is_some() {
-                attributes.push(("r:id", r_id_str.as_str()).into());
+                attributes.push(("r:id", r_id_str).into());
                 *r_id += 1;
             }
             write_start_tag(writer, "pageSetup", attributes, true);

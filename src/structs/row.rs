@@ -61,7 +61,7 @@ impl Row {
     #[inline]
     #[must_use]
     pub fn get_row_num(&self) -> u32 {
-        self.row_num.get_value()
+        self.row_num.get_value_unchecked()
     }
 
     #[inline]
@@ -73,7 +73,7 @@ impl Row {
     #[inline]
     #[must_use]
     pub fn get_height(&self) -> f64 {
-        self.height.get_value()
+        self.height.get_value_unchecked()
     }
 
     #[inline]
@@ -86,7 +86,7 @@ impl Row {
     #[inline]
     #[must_use]
     pub fn get_descent(&self) -> f64 {
-        self.descent.get_value()
+        self.descent.get_value_unchecked()
     }
 
     #[inline]
@@ -98,7 +98,7 @@ impl Row {
     #[inline]
     #[must_use]
     pub fn get_thick_bot(&self) -> bool {
-        self.thick_bot.get_value()
+        self.thick_bot.get_value_unchecked()
     }
 
     #[inline]
@@ -110,7 +110,7 @@ impl Row {
     #[inline]
     #[must_use]
     pub fn get_custom_height(&self) -> bool {
-        self.custom_height.get_value()
+        self.custom_height.get_value_unchecked()
     }
 
     #[inline]
@@ -122,7 +122,7 @@ impl Row {
     #[inline]
     #[must_use]
     pub fn get_hidden(&self) -> bool {
-        self.hidden.get_value()
+        self.hidden.get_value_unchecked()
     }
 
     #[inline]
@@ -242,19 +242,19 @@ impl Row {
             attributes.push(("spans", spans).into());
         }
         let height = self.height.get_value_string();
-        if self.height.get_value() != 0f64 {
+        if self.height.get_value_unchecked() != 0f64 {
             attributes.push(("ht", &height).into());
         }
-        if self.thick_bot.get_value() {
+        if self.thick_bot.get_value_unchecked() {
             attributes.push(("thickBot", self.thick_bot.get_value_string()).into());
         }
-        if self.custom_height.get_value() {
+        if self.custom_height.get_value_unchecked() {
             attributes.push(("customHeight", self.custom_height.get_value_string()).into());
         }
         if xf_index > 0 {
             attributes.push(("customFormat", "1").into());
         }
-        if self.hidden.get_value() {
+        if self.hidden.get_value_unchecked() {
             attributes.push(("hidden", self.hidden.get_value_string()).into());
         }
         let descent = self.descent.get_value_string();
@@ -273,22 +273,22 @@ impl Row {
 impl AdjustmentValue for Row {
     #[inline]
     fn adjustment_insert_value(&mut self, root_num: u32, offset_num: u32) {
-        if self.row_num.get_value() >= root_num {
+        if self.row_num.get_value_unchecked() >= root_num {
             self.row_num
-                .set_value(self.row_num.get_value() + offset_num);
+                .set_value(self.row_num.get_value_unchecked() + offset_num);
         }
     }
 
     #[inline]
     fn adjustment_remove_value(&mut self, root_num: u32, offset_num: u32) {
-        if self.row_num.get_value() >= root_num {
+        if self.row_num.get_value_unchecked() >= root_num {
             self.row_num
-                .set_value(self.row_num.get_value() - offset_num);
+                .set_value(self.row_num.get_value_unchecked() - offset_num);
         }
     }
 
     #[inline]
     fn is_remove_value(&self, root_num: u32, offset_num: u32) -> bool {
-        self.row_num.get_value() >= root_num && self.row_num.get_value() < root_num + offset_num
+        self.row_num.get_value_unchecked() >= root_num && self.row_num.get_value_unchecked() < root_num + offset_num
     }
 }

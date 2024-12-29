@@ -25,7 +25,7 @@ pub struct PageMargins {
 impl PageMargins {
     #[must_use]
     pub fn get_bottom(&self) -> f64 {
-        self.bottom.get_value()
+        self.bottom.get_value_unchecked()
     }
 
     pub fn set_bottom(&mut self, value: f64) -> &mut Self {
@@ -35,7 +35,7 @@ impl PageMargins {
 
     #[must_use]
     pub fn get_left(&self) -> f64 {
-        self.left.get_value()
+        self.left.get_value_unchecked()
     }
 
     pub fn set_left(&mut self, value: f64) -> &mut Self {
@@ -45,7 +45,7 @@ impl PageMargins {
 
     #[must_use]
     pub fn get_right(&self) -> f64 {
-        self.right.get_value()
+        self.right.get_value_unchecked()
     }
 
     pub fn set_right(&mut self, value: f64) -> &mut Self {
@@ -55,7 +55,7 @@ impl PageMargins {
 
     #[must_use]
     pub fn get_top(&self) -> f64 {
-        self.top.get_value()
+        self.top.get_value_unchecked()
     }
 
     pub fn set_top(&mut self, value: f64) -> &mut Self {
@@ -65,7 +65,7 @@ impl PageMargins {
 
     #[must_use]
     pub fn get_header(&self) -> f64 {
-        self.header.get_value()
+        self.header.get_value_unchecked()
     }
 
     pub fn set_header(&mut self, value: f64) -> &mut Self {
@@ -75,7 +75,7 @@ impl PageMargins {
 
     #[must_use]
     pub fn get_footer(&self) -> f64 {
-        self.footer.get_value()
+        self.footer.get_value_unchecked()
     }
 
     pub fn set_footer(&mut self, value: f64) -> &mut Self {

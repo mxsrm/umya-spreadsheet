@@ -161,7 +161,7 @@ fn write_dimension_and_views(writer: &mut InternalWriter, worksheet: &Worksheet)
     write_start_tag(
         writer,
         "dimension",
-        vec![("ref", worksheet.calculate_worksheet_dimension().as_str()).into()],
+        vec![("ref", worksheet.calculate_worksheet_dimension()).into()],
         true,
     );
 
@@ -423,7 +423,7 @@ fn write_hyperlinks(writer: &mut InternalWriter, worksheet: &Worksheet) -> i32 {
             if hyperlink.get_location() {
                 attributes.push(("location", hyperlink.get_url()).into());
             } else {
-                attributes.push(("r:id", r_id_str.as_str()).into());
+                attributes.push(("r:id", r_id_str).into());
                 r_id += 1;
             }
             write_start_tag(writer, "hyperlink", attributes, true);
@@ -477,12 +477,7 @@ fn write_print_settings(writer: &mut InternalWriter, worksheet: &Worksheet, r_id
 fn write_drawings(writer: &mut InternalWriter, worksheet: &Worksheet, mut r_id: i32) -> i32 {
     if worksheet.has_drawing_object() {
         let r_id_str = format!("rId{}", &r_id);
-        write_start_tag(
-            writer,
-            "drawing",
-            vec![("r:id", r_id_str.as_str()).into()],
-            true,
-        );
+        write_start_tag(writer, "drawing", vec![("r:id", r_id_str).into()], true);
         r_id += 1;
     }
 
@@ -491,7 +486,7 @@ fn write_drawings(writer: &mut InternalWriter, worksheet: &Worksheet, mut r_id: 
         write_start_tag(
             writer,
             "legacyDrawing",
-            vec![("r:id", r_id_str.as_str()).into()],
+            vec![("r:id", r_id_str).into()],
             true,
         );
         r_id += 1;
@@ -518,12 +513,7 @@ fn write_tables_and_objects(writer: &mut InternalWriter, worksheet: &Worksheet, 
         );
         for _table in worksheet.get_tables() {
             let r_id_str = format!("rId{}", &r_id);
-            write_start_tag(
-                writer,
-                "tablePart",
-                vec![("r:id", r_id_str.as_str()).into()],
-                true,
-            );
+            write_start_tag(writer, "tablePart", vec![("r:id", r_id_str).into()], true);
             r_id += 1;
         }
         write_end_tag(writer, "tableParts");

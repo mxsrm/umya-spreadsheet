@@ -31,7 +31,7 @@ impl Break {
     #[inline]
     #[must_use]
     pub fn get_id(&self) -> u32 {
-        self.id.get_value()
+        self.id.get_value_unchecked()
     }
 
     #[inline]
@@ -43,7 +43,7 @@ impl Break {
     #[inline]
     #[must_use]
     pub fn get_max(&self) -> u32 {
-        self.max.get_value()
+        self.max.get_value_unchecked()
     }
 
     #[inline]
@@ -55,7 +55,7 @@ impl Break {
     #[inline]
     #[must_use]
     pub fn get_manual_page_break(&self) -> bool {
-        self.manual_page_break.get_value()
+        self.manual_page_break.get_value_unchecked()
     }
 
     #[inline]

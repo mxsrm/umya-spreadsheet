@@ -24,7 +24,7 @@ impl TailEnd {
     #[inline]
     #[must_use]
     pub fn get_type(&self) -> &str {
-        self.t_type.get_value_str()
+        self.t_type.get_value_string()
     }
 
     #[inline]
@@ -35,7 +35,7 @@ impl TailEnd {
     #[inline]
     #[must_use]
     pub fn get_width(&self) -> &str {
-        self.width.get_value_str()
+        self.width.get_value_string()
     }
 
     #[inline]
@@ -46,7 +46,7 @@ impl TailEnd {
     #[inline]
     #[must_use]
     pub fn get_length(&self) -> &str {
-        self.length.get_value_str()
+        self.length.get_value_string()
     }
 
     #[inline]
@@ -76,13 +76,13 @@ impl TailEnd {
         // a:tailEnd
         let mut attributes: crate::structs::AttrCollection = Vec::new();
         if self.t_type.has_value() {
-            attributes.push(("type", (self.t_type.get_value_str())).into());
+            attributes.push(("type", (self.t_type.get_value_string())).into());
         }
         if self.width.has_value() {
-            attributes.push(("w", (self.width.get_value_str())).into());
+            attributes.push(("w", (self.width.get_value_string())).into());
         }
         if self.length.has_value() {
-            attributes.push(("len", (self.length.get_value_str())).into());
+            attributes.push(("len", (self.length.get_value_string())).into());
         }
         write_start_tag(writer, "a:tailEnd", attributes, true);
     }

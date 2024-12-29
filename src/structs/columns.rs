@@ -175,10 +175,10 @@ impl Columns {
         attributes.push(("max", max_str).into());
         let width = column.width.get_value_string();
         attributes.push(("width", &width).into());
-        if column.hidden.get_value() {
+        if column.hidden.get_value_unchecked() {
             attributes.push(("hidden", column.hidden.get_value_string()).into());
         }
-        if column.best_fit.get_value() {
+        if column.best_fit.get_value_unchecked() {
             attributes.push(("bestFit", column.best_fit.get_value_string()).into());
         }
         attributes.push(("customWidth", "1").into());

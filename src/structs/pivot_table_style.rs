@@ -32,7 +32,7 @@ impl PivotTableStyle {
     #[inline]
     #[must_use]
     pub fn get_name(&self) -> &str {
-        self.name.get_value_str()
+        self.name.get_value_string()
     }
 
     #[inline]
@@ -45,7 +45,7 @@ impl PivotTableStyle {
     #[inline]
     #[must_use]
     pub fn get_show_row_headers(&self) -> bool {
-        self.show_row_headers.get_value()
+        self.show_row_headers.get_value_unchecked()
     }
 
     #[inline]
@@ -57,7 +57,7 @@ impl PivotTableStyle {
     #[inline]
     #[must_use]
     pub fn get_show_column_headers(&self) -> bool {
-        self.show_column_headers.get_value()
+        self.show_column_headers.get_value_unchecked()
     }
 
     #[inline]
@@ -69,7 +69,7 @@ impl PivotTableStyle {
     #[inline]
     #[must_use]
     pub fn get_show_row_stripes(&self) -> bool {
-        self.show_row_stripes.get_value()
+        self.show_row_stripes.get_value_unchecked()
     }
 
     #[inline]
@@ -81,7 +81,7 @@ impl PivotTableStyle {
     #[inline]
     #[must_use]
     pub fn get_show_column_stripes(&self) -> bool {
-        self.show_column_stripes.get_value()
+        self.show_column_stripes.get_value_unchecked()
     }
 
     #[inline]
@@ -93,7 +93,7 @@ impl PivotTableStyle {
     #[inline]
     #[must_use]
     pub fn get_show_last_column(&self) -> bool {
-        self.show_last_column.get_value()
+        self.show_last_column.get_value_unchecked()
     }
 
     #[inline]
@@ -123,7 +123,7 @@ impl PivotTableStyle {
             writer,
             "pivotTableStyleInfo",
             vec![
-                ("dataField", self.name.get_value_str()).into(),
+                ("dataField", self.name.get_value_string()).into(),
                 ("showAll", self.show_row_headers.get_value_string()).into(),
                 ("showAll", self.show_column_headers.get_value_string()).into(),
                 ("showAll", self.show_row_stripes.get_value_string()).into(),

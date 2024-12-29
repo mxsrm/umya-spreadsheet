@@ -27,8 +27,8 @@ pub struct SeriesText {
 
 impl SeriesText {
     #[must_use]
-    pub fn get_value(&self) -> &str {
-        self.value.get_value_str()
+    pub fn get_value(&self) -> Cow<'a, str> {
+        self.value.get_value_string().as_ref()
     }
 
     pub fn set_value<S: Into<String>>(&mut self, value: S) -> &mut Self {
@@ -61,7 +61,7 @@ impl SeriesText {
 
         // c:v
         write_start_tag(writer, "c:v", vec![], false);
-        write_text_node(writer, self.value.get_value_str());
+        write_text_node(writer, self.value.get_value_string().as_ref());
         write_end_tag(writer, "c:v");
 
         write_end_tag(writer, "c:tx");

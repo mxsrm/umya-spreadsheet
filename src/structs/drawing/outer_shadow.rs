@@ -45,7 +45,7 @@ impl OuterShadow {
     #[inline]
     #[must_use]
     pub fn get_blur_radius(&self) -> Option<&str> {
-        self.blur_radius.get_value()
+        self.blur_radius.get_value_unchecked()
     }
 
     #[inline]
@@ -57,7 +57,7 @@ impl OuterShadow {
     #[inline]
     #[must_use]
     pub fn get_horizontal_ratio(&self) -> Option<&str> {
-        self.horizontal_ratio.get_value()
+        self.horizontal_ratio.get_value_unchecked()
     }
 
     #[inline]
@@ -69,7 +69,7 @@ impl OuterShadow {
     #[inline]
     #[must_use]
     pub fn get_vertical_ratio(&self) -> Option<&str> {
-        self.vertical_ratio.get_value()
+        self.vertical_ratio.get_value_unchecked()
     }
 
     #[inline]
@@ -81,7 +81,7 @@ impl OuterShadow {
     #[inline]
     #[must_use]
     pub fn get_alignment(&self) -> Option<&str> {
-        self.alignment.get_value()
+        self.alignment.get_value_unchecked()
     }
 
     #[inline]
@@ -93,7 +93,7 @@ impl OuterShadow {
     #[inline]
     #[must_use]
     pub fn get_direction(&self) -> Option<&str> {
-        self.direction.get_value()
+        self.direction.get_value_unchecked()
     }
 
     #[inline]
@@ -105,7 +105,7 @@ impl OuterShadow {
     #[inline]
     #[must_use]
     pub fn get_distance(&self) -> Option<&str> {
-        self.distance.get_value()
+        self.distance.get_value_unchecked()
     }
 
     #[inline]
@@ -116,7 +116,7 @@ impl OuterShadow {
 
     #[must_use]
     pub fn get_rotate_with_shape(&self) -> Option<&str> {
-        self.rotate_with_shape.get_value()
+        self.rotate_with_shape.get_value_unchecked()
     }
 
     #[inline]
@@ -252,25 +252,25 @@ impl OuterShadow {
     pub(crate) fn write_to(&self, writer: &mut Writer<Cursor<Vec<u8>>>) {
         // a:outerShdw
         let mut attributes: crate::structs::AttrCollection = Vec::new();
-        if let Some(v) = self.blur_radius.get_value() {
+        if let Some(v) = self.blur_radius.get_value_unchecked() {
             attributes.push(("blurRad", v).into());
         }
-        if let Some(v) = self.distance.get_value() {
+        if let Some(v) = self.distance.get_value_unchecked() {
             attributes.push(("dist", v).into());
         }
-        if let Some(v) = self.direction.get_value() {
+        if let Some(v) = self.direction.get_value_unchecked() {
             attributes.push(("dir", v).into());
         }
-        if let Some(v) = self.horizontal_ratio.get_value() {
+        if let Some(v) = self.horizontal_ratio.get_value_unchecked() {
             attributes.push(("sx", v).into());
         }
-        if let Some(v) = self.vertical_ratio.get_value() {
+        if let Some(v) = self.vertical_ratio.get_value_unchecked() {
             attributes.push(("sy", v).into());
         }
-        if let Some(v) = self.alignment.get_value() {
+        if let Some(v) = self.alignment.get_value_unchecked() {
             attributes.push(("algn", v).into());
         }
-        if let Some(v) = self.rotate_with_shape.get_value() {
+        if let Some(v) = self.rotate_with_shape.get_value_unchecked() {
             attributes.push(("rotWithShape", v).into());
         }
         write_start_tag(writer, "a:outerShdw", attributes, false);

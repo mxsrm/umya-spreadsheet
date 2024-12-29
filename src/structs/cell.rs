@@ -163,7 +163,7 @@ impl Cell {
     #[inline]
     #[must_use]
     pub fn get_cell_meta_index(&self) -> u32 {
-        self.cell_meta_index.get_value()
+        self.cell_meta_index.get_value_unchecked()
     }
 
     #[inline]

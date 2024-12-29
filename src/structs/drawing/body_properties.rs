@@ -48,7 +48,7 @@ impl BodyProperties {
     #[inline]
     #[must_use]
     pub fn get_vert_overflow(&self) -> Option<&str> {
-        self.vert_overflow.get_value()
+        self.vert_overflow.get_value_unchecked()
     }
 
     #[inline]
@@ -60,7 +60,7 @@ impl BodyProperties {
     #[inline]
     #[must_use]
     pub fn get_horz_overflow(&self) -> Option<&str> {
-        self.horz_overflow.get_value()
+        self.horz_overflow.get_value_unchecked()
     }
 
     #[inline]
@@ -72,7 +72,7 @@ impl BodyProperties {
     #[inline]
     #[must_use]
     pub fn get_rtl_col(&self) -> Option<&str> {
-        self.rtl_col.get_value()
+        self.rtl_col.get_value_unchecked()
     }
 
     #[inline]
@@ -84,7 +84,7 @@ impl BodyProperties {
     #[inline]
     #[must_use]
     pub fn get_anchor(&self) -> Option<&str> {
-        self.anchor.get_value()
+        self.anchor.get_value_unchecked()
     }
 
     #[inline]
@@ -108,7 +108,7 @@ impl BodyProperties {
     #[inline]
     #[must_use]
     pub fn get_left_inset(&self) -> i32 {
-        self.left_inset.get_value()
+        self.left_inset.get_value_unchecked()
     }
 
     #[inline]
@@ -119,7 +119,7 @@ impl BodyProperties {
     #[inline]
     #[must_use]
     pub fn get_top_inset(&self) -> i32 {
-        self.top_inset.get_value()
+        self.top_inset.get_value_unchecked()
     }
 
     #[inline]
@@ -130,7 +130,7 @@ impl BodyProperties {
     #[inline]
     #[must_use]
     pub fn get_right_inset(&self) -> i32 {
-        self.right_inset.get_value()
+        self.right_inset.get_value_unchecked()
     }
 
     #[inline]
@@ -141,7 +141,7 @@ impl BodyProperties {
     #[inline]
     #[must_use]
     pub fn get_bottom_inset(&self) -> i32 {
-        self.bottom_inset.get_value()
+        self.bottom_inset.get_value_unchecked()
     }
 
     #[inline]
@@ -229,16 +229,16 @@ impl BodyProperties {
 
         // a:bodyPr
         let mut attributes: crate::structs::AttrCollection = Vec::new();
-        if let Some(v) = self.vert_overflow.get_value() {
+        if let Some(v) = self.vert_overflow.get_value_unchecked() {
             attributes.push(("vertOverflow", v).into());
         }
-        if let Some(v) = self.horz_overflow.get_value() {
+        if let Some(v) = self.horz_overflow.get_value_unchecked() {
             attributes.push(("horzOverflow", v).into());
         }
-        if let Some(v) = self.rtl_col.get_value() {
+        if let Some(v) = self.rtl_col.get_value_unchecked() {
             attributes.push(("rtlCol", v).into());
         }
-        if let Some(v) = self.anchor.get_value() {
+        if let Some(v) = self.anchor.get_value_unchecked() {
             attributes.push(("anchor", v).into());
         }
         if self.wrap.has_value() {

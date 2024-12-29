@@ -116,17 +116,17 @@ impl Selection {
             None => String::new(),
         };
         if !active_cell_str.is_empty() {
-            attributes.push(("activeCell", active_cell_str.as_str()).into());
+            attributes.push(("activeCell", active_cell_str).into());
         }
 
         let active_cell_id_str = active_cell_id.to_string();
         if active_cell_id > 0 {
-            attributes.push(("activeCellId", active_cell_id_str.as_str()).into());
+            attributes.push(("activeCellId", active_cell_id_str).into());
         }
 
         let sqref = self.sequence_of_references.get_sqref();
         if !sqref.is_empty() {
-            attributes.push(("sqref", sqref.as_str()).into());
+            attributes.push(("sqref", sqref).into());
         }
 
         write_start_tag(writer, "selection", attributes, true);

@@ -40,7 +40,7 @@ impl StringValue {
     #[inline]
     pub(crate) fn get_hash_string(&self) -> &str {
         if self.has_value() {
-            return self.get_value_str();
+            return self.get_value_string();
         }
         "empty!!"
     }

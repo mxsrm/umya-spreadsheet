@@ -50,7 +50,7 @@ impl SheetView {
     #[inline]
     #[must_use]
     pub fn get_show_grid_lines(&self) -> bool {
-        self.show_grid_lines.get_value()
+        self.show_grid_lines.get_value_unchecked()
     }
 
     #[inline]
@@ -62,7 +62,7 @@ impl SheetView {
     #[inline]
     #[must_use]
     pub fn get_tab_selected(&self) -> bool {
-        self.tab_selected.get_value()
+        self.tab_selected.get_value_unchecked()
     }
 
     #[inline]
@@ -74,7 +74,7 @@ impl SheetView {
     #[inline]
     #[must_use]
     pub fn get_workbook_view_id(&self) -> u32 {
-        self.workbook_view_id.get_value()
+        self.workbook_view_id.get_value_unchecked()
     }
 
     #[inline]
@@ -115,7 +115,7 @@ impl SheetView {
     #[inline]
     #[must_use]
     pub fn get_zoom_scale(&self) -> u32 {
-        self.zoom_scale.get_value()
+        self.zoom_scale.get_value_unchecked()
     }
 
     #[inline]
@@ -127,7 +127,7 @@ impl SheetView {
     #[inline]
     #[must_use]
     pub fn get_zoom_scale_normal(&self) -> u32 {
-        self.zoom_scale_normal.get_value()
+        self.zoom_scale_normal.get_value_unchecked()
     }
 
     #[inline]
@@ -139,7 +139,7 @@ impl SheetView {
     #[inline]
     #[must_use]
     pub fn get_zoom_scale_page_layout_view(&self) -> u32 {
-        self.zoom_scale_page_layout_view.get_value()
+        self.zoom_scale_page_layout_view.get_value_unchecked()
     }
 
     #[inline]
@@ -151,7 +151,7 @@ impl SheetView {
     #[inline]
     #[must_use]
     pub fn get_zoom_scale_sheet_layout_view(&self) -> u32 {
-        self.zoom_scale_sheet_layout_view.get_value()
+        self.zoom_scale_sheet_layout_view.get_value_unchecked()
     }
 
     #[inline]
@@ -163,7 +163,7 @@ impl SheetView {
     #[inline]
     #[must_use]
     pub fn get_top_left_cell(&self) -> &str {
-        self.top_left_cell.get_value_str()
+        self.top_left_cell.get_value_string()
     }
 
     #[inline]
@@ -253,7 +253,7 @@ impl SheetView {
         if self.show_grid_lines.has_value() {
             attributes.push(("showGridLines", self.show_grid_lines.get_value_string()).into());
         }
-        if self.tab_selected.get_value() {
+        if self.tab_selected.get_value_unchecked() {
             attributes.push(("tabSelected", self.tab_selected.get_value_string()).into());
         }
         if self.view.has_value() {
@@ -275,7 +275,7 @@ impl SheetView {
         if self.zoom_scale_sheet_layout_view.has_value() {
             attributes.push(("zoomScaleSheetLayoutView", &zoom_scale_sheet_layout_view).into());
         }
-        let top_left_cell = self.top_left_cell.get_value_str();
+        let top_left_cell = self.top_left_cell.get_value_string();
         if self.top_left_cell.has_value() {
             attributes.push(("topLeftCell", top_left_cell).into());
         }

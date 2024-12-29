@@ -25,7 +25,7 @@ impl PageMargins {
     #[inline]
     #[must_use]
     pub fn get_left(&self) -> f64 {
-        self.left.get_value()
+        self.left.get_value_unchecked()
     }
 
     #[inline]
@@ -37,7 +37,7 @@ impl PageMargins {
     #[inline]
     #[must_use]
     pub fn get_right(&self) -> f64 {
-        self.right.get_value()
+        self.right.get_value_unchecked()
     }
 
     #[inline]
@@ -49,7 +49,7 @@ impl PageMargins {
     #[inline]
     #[must_use]
     pub fn get_top(&self) -> f64 {
-        self.top.get_value()
+        self.top.get_value_unchecked()
     }
 
     #[inline]
@@ -61,7 +61,7 @@ impl PageMargins {
     #[inline]
     #[must_use]
     pub fn get_bottom(&self) -> f64 {
-        self.bottom.get_value()
+        self.bottom.get_value_unchecked()
     }
 
     #[inline]
@@ -73,7 +73,7 @@ impl PageMargins {
     #[inline]
     #[must_use]
     pub fn get_header(&self) -> f64 {
-        self.header.get_value()
+        self.header.get_value_unchecked()
     }
 
     #[inline]
@@ -85,7 +85,7 @@ impl PageMargins {
     #[inline]
     #[must_use]
     pub fn get_footer(&self) -> f64 {
-        self.footer.get_value()
+        self.footer.get_value_unchecked()
     }
 
     #[inline]

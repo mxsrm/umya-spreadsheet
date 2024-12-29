@@ -73,7 +73,7 @@ pub(crate) fn write<W: io::Seek + io::Write>(
             "comment",
             vec![
                 ("ref", &coordinate).into(),
-                ("authorId", author_id.as_str()).into(),
+                ("authorId", author_id).into(),
             ],
             false,
         );

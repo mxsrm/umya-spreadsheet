@@ -22,7 +22,7 @@ impl Extents {
     #[inline]
     #[must_use]
     pub fn get_cx(&self) -> i64 {
-        self.cx.get_value()
+        self.cx.get_value_unchecked()
     }
 
     #[inline]
@@ -34,7 +34,7 @@ impl Extents {
     #[inline]
     #[must_use]
     pub fn get_cy(&self) -> i64 {
-        self.cy.get_value()
+        self.cy.get_value_unchecked()
     }
 
     #[inline]

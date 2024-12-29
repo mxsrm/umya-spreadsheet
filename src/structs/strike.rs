@@ -25,7 +25,7 @@ impl Strike {
     #[inline]
     #[must_use]
     pub fn get_val(&self) -> bool {
-        self.val.get_value()
+        self.val.get_value_unchecked()
     }
 
     #[inline]
@@ -51,7 +51,7 @@ impl Strike {
         }
 
         let mut attributes: crate::structs::AttrCollection = Vec::new();
-        if !self.val.get_value() {
+        if !self.val.get_value_unchecked() {
             attributes.push(("val", self.val.get_value_string()).into());
         }
         write_start_tag(writer, "strike", attributes, true);

@@ -73,7 +73,7 @@ impl PivotTableDefinition {
     #[inline]
     #[must_use]
     pub fn get_apply_number_formats(&self) -> bool {
-        self.apply_number_formats.get_value()
+        self.apply_number_formats.get_value_unchecked()
     }
 
     #[inline]
@@ -85,7 +85,7 @@ impl PivotTableDefinition {
     #[inline]
     #[must_use]
     pub fn get_apply_border_formats(&self) -> bool {
-        self.apply_border_formats.get_value()
+        self.apply_border_formats.get_value_unchecked()
     }
 
     #[inline]
@@ -97,7 +97,7 @@ impl PivotTableDefinition {
     #[inline]
     #[must_use]
     pub fn get_apply_font_formats(&self) -> bool {
-        self.apply_font_formats.get_value()
+        self.apply_font_formats.get_value_unchecked()
     }
 
     #[inline]
@@ -109,7 +109,7 @@ impl PivotTableDefinition {
     #[inline]
     #[must_use]
     pub fn get_apply_pattern_formats(&self) -> bool {
-        self.apply_pattern_formats.get_value()
+        self.apply_pattern_formats.get_value_unchecked()
     }
 
     #[inline]
@@ -121,7 +121,7 @@ impl PivotTableDefinition {
     #[inline]
     #[must_use]
     pub fn get_apply_alignment_formats(&self) -> bool {
-        self.apply_alignment_formats.get_value()
+        self.apply_alignment_formats.get_value_unchecked()
     }
 
     #[inline]
@@ -133,7 +133,7 @@ impl PivotTableDefinition {
     #[inline]
     #[must_use]
     pub fn get_apply_width_height_formats(&self) -> bool {
-        self.apply_width_height_formats.get_value()
+        self.apply_width_height_formats.get_value_unchecked()
     }
 
     #[inline]
@@ -145,7 +145,7 @@ impl PivotTableDefinition {
     #[inline]
     #[must_use]
     pub fn get_use_auto_formatting(&self) -> bool {
-        self.use_auto_formatting.get_value()
+        self.use_auto_formatting.get_value_unchecked()
     }
 
     #[inline]
@@ -157,7 +157,7 @@ impl PivotTableDefinition {
     #[inline]
     #[must_use]
     pub fn get_item_print_titles(&self) -> bool {
-        self.item_print_titles.get_value()
+        self.item_print_titles.get_value_unchecked()
     }
 
     #[inline]
@@ -169,7 +169,7 @@ impl PivotTableDefinition {
     #[inline]
     #[must_use]
     pub fn get_outline(&self) -> bool {
-        self.outline.get_value()
+        self.outline.get_value_unchecked()
     }
 
     #[inline]
@@ -181,7 +181,7 @@ impl PivotTableDefinition {
     #[inline]
     #[must_use]
     pub fn get_outline_data(&self) -> bool {
-        self.outline_data.get_value()
+        self.outline_data.get_value_unchecked()
     }
 
     #[inline]
@@ -193,7 +193,7 @@ impl PivotTableDefinition {
     #[inline]
     #[must_use]
     pub fn get_multiple_field_filters(&self) -> bool {
-        self.multiple_field_filters.get_value()
+        self.multiple_field_filters.get_value_unchecked()
     }
 
     #[inline]
@@ -205,7 +205,7 @@ impl PivotTableDefinition {
     #[inline]
     #[must_use]
     pub fn get_name(&self) -> &str {
-        self.name.get_value_str()
+        self.name.get_value_string()
     }
 
     #[inline]
@@ -217,7 +217,7 @@ impl PivotTableDefinition {
     #[inline]
     #[must_use]
     pub fn get_cache_id(&self) -> u32 {
-        self.cache_id.get_value()
+        self.cache_id.get_value_unchecked()
     }
 
     #[inline]
@@ -229,7 +229,7 @@ impl PivotTableDefinition {
     #[inline]
     #[must_use]
     pub fn get_indent(&self) -> u32 {
-        self.indent.get_value()
+        self.indent.get_value_unchecked()
     }
 
     #[inline]
@@ -241,7 +241,7 @@ impl PivotTableDefinition {
     #[inline]
     #[must_use]
     pub fn get_local_name(&self) -> &str {
-        self.local_name.get_value_str()
+        self.local_name.get_value_string()
     }
 
     #[inline]
@@ -253,7 +253,7 @@ impl PivotTableDefinition {
     #[inline]
     #[must_use]
     pub fn get_data_caption(&self) -> &str {
-        self.data_caption.get_value_str()
+        self.data_caption.get_value_string()
     }
 
     #[inline]
@@ -265,7 +265,7 @@ impl PivotTableDefinition {
     #[inline]
     #[must_use]
     pub fn get_updated_version(&self) -> u8 {
-        self.updated_version.get_value()
+        self.updated_version.get_value_unchecked()
     }
 
     #[inline]
@@ -277,7 +277,7 @@ impl PivotTableDefinition {
     #[inline]
     #[must_use]
     pub fn get_min_refreshable_version(&self) -> u8 {
-        self.min_refreshable_version.get_value()
+        self.min_refreshable_version.get_value_unchecked()
     }
 
     #[inline]
@@ -289,7 +289,7 @@ impl PivotTableDefinition {
     #[inline]
     #[must_use]
     pub fn get_created_version(&self) -> u8 {
-        self.created_version.get_value()
+        self.created_version.get_value_unchecked()
     }
 
     #[inline]
@@ -509,11 +509,11 @@ impl PivotTableDefinition {
         ];
 
         if self.name.has_value() {
-            attributes.push(("name", self.name.get_value_str()).into());
+            attributes.push(("name", self.name.get_value_string()).into());
         }
         let cache_id_str = self.cache_id.get_value_string();
         if self.cache_id.has_value() {
-            attributes.push(("cacheId", cache_id_str.as_str()).into());
+            attributes.push(("cacheId", cache_id_str).into());
         }
         if self.apply_number_formats.has_value() {
             attributes.push(
@@ -570,11 +570,11 @@ impl PivotTableDefinition {
             );
         }
         if self.data_caption.has_value() {
-            attributes.push(("dataCaption", self.data_caption.get_value_str()).into());
+            attributes.push(("dataCaption", self.data_caption.get_value_string()).into());
         }
         let updated_version_str = self.updated_version.get_value_string();
         if self.updated_version.has_value() {
-            attributes.push(("updatedVersion", updated_version_str.as_str()).into());
+            attributes.push(("updatedVersion", updated_version_str).into());
         }
         let min_refreshable_version_str = self.min_refreshable_version.get_value_string();
         if self.min_refreshable_version.has_value() {
@@ -600,11 +600,11 @@ impl PivotTableDefinition {
         }
         let created_version_str = self.created_version.get_value_string();
         if self.created_version.has_value() {
-            attributes.push(("createdVersion", created_version_str.as_str()).into());
+            attributes.push(("createdVersion", created_version_str).into());
         }
         let indent_str = self.indent.get_value_string();
         if self.indent.has_value() {
-            attributes.push(("indent", indent_str.as_str()).into());
+            attributes.push(("indent", indent_str).into());
         }
         if self.outline.has_value() {
             attributes.push(("outline", self.outline.get_value_string()).into());

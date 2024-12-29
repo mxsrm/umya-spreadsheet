@@ -46,7 +46,7 @@ impl TextParagraphPropertiesType {
     #[inline]
     #[must_use]
     pub fn get_right_to_left(&self) -> bool {
-        self.right_to_left.get_value()
+        self.right_to_left.get_value_unchecked()
     }
 
     #[inline]

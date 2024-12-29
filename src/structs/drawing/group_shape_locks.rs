@@ -31,7 +31,7 @@ impl GroupShapeLocks {
     #[inline]
     #[must_use]
     pub fn get_no_change_aspect(&self) -> bool {
-        self.no_change_aspect.get_value()
+        self.no_change_aspect.get_value_unchecked()
     }
 
     #[inline]

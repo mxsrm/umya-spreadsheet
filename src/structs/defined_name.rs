@@ -42,7 +42,7 @@ impl DefinedName {
     #[inline]
     #[must_use]
     pub fn get_name(&self) -> &str {
-        self.name.get_value_str()
+        self.name.get_value_string()
     }
 
     #[inline]
@@ -54,7 +54,7 @@ impl DefinedName {
     #[must_use]
     pub fn get_address(&self) -> String {
         if self.string_value.has_value() {
-            return self.string_value.get_value_str().to_string();
+            return self.string_value.get_value_string().to_string();
         }
         let mut result: Vec<String> = Vec::new();
         for row in &self.address {
@@ -123,7 +123,7 @@ impl DefinedName {
     #[inline]
     #[must_use]
     pub fn get_local_sheet_id(&self) -> u32 {
-        self.local_sheet_id.get_value()
+        self.local_sheet_id.get_value_unchecked()
     }
 
     #[inline]
@@ -134,7 +134,7 @@ impl DefinedName {
     #[inline]
     #[must_use]
     pub fn get_hidden(&self) -> bool {
-        self.hidden.get_value()
+        self.hidden.get_value_unchecked()
     }
 
     #[inline]

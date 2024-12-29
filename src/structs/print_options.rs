@@ -25,7 +25,7 @@ impl PrintOptions {
     #[inline]
     #[must_use]
     pub fn get_horizontal_centered(&self) -> bool {
-        self.horizontal_centered.get_value()
+        self.horizontal_centered.get_value_unchecked()
     }
 
     #[inline]
@@ -37,7 +37,7 @@ impl PrintOptions {
     #[inline]
     #[must_use]
     pub fn get_vertical_centered(&self) -> bool {
-        self.vertical_centered.get_value()
+        self.vertical_centered.get_value_unchecked()
     }
 
     #[inline]

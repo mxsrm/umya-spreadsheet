@@ -33,7 +33,7 @@ impl Fill {
     #[inline]
     #[must_use]
     pub fn get_color(&self) -> &str {
-        self.color.get_value_str()
+        self.color.get_value_string()
     }
 
     #[inline]
@@ -45,7 +45,7 @@ impl Fill {
     #[inline]
     #[must_use]
     pub fn get_color_2(&self) -> &str {
-        self.color_2.get_value_str()
+        self.color_2.get_value_string()
     }
 
     #[inline]
@@ -69,7 +69,7 @@ impl Fill {
     #[inline]
     #[must_use]
     pub fn get_focus_size(&self) -> &str {
-        self.focus_size.get_value_str()
+        self.focus_size.get_value_string()
     }
 
     #[inline]
@@ -132,23 +132,23 @@ impl Fill {
         // v:fill
         let mut attributes: crate::structs::AttrCollection = Vec::new();
         if self.color.has_value() {
-            attributes.push(("color", self.color.get_value_str()).into());
+            attributes.push(("color", self.color.get_value_string()).into());
         }
         if self.color_2.has_value() {
-            attributes.push(("color2", self.color_2.get_value_str()).into());
+            attributes.push(("color2", self.color_2.get_value_string()).into());
         }
         if self.on.has_value() {
             attributes.push(("on", self.on.get_value_string()).into());
         }
         if self.focus_size.has_value() {
-            attributes.push(("focussize", self.focus_size.get_value_str()).into());
+            attributes.push(("focussize", self.focus_size.get_value_string()).into());
         }
         let mut r_id_str = String::new();
         if let Some(image) = &self.image {
             let r_id = image.get_rid(rel_list);
             r_id_str = format!("rId{r_id}");
             attributes.push(("o:title", image.get_image_title()).into());
-            attributes.push(("o:relid", r_id_str.as_str()).into());
+            attributes.push(("o:relid", r_id_str).into());
             attributes.push(("recolor", "t").into());
             attributes.push(("rotate", "t").into());
             attributes.push(("type", "frame").into());

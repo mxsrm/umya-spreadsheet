@@ -58,7 +58,7 @@ impl Outline {
     #[inline]
     #[must_use]
     pub fn get_width(&self) -> u32 {
-        self.width.get_value()
+        self.width.get_value_unchecked()
     }
 
     #[inline]
@@ -70,7 +70,7 @@ impl Outline {
     #[inline]
     #[must_use]
     pub fn get_cap_type(&self) -> Option<&str> {
-        self.cap_type.get_value()
+        self.cap_type.get_value_unchecked()
     }
 
     #[inline]
@@ -82,7 +82,7 @@ impl Outline {
     #[inline]
     #[must_use]
     pub fn get_compound_line_type(&self) -> Option<&str> {
-        self.compound_line_type.get_value()
+        self.compound_line_type.get_value_unchecked()
     }
 
     #[inline]
@@ -325,10 +325,10 @@ impl Outline {
         if self.width.has_value() {
             attributes.push(("w", &width).into());
         }
-        if let Some(v) = self.cap_type.get_value() {
+        if let Some(v) = self.cap_type.get_value_unchecked() {
             attributes.push(("cap", v).into());
         }
-        if let Some(v) = self.compound_line_type.get_value() {
+        if let Some(v) = self.compound_line_type.get_value_unchecked() {
             attributes.push(("cmpd", v).into());
         }
         if self.alignment.has_value() {

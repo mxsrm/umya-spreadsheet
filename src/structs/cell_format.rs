@@ -48,7 +48,7 @@ pub(crate) struct CellFormat {
 impl CellFormat {
     #[inline]
     pub(crate) fn get_number_format_id(&self) -> u32 {
-        self.number_format_id.get_value()
+        self.number_format_id.get_value_unchecked()
     }
 
     #[inline]
@@ -59,7 +59,7 @@ impl CellFormat {
 
     #[inline]
     pub(crate) fn get_font_id(&self) -> u32 {
-        self.font_id.get_value()
+        self.font_id.get_value_unchecked()
     }
 
     #[inline]
@@ -70,7 +70,7 @@ impl CellFormat {
 
     #[inline]
     pub(crate) fn get_fill_id(&self) -> u32 {
-        self.fill_id.get_value()
+        self.fill_id.get_value_unchecked()
     }
 
     #[inline]
@@ -81,7 +81,7 @@ impl CellFormat {
 
     #[inline]
     pub(crate) fn get_border_id(&self) -> u32 {
-        self.border_id.get_value()
+        self.border_id.get_value_unchecked()
     }
 
     #[inline]
@@ -92,7 +92,7 @@ impl CellFormat {
 
     #[inline]
     pub(crate) fn get_format_id(&self) -> u32 {
-        self.format_id.get_value()
+        self.format_id.get_value_unchecked()
     }
 
     #[inline]
@@ -103,7 +103,7 @@ impl CellFormat {
 
     #[inline]
     pub(crate) fn get_apply_number_format(&self) -> bool {
-        self.apply_number_format.get_value()
+        self.apply_number_format.get_value_unchecked()
     }
 
     #[inline]
@@ -119,7 +119,7 @@ impl CellFormat {
 
     #[inline]
     pub(crate) fn get_apply_fill(&self) -> bool {
-        self.apply_fill.get_value()
+        self.apply_fill.get_value_unchecked()
     }
 
     #[inline]
@@ -135,7 +135,7 @@ impl CellFormat {
 
     #[inline]
     pub(crate) fn get_apply_border(&self) -> bool {
-        self.apply_border.get_value()
+        self.apply_border.get_value_unchecked()
     }
 
     #[inline]
@@ -151,7 +151,7 @@ impl CellFormat {
 
     #[inline]
     pub(crate) fn get_apply_font(&self) -> bool {
-        self.apply_font.get_value()
+        self.apply_font.get_value_unchecked()
     }
 
     #[inline]
@@ -167,7 +167,7 @@ impl CellFormat {
 
     #[inline]
     pub(crate) fn get_apply_alignment(&self) -> bool {
-        self.apply_alignment.get_value()
+        self.apply_alignment.get_value_unchecked()
     }
 
     #[inline]
@@ -183,7 +183,7 @@ impl CellFormat {
 
     #[inline]
     pub(crate) fn get_apply_protection(&self) -> bool {
-        self.apply_protection.get_value()
+        self.apply_protection.get_value_unchecked()
     }
 
     #[inline]

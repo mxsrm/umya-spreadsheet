@@ -57,7 +57,7 @@ impl Alignment {
     #[inline]
     #[must_use]
     pub fn get_wrap_text(&self) -> bool {
-        self.wrap_text.get_value()
+        self.wrap_text.get_value_unchecked()
     }
 
     #[inline]
@@ -68,7 +68,7 @@ impl Alignment {
     #[inline]
     #[must_use]
     pub fn get_text_rotation(&self) -> u32 {
-        self.text_rotation.get_value()
+        self.text_rotation.get_value_unchecked()
     }
 
     #[inline]
@@ -81,10 +81,10 @@ impl Alignment {
             "{:x}",
             md5::Md5::digest(format!(
                 "{}{}{}{}",
-                &self.horizontal.get_hash_string(),
-                &self.vertical.get_hash_string(),
-                &self.wrap_text.get_hash_string(),
-                &self.text_rotation.get_hash_string(),
+                &self.horizontal.get_value_string(),
+                &self.vertical.get_value_string(),
+                &self.wrap_text.get_value_string(),
+                &self.text_rotation.get_value_string(),
             ))
         )
     }

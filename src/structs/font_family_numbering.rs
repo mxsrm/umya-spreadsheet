@@ -25,7 +25,7 @@ impl FontFamilyNumbering {
     #[inline]
     #[must_use]
     pub fn get_val(&self) -> i32 {
-        self.val.get_value()
+        self.val.get_value_unchecked()
     }
 
     #[inline]

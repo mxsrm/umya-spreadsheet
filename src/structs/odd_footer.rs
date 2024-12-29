@@ -29,8 +29,8 @@ pub struct OddFooter {
 impl OddFooter {
     #[inline]
     #[must_use]
-    pub fn get_value(&self) -> &str {
-        self.value.get_value_str()
+    pub fn get_value(&self) -> Cow<'a, str> {
+        self.value.get_value_string().as_ref()
     }
 
     #[inline]
@@ -73,7 +73,7 @@ impl OddFooter {
         if self.has_param() {
             // oddFooter
             write_start_tag(writer, "oddFooter", vec![], false);
-            write_text_node(writer, self.value.get_value_str());
+            write_text_node(writer, self.value.get_value_string().as_ref());
             write_end_tag(writer, "oddFooter");
         }
     }

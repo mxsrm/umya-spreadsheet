@@ -114,6 +114,48 @@ impl<'a> From<(&'a str, &Box<str>)> for AttrPair<'a> {
     }
 }
 
+impl<'a> From<(&'a str, std::borrow::Cow<'a, str>)> for AttrPair<'a> {
+    /// Converts a tuple of a string slice and a `Cow` of a string slice into an
+    /// `AttrPair`.
+    ///
+    /// This method takes a tuple of a string slice and a `Cow` of a string
+    /// slice and returns an `AttrPair` instance. The string slice becomes
+    /// the attribute name, and the `Cow` of a string slice becomes the
+    /// attribute value.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// use std::borrow::Cow;
+    /// let cow = Cow::Borrowed("value");
+    /// let attr_pair = AttrPair::from(("name", cow));
+    /// ```
+    fn from(tuple: (&'a str, std::borrow::Cow<'a, str>)) -> Self {
+        AttrPair(tuple.0, tuple.1)
+    }
+}
+
+impl<'a> From<(&'a str, &std::borrow::Cow<'a, str>)> for AttrPair<'a> {
+    /// Converts a tuple of a string slice and a reference to a `Cow` of a
+    /// string slice into an `AttrPair`.
+    ///
+    /// This method takes a tuple of a string slice and a reference to a `Cow`
+    /// of a string slice and returns an `AttrPair` instance. The string
+    /// slice becomes the attribute name, and the `Cow` of a string slice
+    /// becomes the attribute value.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// use std::borrow::Cow;
+    /// let cow = Cow::Borrowed("value");
+    /// let attr_pair = AttrPair::from(("name", &cow));
+    /// ```
+    fn from(tuple: (&'a str, &std::borrow::Cow<'a, str>)) -> Self {
+        AttrPair(tuple.0, tuple.1.clone())
+    }
+}
+
 impl<'a> From<AttrPair<'a>> for (&'a str, std::borrow::Cow<'a, str>) {
     /// Converts an `AttrPair` into a tuple of a string slice and a `Cow` of a
     /// string slice.

@@ -29,7 +29,7 @@ impl SourceRectangle {
     #[inline]
     #[must_use]
     pub fn get_t(&self) -> Option<&str> {
-        self.t.get_value()
+        self.t.get_value_unchecked()
     }
 
     #[inline]
@@ -40,7 +40,7 @@ impl SourceRectangle {
     #[inline]
     #[must_use]
     pub fn get_l(&self) -> Option<&str> {
-        self.l.get_value()
+        self.l.get_value_unchecked()
     }
 
     #[inline]
@@ -51,7 +51,7 @@ impl SourceRectangle {
     #[inline]
     #[must_use]
     pub fn get_r(&self) -> Option<&str> {
-        self.r.get_value()
+        self.r.get_value_unchecked()
     }
 
     #[inline]
@@ -62,7 +62,7 @@ impl SourceRectangle {
     #[inline]
     #[must_use]
     pub fn get_b(&self) -> Option<&str> {
-        self.b.get_value()
+        self.b.get_value_unchecked()
     }
 
     pub(crate) fn set_attributes<R: std::io::BufRead>(
@@ -85,16 +85,16 @@ impl SourceRectangle {
         // a:srcRect
         let mut attributes: crate::structs::AttrCollection = Vec::new();
 
-        if let Some(v) = self.t.get_value() {
+        if let Some(v) = self.t.get_value_unchecked() {
             attributes.push(("t", v).into());
         }
-        if let Some(v) = self.l.get_value() {
+        if let Some(v) = self.l.get_value_unchecked() {
             attributes.push(("l", v).into());
         }
-        if let Some(v) = self.r.get_value() {
+        if let Some(v) = self.r.get_value_unchecked() {
             attributes.push(("r", v).into());
         }
-        if let Some(v) = self.b.get_value() {
+        if let Some(v) = self.b.get_value_unchecked() {
             attributes.push(("b", v).into());
         }
         write_start_tag(writer, "a:srcRect", attributes, true);

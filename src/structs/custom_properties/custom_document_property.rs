@@ -40,7 +40,7 @@ impl CustomDocumentProperty {
     #[inline]
     #[must_use]
     pub fn get_name(&self) -> &str {
-        self.name.get_value_str()
+        self.name.get_value_string()
     }
 
     #[inline]
@@ -52,7 +52,7 @@ impl CustomDocumentProperty {
     #[inline]
     #[must_use]
     pub fn get_link_target(&self) -> &str {
-        self.link_target.get_value_str()
+        self.link_target.get_value_string()
     }
 
     #[inline]
@@ -161,11 +161,11 @@ impl CustomDocumentProperty {
         attributes.push(("pid", &pid_str).into());
 
         if self.name.has_value() {
-            attributes.push(("name", self.name.get_value_str()).into());
+            attributes.push(("name", self.name.get_value_string()).into());
         }
 
         if self.link_target.has_value() {
-            attributes.push(("linkTarget", self.link_target.get_value_str()).into());
+            attributes.push(("linkTarget", self.link_target.get_value_string()).into());
         }
 
         write_start_tag(writer, "property", attributes, !is_inner);

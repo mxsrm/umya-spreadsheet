@@ -24,7 +24,7 @@ pub struct NumberingFormat {
 impl NumberingFormat {
     #[must_use]
     pub fn get_format_code(&self) -> &str {
-        self.format_code.get_value_str()
+        self.format_code.get_value_string()
     }
 
     pub fn set_format_code<S: Into<String>>(&mut self, value: S) -> &mut NumberingFormat {
@@ -34,7 +34,7 @@ impl NumberingFormat {
 
     #[must_use]
     pub fn get_source_linked(&self) -> bool {
-        self.source_linked.get_value()
+        self.source_linked.get_value_unchecked()
     }
 
     pub fn set_source_linked(&mut self, value: bool) -> &mut NumberingFormat {
@@ -59,7 +59,7 @@ impl NumberingFormat {
             writer,
             "c:numFmt",
             vec![
-                ("formatCode", self.format_code.get_value_str()).into(),
+                ("formatCode", self.format_code.get_value_string()).into(),
                 ("sourceLinked", self.source_linked.get_value_string()).into(),
             ],
             true,

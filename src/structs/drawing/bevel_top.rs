@@ -33,7 +33,7 @@ impl BevelTop {
     #[inline]
     #[must_use]
     pub fn get_width(&self) -> i64 {
-        self.width.get_value()
+        self.width.get_value_unchecked()
     }
 
     #[inline]
@@ -45,7 +45,7 @@ impl BevelTop {
     #[inline]
     #[must_use]
     pub fn get_height(&self) -> i64 {
-        self.height.get_value()
+        self.height.get_value_unchecked()
     }
 
     #[inline]

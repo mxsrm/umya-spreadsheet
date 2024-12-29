@@ -20,7 +20,7 @@ pub struct Width {
 impl Width {
     #[must_use]
     pub fn get_val(&self) -> f64 {
-        self.val.get_value()
+        self.val.get_value_unchecked()
     }
 
     pub fn set_val(&mut self, value: f64) -> &mut Width {

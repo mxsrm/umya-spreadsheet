@@ -25,7 +25,7 @@ impl Italic {
     #[inline]
     #[must_use]
     pub fn get_val(&self) -> bool {
-        self.val.get_value()
+        self.val.get_value_unchecked()
     }
 
     #[inline]
@@ -47,7 +47,7 @@ impl Italic {
     #[inline]
     pub(crate) fn write_to(&self, writer: &mut Writer<Cursor<Vec<u8>>>) {
         // i
-        if self.val.get_value() {
+        if self.val.get_value_unchecked() {
             write_start_tag(writer, "i", vec![], true);
         }
     }

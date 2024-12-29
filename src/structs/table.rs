@@ -129,7 +129,7 @@ impl Table {
     #[inline]
     #[must_use]
     pub fn get_totals_row_shown(&self) -> bool {
-        self.totals_row_shown.get_value()
+        self.totals_row_shown.get_value_unchecked()
     }
 
     #[inline]
@@ -155,7 +155,7 @@ impl Table {
     #[inline]
     #[must_use]
     pub fn get_totals_row_count(&self) -> u32 {
-        self.totals_row_count.get_value()
+        self.totals_row_count.get_value_unchecked()
     }
 
     #[inline]
@@ -225,12 +225,12 @@ impl TableColumn {
     #[inline]
     #[must_use]
     pub fn get_totals_row_label(&self) -> Option<&str> {
-        self.totals_row_label.get_value()
+        self.totals_row_label.get_value_unchecked()
     }
 
     #[inline]
     pub(crate) fn get_totals_row_label_str(&self) -> &str {
-        self.totals_row_label.get_value_str()
+        self.totals_row_label.get_value_string()
     }
 
     #[inline]

@@ -120,7 +120,7 @@ impl MergeCells {
                 write_start_tag(
                     writer,
                     "mergeCell",
-                    vec![("ref", merge_cell.get_range().as_str()).into()],
+                    vec![("ref", merge_cell.get_range()).into()],
                     true,
                 );
             }

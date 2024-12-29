@@ -38,10 +38,10 @@ use crate::{
 };
 
 #[derive(Clone, Default, Debug)]
-pub struct ConditionalFormattingRule {
+pub struct ConditionalFormattingRule<'a> {
     r#type:        EnumValue<ConditionalFormatValues>,
     operator:      EnumValue<ConditionalFormattingOperatorValues>,
-    text:          StringValue,
+    text:          StringValue<'a>,
     priority:      Int32Value,
     percent:       BooleanValue,
     bottom:        BooleanValue,
@@ -86,7 +86,7 @@ impl ConditionalFormattingRule {
     #[inline]
     #[must_use]
     pub fn get_text(&self) -> &str {
-        self.text.get_value_str()
+        self.text.get_value_string()
     }
 
     #[inline]
@@ -98,7 +98,7 @@ impl ConditionalFormattingRule {
     #[inline]
     #[must_use]
     pub fn get_priority(&self) -> i32 {
-        self.priority.get_value()
+        self.priority.get_value_unchecked()
     }
 
     #[inline]
@@ -110,7 +110,7 @@ impl ConditionalFormattingRule {
     #[inline]
     #[must_use]
     pub fn get_percent(&self) -> bool {
-        self.percent.get_value()
+        self.percent.get_value_unchecked()
     }
 
     #[inline]
@@ -122,7 +122,7 @@ impl ConditionalFormattingRule {
     #[inline]
     #[must_use]
     pub fn get_bottom(&self) -> bool {
-        self.bottom.get_value()
+        self.bottom.get_value_unchecked()
     }
 
     #[inline]
@@ -134,7 +134,7 @@ impl ConditionalFormattingRule {
     #[inline]
     #[must_use]
     pub fn get_rank(&self) -> u32 {
-        self.rank.get_value()
+        self.rank.get_value_unchecked()
     }
 
     #[inline]
@@ -146,7 +146,7 @@ impl ConditionalFormattingRule {
     #[inline]
     #[must_use]
     pub fn get_stop_if_true(&self) -> bool {
-        self.stop_if_true.get_value()
+        self.stop_if_true.get_value_unchecked()
     }
 
     #[inline]
@@ -158,7 +158,7 @@ impl ConditionalFormattingRule {
     #[inline]
     #[must_use]
     pub fn get_std_dev(&self) -> i32 {
-        self.std_dev.get_value()
+        self.std_dev.get_value_unchecked()
     }
 
     #[inline]
@@ -170,7 +170,7 @@ impl ConditionalFormattingRule {
     #[inline]
     #[must_use]
     pub fn get_above_average(&self) -> bool {
-        self.above_average.get_value()
+        self.above_average.get_value_unchecked()
     }
 
     #[inline]
@@ -182,7 +182,7 @@ impl ConditionalFormattingRule {
     #[inline]
     #[must_use]
     pub fn get_equal_average(&self) -> bool {
-        self.equal_average.get_value()
+        self.equal_average.get_value_unchecked()
     }
 
     #[inline]

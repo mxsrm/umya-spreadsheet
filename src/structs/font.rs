@@ -399,17 +399,17 @@ impl Font {
             "{:x}",
             md5::Md5::digest(format!(
                 "{}{}{}{}{}{}{}{}{}{}{}",
-                &self.font_name.val.get_hash_string(),
-                &self.font_size.val.get_hash_string(),
-                &self.font_family_numbering.val.get_hash_string(),
-                &self.font_bold.val.get_hash_string(),
-                &self.font_italic.val.get_hash_string(),
-                &self.font_underline.val.get_hash_string(),
-                &self.font_strike.val.get_hash_string(),
+                &self.font_name.val.get_value_string(),
+                &self.font_size.val.get_value_string(),
+                &self.font_family_numbering.val.get_value_string(),
+                &self.font_bold.val.get_value_string(),
+                &self.font_italic.val.get_value_string(),
+                &self.font_underline.val.get_value_string(),
+                &self.font_strike.val.get_value_string(),
                 &self.color.get_hash_code(),
-                &self.font_char_set.val.get_hash_string(),
-                &self.font_scheme.val.get_hash_string(),
-                &self.vertical_text_alignment.val.get_hash_string(),
+                &self.font_char_set.val.get_value_string(),
+                &self.font_scheme.val.get_value_string(),
+                &self.vertical_text_alignment.val.get_value_string(),
             ))
         )
     }

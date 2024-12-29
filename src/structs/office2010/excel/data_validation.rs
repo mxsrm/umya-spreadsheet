@@ -71,7 +71,7 @@ impl DataValidation {
     #[inline]
     #[must_use]
     pub fn get_allow_blank(&self) -> bool {
-        self.allow_blank.get_value()
+        self.allow_blank.get_value_unchecked()
     }
 
     #[inline]
@@ -83,7 +83,7 @@ impl DataValidation {
     #[inline]
     #[must_use]
     pub fn get_show_input_message(&self) -> bool {
-        self.show_input_message.get_value()
+        self.show_input_message.get_value_unchecked()
     }
 
     #[inline]
@@ -95,7 +95,7 @@ impl DataValidation {
     #[inline]
     #[must_use]
     pub fn get_show_error_message(&self) -> bool {
-        self.show_error_message.get_value()
+        self.show_error_message.get_value_unchecked()
     }
 
     #[inline]
@@ -107,7 +107,7 @@ impl DataValidation {
     #[inline]
     #[must_use]
     pub fn get_prompt_title(&self) -> &str {
-        self.prompt_title.get_value_str()
+        self.prompt_title.get_value_string()
     }
 
     #[inline]
@@ -119,7 +119,7 @@ impl DataValidation {
     #[inline]
     #[must_use]
     pub fn get_prompt(&self) -> &str {
-        self.prompt.get_value_str()
+        self.prompt.get_value_string()
     }
 
     #[inline]
@@ -302,11 +302,11 @@ impl DataValidation {
         }
 
         if self.prompt_title.has_value() {
-            attributes.push(("promptTitle", self.prompt_title.get_value_str()).into());
+            attributes.push(("promptTitle", self.prompt_title.get_value_string()).into());
         }
 
         if self.prompt.has_value() {
-            attributes.push(("prompt", self.prompt.get_value_str()).into());
+            attributes.push(("prompt", self.prompt.get_value_string()).into());
         }
 
         write_start_tag(writer, "x14:dataValidation", attributes, false);

@@ -45,7 +45,7 @@ impl ImageData {
 
     #[must_use]
     pub fn get_title(&self) -> &str {
-        self.title.get_value_str()
+        self.title.get_value_string()
     }
 
     pub fn set_title<S: Into<String>>(&mut self, value: S) -> &mut Self {
@@ -81,9 +81,9 @@ impl ImageData {
         let mut attributes: crate::structs::AttrCollection = Vec::new();
         let r_id = &self.image.get_rid(rel_list);
         let r_id_str = format!("rId{r_id}");
-        attributes.push(("o:relid", r_id_str.as_str()).into());
+        attributes.push(("o:relid", r_id_str).into());
         if self.title.has_value() {
-            attributes.push(("o:title", self.title.get_value_str()).into());
+            attributes.push(("o:title", self.title.get_value_string()).into());
         }
 
         write_start_tag(writer, "v:imagedata", attributes, true);

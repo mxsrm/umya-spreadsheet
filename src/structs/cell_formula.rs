@@ -43,25 +43,25 @@ use crate::{
 };
 
 #[derive(Clone, Default, Debug, PartialEq, PartialOrd)]
-pub struct CellFormula {
+pub struct CellFormula<'a> {
     bx:             BooleanValue,
     data_table_2d:  BooleanValue,
     data_table_row: BooleanValue,
     formula_type:   EnumValue<CellFormulaValues>,
     input_1deleted: BooleanValue,
     input_2deleted: BooleanValue,
-    r1:             StringValue,
-    r2:             StringValue,
-    reference:      StringValue,
+    r1:             StringValue<'a>,
+    r2:             StringValue<'a>,
+    reference:      StringValue<'a>,
     shared_index:   UInt32Value,
-    text:           StringValue,
-    text_view:      StringValue,
+    text:           StringValue<'a>,
+    text_view:      StringValue<'a>,
 }
 impl CellFormula {
     #[inline]
     #[must_use]
     pub fn get_bx(&self) -> bool {
-        self.bx.get_value()
+        self.bx.get_value_unchecked()
     }
 
     #[inline]
@@ -73,7 +73,7 @@ impl CellFormula {
     #[inline]
     #[must_use]
     pub fn get_data_table_2d(&self) -> bool {
-        self.data_table_2d.get_value()
+        self.data_table_2d.get_value_unchecked()
     }
 
     #[inline]
@@ -85,7 +85,7 @@ impl CellFormula {
     #[inline]
     #[must_use]
     pub fn get_data_table_row(&self) -> bool {
-        self.data_table_row.get_value()
+        self.data_table_row.get_value_unchecked()
     }
 
     #[inline]
@@ -108,7 +108,7 @@ impl CellFormula {
     #[inline]
     #[must_use]
     pub fn get_input_1deleted(&self) -> bool {
-        self.input_1deleted.get_value()
+        self.input_1deleted.get_value_unchecked()
     }
 
     #[inline]
@@ -120,7 +120,7 @@ impl CellFormula {
     #[inline]
     #[must_use]
     pub fn get_input_2deleted(&self) -> bool {
-        self.input_2deleted.get_value()
+        self.input_2deleted.get_value_unchecked()
     }
 
     #[inline]
@@ -132,7 +132,7 @@ impl CellFormula {
     #[inline]
     #[must_use]
     pub fn get_r1(&self) -> &str {
-        self.r1.get_value_str()
+        self.r1.get_value_string()
     }
 
     #[inline]
@@ -144,7 +144,7 @@ impl CellFormula {
     #[inline]
     #[must_use]
     pub fn get_r2(&self) -> &str {
-        self.r2.get_value_str()
+        self.r2.get_value_string().as_ref()
     }
 
     #[inline]
@@ -156,7 +156,7 @@ impl CellFormula {
     #[inline]
     #[must_use]
     pub fn get_reference(&self) -> &str {
-        self.reference.get_value_str()
+        self.reference.get_value_string()
     }
 
     #[inline]
@@ -168,7 +168,7 @@ impl CellFormula {
     #[inline]
     #[must_use]
     pub fn get_shared_index(&self) -> u32 {
-        self.shared_index.get_value()
+        self.shared_index.get_value_unchecked()
     }
 
     #[inline]
@@ -181,9 +181,9 @@ impl CellFormula {
     #[must_use]
     pub fn get_text(&self) -> &str {
         if self.text_view.has_value() {
-            return self.text_view.get_value_str();
+            return self.text_view.get_value_string();
         }
-        self.text.get_value_str()
+        self.text.get_value_string()
     }
 
     #[inline]
@@ -234,7 +234,7 @@ impl CellFormula {
 
         // Shared
         if self.formula_type.get_value() == &CellFormulaValues::Shared {
-            match formula_shared_list.get(&self.shared_index.get_value()) {
+            match formula_shared_list.get(&self.shared_index.get_value_unchecked()) {
                 Some((parent_cell_reference_str, token)) => {
                     let parent_cell = index_from_coordinate(parent_cell_reference_str);
                     let self_cell = index_from_coordinate(cell_reference_str);
@@ -263,10 +263,10 @@ impl CellFormula {
                 }
                 None => {
                     formula_shared_list.insert(
-                        self.shared_index.get_value(),
+                        self.shared_index.get_value_unchecked(),
                         (
                             cell_reference_str.to_string(),
-                            parse_to_tokens(format!("={}", self.text.get_value_str())),
+                            parse_to_tokens(format!("={}", self.text.get_value_string())),
                         ),
                     );
                 }
@@ -316,16 +316,17 @@ impl CellFormula {
         }
 
         if self.r1.has_value() {
-            attributes.push(("r1", self.r1.get_value_str()).into());
+            attributes.push(("r1", self.r1.get_value_string()).into());
         }
 
         if self.r2.has_value() {
-            attributes.push(("r2", self.r2.get_value_str()).into());
+            attributes.push(("r2", self.r2.get_value_string()).into());
         }
 
         #[allow(unused_assignments)]
         let mut reference_str = String::new();
-        if let Some((start_col, end_col)) = formula_shared_list.get(&self.shared_index.get_value())
+        if let Some((start_col, end_col)) =
+            formula_shared_list.get(&self.shared_index.get_value_unchecked())
         {
             if coordinate == start_col {
                 reference_str = match end_col {
@@ -344,7 +345,7 @@ impl CellFormula {
         }
 
         write_start_tag(writer, "f", attributes, false);
-        write_text_node_conversion(writer, self.text.get_value_str());
+        write_text_node_conversion(writer, self.text.get_value_string());
         write_end_tag(writer, "f");
     }
 }
@@ -358,7 +359,7 @@ impl AdjustmentCoordinateWith2Sheet for CellFormula {
         root_row_num: u32,
         offset_row_num: u32,
     ) {
-        if let Some(v) = self.text.get_value() {
+        if let Some(v) = self.text.get_value_unchecked() {
             let formula = adjustment_insert_formula_coordinate(
                 &mut parse_to_tokens(format!("={v}")),
                 root_col_num,
@@ -371,7 +372,7 @@ impl AdjustmentCoordinateWith2Sheet for CellFormula {
             );
             self.text.set_value(formula);
         }
-        if let Some(v) = self.text_view.get_value() {
+        if let Some(v) = self.text_view.get_value_unchecked() {
             let formula = adjustment_insert_formula_coordinate(
                 &mut parse_to_tokens(format!("={v}")),
                 root_col_num,
@@ -395,7 +396,7 @@ impl AdjustmentCoordinateWith2Sheet for CellFormula {
         root_row_num: u32,
         offset_row_num: u32,
     ) {
-        if let Some(v) = self.text.get_value() {
+        if let Some(v) = self.text.get_value_unchecked() {
             let formula = adjustment_remove_formula_coordinate(
                 &mut parse_to_tokens(format!("={v}")),
                 root_col_num,
@@ -408,7 +409,7 @@ impl AdjustmentCoordinateWith2Sheet for CellFormula {
             );
             self.text.set_value(formula);
         }
-        if let Some(v) = self.text_view.get_value() {
+        if let Some(v) = self.text_view.get_value_unchecked() {
             let formula = adjustment_remove_formula_coordinate(
                 &mut parse_to_tokens(format!("={v}")),
                 root_col_num,

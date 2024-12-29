@@ -34,7 +34,7 @@ impl Pane {
     #[inline]
     #[must_use]
     pub fn get_horizontal_split(&self) -> f64 {
-        self.horizontal_split.get_value()
+        self.horizontal_split.get_value_unchecked()
     }
 
     #[inline]
@@ -46,7 +46,7 @@ impl Pane {
     #[inline]
     #[must_use]
     pub fn get_vertical_split(&self) -> f64 {
-        self.vertical_split.get_value()
+        self.vertical_split.get_value_unchecked()
     }
 
     #[inline]
@@ -123,7 +123,7 @@ impl Pane {
         if self.vertical_split.has_value() {
             attributes.push(("ySplit", &vertical_split).into());
         }
-        attributes.push(("topLeftCell", coordinate.as_str()).into());
+        attributes.push(("topLeftCell", coordinate).into());
         attributes.push(("activePane", self.active_pane.get_value_string()).into());
         attributes.push(("state", self.state.get_value_string()).into());
         write_start_tag(writer, "pane", attributes, true);

@@ -37,7 +37,7 @@ impl ObjectAnchor {
     #[inline]
     #[must_use]
     pub fn get_move_with_cells(&self) -> bool {
-        self.move_with_cells.get_value()
+        self.move_with_cells.get_value_unchecked()
     }
 
     #[inline]

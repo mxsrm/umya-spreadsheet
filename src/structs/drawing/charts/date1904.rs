@@ -20,7 +20,7 @@ pub struct Date1904 {
 impl Date1904 {
     #[must_use]
     pub fn get_val(&self) -> bool {
-        self.val.get_value()
+        self.val.get_value_unchecked()
     }
 
     pub fn set_val(&mut self, value: bool) -> &mut Date1904 {

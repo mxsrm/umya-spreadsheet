@@ -28,26 +28,26 @@ use crate::{
 };
 
 #[derive(Clone, Default, Debug)]
-pub struct CacheField {
-    name:             StringValue,
+pub struct CacheField<'a> {
+    name:             StringValue<'a>,
     number_format_id: UInt32Value,
     shared_items:     SharedItems,
 }
-impl CacheField {
+impl<'a> CacheField<'a> {
     #[must_use]
-    pub fn get_name(&self) -> &str {
-        self.name.get_value_str()
+    pub fn get_name(&self) -> &'a str {
+        self.name.get_value_string()
     }
 
     #[allow(dead_code)]
     pub(crate) fn set_name<S: Into<String>>(&mut self, value: S) -> &mut Self {
-        self.name.set_value(value);
+        self.name.set_value(Cow::Owned(value.into()));
         self
     }
 
     #[must_use]
     pub fn get_number_format_id(&self) -> u32 {
-        self.number_format_id.get_value()
+        self.number_format_id.get_value_unchecked()
     }
 
     pub fn set_number_format_id(&mut self, value: u32) -> &mut Self {
@@ -103,12 +103,8 @@ impl CacheField {
             writer,
             "pivotField",
             vec![
-                ("name", self.name.get_value_str()).into(),
-                (
-                    "numFmtId",
-                    self.number_format_id.get_value_string().as_str(),
-                )
-                    .into(),
+                ("name", self.name.get_value_string()).into(),
+                ("numFmtId", self.number_format_id.get_value_string()).into(),
             ],
             false,
         );

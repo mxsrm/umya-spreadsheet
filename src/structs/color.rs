@@ -115,11 +115,11 @@ impl Color {
     #[must_use]
     pub fn get_argb(&self) -> &str {
         if self.indexed.has_value() {
-            if let Some(v) = INDEXED_COLORS.get(self.indexed.get_value() as usize) {
+            if let Some(v) = INDEXED_COLORS.get(self.indexed.get_value_unchecked() as usize) {
                 return v;
             }
         }
-        self.argb.get_value_str()
+        self.argb.get_value_string()
     }
 
     /// Get Argb.
@@ -135,7 +135,7 @@ impl Color {
             return self.get_argb().to_owned().into();
         }
         if self.theme_index.has_value() {
-            let key = self.theme_index.get_value();
+            let key = self.theme_index.get_value_unchecked();
             if let Some(v) = theme
                 .get_theme_elements()
                 .get_color_scheme()
@@ -143,12 +143,12 @@ impl Color {
                 .get(key as usize)
             {
                 if self.tint.has_value() {
-                    return calc_tint(v, self.tint.get_value()).into();
+                    return calc_tint(v, self.tint.get_value_unchecked()).into();
                 }
                 return v.to_string().into();
             }
         }
-        self.argb.get_value_str().to_string().into()
+        self.argb.get_value_string().to_string().into()
     }
 
     pub fn set_argb<S: Into<String>>(&mut self, value: S) -> &mut Self {
@@ -168,7 +168,7 @@ impl Color {
     #[inline]
     #[must_use]
     pub fn get_indexed(&self) -> u32 {
-        self.indexed.get_value()
+        self.indexed.get_value_unchecked()
     }
 
     #[inline]
@@ -182,7 +182,7 @@ impl Color {
     #[inline]
     #[must_use]
     pub fn get_theme_index(&self) -> u32 {
-        self.theme_index.get_value()
+        self.theme_index.get_value_unchecked()
     }
 
     #[inline]
@@ -196,7 +196,7 @@ impl Color {
     #[inline]
     #[must_use]
     pub fn get_tint(&self) -> f64 {
-        self.tint.get_value()
+        self.tint.get_value_unchecked()
     }
 
     #[inline]
@@ -219,10 +219,10 @@ impl Color {
             "{:x}",
             md5::Md5::digest(format!(
                 "{}{}{}{}",
-                &self.indexed.get_hash_string(),
-                &self.theme_index.get_hash_string(),
-                &self.argb.get_hash_string(),
-                &self.tint.get_hash_string()
+                &self.indexed.get_value_string(),
+                &self.theme_index.get_value_string(),
+                &self.argb.get_value_string(),
+                &self.tint.get_value_string()
             ))
         )
     }
@@ -316,7 +316,7 @@ impl Color {
         } else if self.indexed.has_value() {
             attributes.push(("indexed", &indexed).into());
         } else if self.argb.has_value() {
-            attributes.push(("rgb", self.argb.get_value_str()).into());
+            attributes.push(("rgb", self.argb.get_value_string()).into());
         }
         let tint = self.tint.get_value_string();
         if self.tint.has_value() {

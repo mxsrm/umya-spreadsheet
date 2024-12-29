@@ -21,7 +21,7 @@ pub struct Style {
 impl Style {
     #[must_use]
     pub fn get_val(&self) -> u8 {
-        self.val.get_value()
+        self.val.get_value_unchecked()
     }
 
     pub fn set_val(&mut self, value: u8) -> &mut Style {

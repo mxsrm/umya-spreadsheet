@@ -21,7 +21,7 @@ impl SoftEdge {
     #[inline]
     #[must_use]
     pub fn get_radius(&self) -> i64 {
-        self.radius.get_value()
+        self.radius.get_value_unchecked()
     }
 
     #[inline]

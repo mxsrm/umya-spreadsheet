@@ -40,7 +40,7 @@ impl GradientFill {
     #[inline]
     #[must_use]
     pub fn get_degree(&self) -> f64 {
-        self.degree.get_value()
+        self.degree.get_value_unchecked()
     }
 
     #[inline]

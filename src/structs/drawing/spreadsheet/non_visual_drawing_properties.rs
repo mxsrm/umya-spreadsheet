@@ -38,7 +38,7 @@ impl NonVisualDrawingProperties {
     #[inline]
     #[must_use]
     pub fn get_id(&self) -> u32 {
-        self.id.get_value()
+        self.id.get_value_unchecked()
     }
 
     #[inline]
@@ -50,7 +50,7 @@ impl NonVisualDrawingProperties {
     #[inline]
     #[must_use]
     pub fn get_name(&self) -> &str {
-        self.name.get_value_str()
+        self.name.get_value_string()
     }
 
     #[inline]
@@ -62,7 +62,7 @@ impl NonVisualDrawingProperties {
     #[inline]
     #[must_use]
     pub fn get_hidden(&self) -> bool {
-        self.hidden.get_value()
+        self.hidden.get_value_unchecked()
     }
 
     #[inline]
@@ -103,7 +103,7 @@ impl NonVisualDrawingProperties {
         let mut attributes: crate::structs::AttrCollection = Vec::new();
         let id = self.id.get_value_string();
         attributes.push(("id", &id).into());
-        attributes.push(("name", self.name.get_value_str()).into());
+        attributes.push(("name", self.name.get_value_string()).into());
         if self.hidden.has_value() {
             attributes.push(("hidden", self.hidden.get_value_string()).into());
         }
@@ -118,12 +118,7 @@ impl NonVisualDrawingProperties {
                 vec![("uri", "{63B3BB69-23CF-44E3-9099-C40C66FF867C}").into()],
                 false,
             );
-            write_start_tag(
-                writer,
-                "a14:compatExt",
-                vec![("spid", spid.as_str()).into()],
-                true,
-            );
+            write_start_tag(writer, "a14:compatExt", vec![("spid", spid).into()], true);
 
             write_end_tag(writer, "a:ext");
             write_end_tag(writer, "a:extLst");

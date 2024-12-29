@@ -29,7 +29,7 @@ impl LinearGradientFill {
     #[inline]
     #[must_use]
     pub fn get_angle(&self) -> i32 {
-        self.angle.get_value()
+        self.angle.get_value_unchecked()
     }
 
     #[inline]
@@ -41,7 +41,7 @@ impl LinearGradientFill {
     #[inline]
     #[must_use]
     pub fn get_scaled(&self) -> bool {
-        self.scaled.get_value()
+        self.scaled.get_value_unchecked()
     }
 
     #[inline]

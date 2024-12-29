@@ -24,7 +24,7 @@ impl WorkbookView {
     #[inline]
     #[must_use]
     pub fn get_active_tab(&self) -> u32 {
-        self.active_tab.get_value()
+        self.active_tab.get_value_unchecked()
     }
 
     #[inline]

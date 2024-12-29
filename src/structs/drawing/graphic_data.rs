@@ -100,7 +100,7 @@ impl GraphicData {
             vec![
                 ("xmlns:c", DRAWINGML_CHART_NS).into(),
                 ("xmlns:r", REL_OFC_NS).into(),
-                ("r:id", format!("rId{}", rel_list.len()).as_str()).into(),
+                ("r:id", format!("rId{}", rel_list.len())).into(),
             ],
             true,
         );

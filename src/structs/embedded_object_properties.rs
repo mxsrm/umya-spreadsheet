@@ -45,7 +45,7 @@ impl EmbeddedObjectProperties {
     #[inline]
     #[must_use]
     pub fn get_prog_id(&self) -> &str {
-        self.prog_id.get_value_str()
+        self.prog_id.get_value_string()
     }
 
     #[inline]
@@ -57,7 +57,7 @@ impl EmbeddedObjectProperties {
     #[inline]
     #[must_use]
     pub fn get_shape_id(&self) -> u32 {
-        self.shape_id.get_value()
+        self.shape_id.get_value_unchecked()
     }
 
     #[inline]
@@ -85,7 +85,7 @@ impl EmbeddedObjectProperties {
     #[inline]
     #[must_use]
     pub fn get_default_size(&self) -> bool {
-        self.default_size.get_value()
+        self.default_size.get_value_unchecked()
     }
 
     #[inline]
@@ -97,7 +97,7 @@ impl EmbeddedObjectProperties {
     #[inline]
     #[must_use]
     pub fn get_auto_pict(&self) -> bool {
-        self.auto_pict.get_value()
+        self.auto_pict.get_value_unchecked()
     }
 
     #[inline]
@@ -166,7 +166,7 @@ impl EmbeddedObjectProperties {
             attributes.push(("autoPict", self.auto_pict.get_value_string()).into());
         }
         let r_id_str = format!("rId{r_id}");
-        attributes.push(("r:id", r_id_str.as_str()).into());
+        attributes.push(("r:id", r_id_str).into());
         write_start_tag(writer, "objectPr", attributes, false);
 
         // anchor

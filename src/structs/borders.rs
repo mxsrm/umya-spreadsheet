@@ -251,7 +251,7 @@ impl Borders {
 
     #[inline]
     pub fn get_diagonal_down(&self) -> bool {
-        self.diagonal_down.get_value()
+        self.diagonal_down.get_value_unchecked()
     }
 
     #[inline]
@@ -261,7 +261,7 @@ impl Borders {
 
     #[inline]
     pub fn get_diagonal_up(&self) -> bool {
-        self.diagonal_up.get_value()
+        self.diagonal_up.get_value_unchecked()
     }
 
     #[inline]
