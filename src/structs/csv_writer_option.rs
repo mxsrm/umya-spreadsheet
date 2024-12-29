@@ -22,7 +22,7 @@ impl CsvWriterOption {
 
     #[inline]
     #[must_use]
-    pub fn get_wrap_with_char(&self) -> &str {
+    pub fn get_wrap_with_char(&self) -> std::borrow::Cow<str> {
         &self.wrap_with_char
     }
 

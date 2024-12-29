@@ -58,7 +58,7 @@ pub struct RunProperties {
 impl RunProperties {
     #[inline]
     #[must_use]
-    pub fn get_text(&self) -> &str {
+    pub fn get_text(&self) -> std::borrow::Cow<str> {
         &self.text
     }
 
@@ -70,7 +70,7 @@ impl RunProperties {
 
     #[inline]
     #[must_use]
-    pub fn get_kumimoji(&self) -> &str {
+    pub fn get_kumimoji(&self) -> std::borrow::Cow<str> {
         self.kumimoji.get_value_string()
     }
 
@@ -82,7 +82,7 @@ impl RunProperties {
 
     #[inline]
     #[must_use]
-    pub fn get_language(&self) -> &str {
+    pub fn get_language(&self) -> std::borrow::Cow<str> {
         self.language.get_value_string()
     }
 
@@ -94,7 +94,7 @@ impl RunProperties {
 
     #[inline]
     #[must_use]
-    pub fn get_alternative_language(&self) -> &str {
+    pub fn get_alternative_language(&self) -> std::borrow::Cow<str> {
         self.alternative_language.get_value_string()
     }
 
@@ -106,7 +106,7 @@ impl RunProperties {
 
     #[inline]
     #[must_use]
-    pub fn get_bold(&self) -> &str {
+    pub fn get_bold(&self) -> std::borrow::Cow<str> {
         self.bold.get_value_string()
     }
 
@@ -118,7 +118,7 @@ impl RunProperties {
 
     #[inline]
     #[must_use]
-    pub fn get_sz(&self) -> &str {
+    pub fn get_sz(&self) -> std::borrow::Cow<str> {
         self.sz.get_value_string()
     }
 
@@ -130,7 +130,7 @@ impl RunProperties {
 
     #[inline]
     #[must_use]
-    pub fn get_italic(&self) -> &str {
+    pub fn get_italic(&self) -> std::borrow::Cow<str> {
         self.italic.get_value_string()
     }
 
@@ -166,7 +166,7 @@ impl RunProperties {
 
     #[inline]
     #[must_use]
-    pub fn get_strike(&self) -> &str {
+    pub fn get_strike(&self) -> std::borrow::Cow<str> {
         self.strike.get_value_string()
     }
 

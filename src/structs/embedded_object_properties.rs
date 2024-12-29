@@ -44,7 +44,7 @@ pub struct EmbeddedObjectProperties {
 impl EmbeddedObjectProperties {
     #[inline]
     #[must_use]
-    pub fn get_prog_id(&self) -> &str {
+    pub fn get_prog_id(&self) -> std::borrow::Cow<str> {
         self.prog_id.get_value_string()
     }
 

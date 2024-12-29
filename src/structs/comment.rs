@@ -54,7 +54,7 @@ impl Comment {
 
     #[inline]
     #[must_use]
-    pub fn get_author(&self) -> &str {
+    pub fn get_author(&self) -> std::borrow::Cow<str> {
         &self.author
     }
 

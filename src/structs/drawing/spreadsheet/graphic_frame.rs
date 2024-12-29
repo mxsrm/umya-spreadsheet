@@ -43,7 +43,7 @@ pub struct GraphicFrame {
 impl GraphicFrame {
     #[inline]
     #[must_use]
-    pub fn get_macro(&self) -> &str {
+    pub fn get_macro(&self) -> std::borrow::Cow<str> {
         self.r#macro.get_value_string()
     }
 

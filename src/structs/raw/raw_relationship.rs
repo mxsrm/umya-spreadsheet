@@ -31,7 +31,7 @@ pub(crate) struct RawRelationship {
 
 impl RawRelationship {
     #[inline]
-    pub(crate) fn get_id(&self) -> &str {
+    pub(crate) fn get_id(&self) -> std::borrow::Cow<str> {
         self.id.get_value_string()
     }
 
@@ -42,7 +42,7 @@ impl RawRelationship {
     }
 
     #[inline]
-    pub(crate) fn get_target(&self) -> &str {
+    pub(crate) fn get_target(&self) -> std::borrow::Cow<str> {
         self.target.get_value_string()
     }
 
@@ -53,7 +53,7 @@ impl RawRelationship {
     }
 
     #[inline]
-    pub(crate) fn get_type(&self) -> &str {
+    pub(crate) fn get_type(&self) -> std::borrow::Cow<str> {
         self.r_type.get_value_string()
     }
 
@@ -80,7 +80,7 @@ impl RawRelationship {
     }
 
     #[inline]
-    pub(crate) fn get_target_mode(&self) -> &str {
+    pub(crate) fn get_target_mode(&self) -> std::borrow::Cow<str> {
         self.target_mode.get_value_string()
     }
 

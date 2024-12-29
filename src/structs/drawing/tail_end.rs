@@ -23,7 +23,7 @@ pub struct TailEnd {
 impl TailEnd {
     #[inline]
     #[must_use]
-    pub fn get_type(&self) -> &str {
+    pub fn get_type(&self) -> std::borrow::Cow<str> {
         self.t_type.get_value_string()
     }
 
@@ -34,7 +34,7 @@ impl TailEnd {
 
     #[inline]
     #[must_use]
-    pub fn get_width(&self) -> &str {
+    pub fn get_width(&self) -> std::borrow::Cow<str> {
         self.width.get_value_string()
     }
 
@@ -45,7 +45,7 @@ impl TailEnd {
 
     #[inline]
     #[must_use]
-    pub fn get_length(&self) -> &str {
+    pub fn get_length(&self) -> std::borrow::Cow<str> {
         self.length.get_value_string()
     }
 

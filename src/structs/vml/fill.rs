@@ -32,7 +32,7 @@ pub struct Fill {
 impl Fill {
     #[inline]
     #[must_use]
-    pub fn get_color(&self) -> &str {
+    pub fn get_color(&self) -> std::borrow::Cow<str> {
         self.color.get_value_string()
     }
 
@@ -44,7 +44,7 @@ impl Fill {
 
     #[inline]
     #[must_use]
-    pub fn get_color_2(&self) -> &str {
+    pub fn get_color_2(&self) -> std::borrow::Cow<str> {
         self.color_2.get_value_string()
     }
 
@@ -68,7 +68,7 @@ impl Fill {
 
     #[inline]
     #[must_use]
-    pub fn get_focus_size(&self) -> &str {
+    pub fn get_focus_size(&self) -> std::borrow::Cow<str> {
         self.focus_size.get_value_string()
     }
 

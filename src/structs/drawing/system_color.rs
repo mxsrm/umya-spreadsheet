@@ -43,7 +43,7 @@ impl SystemColor {
 
     #[inline]
     #[must_use]
-    pub fn get_last_color(&self) -> &str {
+    pub fn get_last_color(&self) -> std::borrow::Cow<str> {
         self.last_color.get_value_string()
     }
 

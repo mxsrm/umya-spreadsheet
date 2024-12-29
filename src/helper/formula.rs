@@ -616,11 +616,11 @@ fn handle_special_characters<'a>(
     false
 }
 
-fn handle_array_chars(
+fn handle_array_chars<'a>(
     current_char: char,
     value: &mut String,
-    tokens1: &mut Vec<FormulaToken>,
-    stack: &mut Vec<FormulaToken>,
+    tokens1: &mut Vec<FormulaToken<'a>>,
+    stack: &mut Vec<FormulaToken<'a>>,
 ) -> bool {
     // handle {
     if current_char == BRACE_OPEN {
@@ -746,7 +746,7 @@ fn handle_multi_char_comparator(
     false
 }
 
-fn cleanup_tokens(tokens1: &[FormulaToken], tokens2: &mut Vec<FormulaToken>) {
+fn cleanup_tokens<'a>(tokens1: &[FormulaToken<'a>], tokens2: &mut Vec<FormulaToken<'a>>) {
     let token_count = tokens1.len();
     let mut value = String::new();
     for i in 0..token_count {

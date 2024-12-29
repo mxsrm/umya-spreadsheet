@@ -31,7 +31,7 @@ impl Default for ObjectValues {
 }
 impl EnumTrait for ObjectValues {
     #[inline]
-    fn get_value_string(&self) -> &str {
+    fn get_value_string(&self) -> std::borrow::Cow<str> {
         match &self {
             Self::AuditingLine => "LineA",
             Self::AuditingRectangle => "RectA",

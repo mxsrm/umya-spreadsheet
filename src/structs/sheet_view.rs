@@ -162,7 +162,7 @@ impl SheetView {
 
     #[inline]
     #[must_use]
-    pub fn get_top_left_cell(&self) -> &str {
+    pub fn get_top_left_cell(&self) -> std::borrow::Cow<str> {
         self.top_left_cell.get_value_string()
     }
 

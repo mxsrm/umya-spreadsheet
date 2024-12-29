@@ -96,7 +96,7 @@ impl Font {
 
     #[inline]
     #[must_use]
-    pub fn get_name(&self) -> &str {
+    pub fn get_name(&self) -> std::borrow::Cow<str> {
         self.font_name.get_val()
     }
 
@@ -249,7 +249,7 @@ impl Font {
 
     #[inline]
     #[must_use]
-    pub fn get_underline(&self) -> &str {
+    pub fn get_underline(&self) -> std::borrow::Cow<str> {
         self.font_underline.val.get_value_string()
     }
 
@@ -355,7 +355,7 @@ impl Font {
 
     #[inline]
     #[must_use]
-    pub fn get_scheme(&self) -> &str {
+    pub fn get_scheme(&self) -> std::borrow::Cow<str> {
         self.font_scheme.val.get_value_string()
     }
 

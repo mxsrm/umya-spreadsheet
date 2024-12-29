@@ -15,7 +15,7 @@ impl Default for OrientationValues {
 }
 impl EnumTrait for OrientationValues {
     #[inline]
-    fn get_value_string(&self) -> &str {
+    fn get_value_string(&self) -> std::borrow::Cow<str> {
         match &self {
             Self::Default => "default",
             Self::Landscape => "landscape",

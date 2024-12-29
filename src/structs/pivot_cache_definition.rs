@@ -52,7 +52,7 @@ pub struct PivotCacheDefinition {
 impl PivotCacheDefinition {
     #[inline]
     #[must_use]
-    pub fn get_id(&self) -> &str {
+    pub fn get_id(&self) -> std::borrow::Cow<str> {
         self.id.get_value_string()
     }
 
@@ -64,7 +64,7 @@ impl PivotCacheDefinition {
 
     #[inline]
     #[must_use]
-    pub fn get_refreshed_by(&self) -> &str {
+    pub fn get_refreshed_by(&self) -> std::borrow::Cow<str> {
         self.refreshed_by.get_value_string()
     }
 

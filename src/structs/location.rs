@@ -27,7 +27,7 @@ pub struct Location {
 }
 impl Location {
     #[must_use]
-    pub fn get_reference(&self) -> &str {
+    pub fn get_reference(&self) -> std::borrow::Cow<str> {
         self.reference.get_value_string()
     }
 
@@ -85,21 +85,9 @@ impl Location {
             "location",
             vec![
                 ("ref", self.reference.get_value_string()).into(),
-                (
-                    "firstHeaderRow",
-                    self.first_header_row.get_value_string(),
-                )
-                    .into(),
-                (
-                    "firstDataRow",
-                    self.first_data_row.get_value_string(),
-                )
-                    .into(),
-                (
-                    "firstDataCol",
-                    self.first_data_col.get_value_string(),
-                )
-                    .into(),
+                ("firstHeaderRow", self.first_header_row.get_value_string()).into(),
+                ("firstDataRow", self.first_data_row.get_value_string()).into(),
+                ("firstDataCol", self.first_data_col.get_value_string()).into(),
             ],
             true,
         );

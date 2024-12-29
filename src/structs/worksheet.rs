@@ -1093,7 +1093,7 @@ impl Worksheet {
     /// Get Active Cell.
     #[inline]
     #[must_use]
-    pub fn get_active_cell(&self) -> &str {
+    pub fn get_active_cell(&self) -> std::borrow::Cow<str> {
         &self.active_cell
     }
 
@@ -1107,7 +1107,7 @@ impl Worksheet {
 
     /// Get R Id.
     #[inline]
-    pub(crate) fn get_r_id(&self) -> &str {
+    pub(crate) fn get_r_id(&self) -> std::borrow::Cow<str> {
         &self.r_id
     }
 
@@ -1121,7 +1121,7 @@ impl Worksheet {
     /// Get Sheet Id.
     #[inline]
     #[must_use]
-    pub fn get_sheet_id(&self) -> &str {
+    pub fn get_sheet_id(&self) -> std::borrow::Cow<str> {
         &self.sheet_id
     }
 
@@ -1211,7 +1211,7 @@ impl Worksheet {
     /// Get `SheetName`.
     #[inline]
     #[must_use]
-    pub fn get_name(&self) -> &str {
+    pub fn get_name(&self) -> std::borrow::Cow<str> {
         &self.title
     }
 
@@ -1239,7 +1239,7 @@ impl Worksheet {
     }
 
     #[inline]
-    pub(crate) fn get_state_str(&self) -> &str {
+    pub(crate) fn get_state_str(&self) -> std::borrow::Cow<str> {
         self.state.get_value_string()
     }
 
@@ -1257,7 +1257,7 @@ impl Worksheet {
     // Get Sheet State
     #[inline]
     #[must_use]
-    pub fn get_sheet_state(&self) -> &str {
+    pub fn get_sheet_state(&self) -> std::borrow::Cow<str> {
         &self.sheet_state
     }
 

@@ -77,7 +77,7 @@ impl Default for Properties {
 impl Properties {
     #[inline]
     #[must_use]
-    pub fn get_creator(&self) -> &str {
+    pub fn get_creator(&self) -> std::borrow::Cow<str> {
         self.creator.get_value_string()
     }
 
@@ -89,7 +89,7 @@ impl Properties {
 
     #[inline]
     #[must_use]
-    pub fn get_last_modified_by(&self) -> &str {
+    pub fn get_last_modified_by(&self) -> std::borrow::Cow<str> {
         self.last_modified_by.get_value_string()
     }
 
@@ -101,7 +101,7 @@ impl Properties {
 
     #[inline]
     #[must_use]
-    pub fn get_created(&self) -> &str {
+    pub fn get_created(&self) -> std::borrow::Cow<str> {
         self.created.get_value_string()
     }
 
@@ -113,7 +113,7 @@ impl Properties {
 
     #[inline]
     #[must_use]
-    pub fn get_modified(&self) -> &str {
+    pub fn get_modified(&self) -> std::borrow::Cow<str> {
         self.modified.get_value_string()
     }
 
@@ -125,7 +125,7 @@ impl Properties {
 
     #[inline]
     #[must_use]
-    pub fn get_title(&self) -> &str {
+    pub fn get_title(&self) -> std::borrow::Cow<str> {
         self.title.get_value_string()
     }
 
@@ -137,7 +137,7 @@ impl Properties {
 
     #[inline]
     #[must_use]
-    pub fn get_description(&self) -> &str {
+    pub fn get_description(&self) -> std::borrow::Cow<str> {
         self.description.get_value_string()
     }
 
@@ -149,7 +149,7 @@ impl Properties {
 
     #[inline]
     #[must_use]
-    pub fn get_subject(&self) -> &str {
+    pub fn get_subject(&self) -> std::borrow::Cow<str> {
         self.subject.get_value_string()
     }
 
@@ -161,7 +161,7 @@ impl Properties {
 
     #[inline]
     #[must_use]
-    pub fn get_keywords(&self) -> &str {
+    pub fn get_keywords(&self) -> std::borrow::Cow<str> {
         self.keywords.get_value_string()
     }
 
@@ -173,7 +173,7 @@ impl Properties {
 
     #[inline]
     #[must_use]
-    pub fn get_revision(&self) -> &str {
+    pub fn get_revision(&self) -> std::borrow::Cow<str> {
         self.revision.get_value_string()
     }
 
@@ -185,7 +185,7 @@ impl Properties {
 
     #[inline]
     #[must_use]
-    pub fn get_category(&self) -> &str {
+    pub fn get_category(&self) -> std::borrow::Cow<str> {
         self.category.get_value_string()
     }
 
@@ -197,7 +197,7 @@ impl Properties {
 
     #[inline]
     #[must_use]
-    pub fn get_version(&self) -> &str {
+    pub fn get_version(&self) -> std::borrow::Cow<str> {
         self.version.get_value_string()
     }
 
@@ -209,7 +209,7 @@ impl Properties {
 
     #[inline]
     #[must_use]
-    pub fn get_manager(&self) -> &str {
+    pub fn get_manager(&self) -> std::borrow::Cow<str> {
         self.manager.get_value_string()
     }
 
@@ -221,7 +221,7 @@ impl Properties {
 
     #[inline]
     #[must_use]
-    pub fn get_company(&self) -> &str {
+    pub fn get_company(&self) -> std::borrow::Cow<str> {
         self.company.get_value_string()
     }
 

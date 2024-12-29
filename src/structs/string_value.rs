@@ -4,7 +4,7 @@ pub struct StringValue {
 }
 impl StringValue {
     #[inline]
-    pub(crate) fn get_value_str(&self) -> &str {
+    pub(crate) fn get_value_str(&self) -> std::borrow::Cow<str> {
         self.value.as_deref().unwrap_or("")
     }
 
@@ -38,7 +38,7 @@ impl StringValue {
     }
 
     #[inline]
-    pub(crate) fn get_hash_string(&self) -> &str {
+    pub(crate) fn get_hash_string(&self) -> std::borrow::Cow<str> {
         if self.has_value() {
             return self.get_value_string();
         }

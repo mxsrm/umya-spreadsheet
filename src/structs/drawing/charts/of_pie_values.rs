@@ -12,7 +12,7 @@ impl Default for OfPieValues {
     }
 }
 impl EnumTrait for OfPieValues {
-    fn get_value_string(&self) -> &str {
+    fn get_value_string(&self) -> std::borrow::Cow<str> {
         match &self {
             Self::Bar => "bar",
             Self::Pie => "pie",

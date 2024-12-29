@@ -19,7 +19,7 @@ impl Default for TextAlignmentTypeValues {
 }
 impl EnumTrait for TextAlignmentTypeValues {
     #[inline]
-    fn get_value_string(&self) -> &str {
+    fn get_value_string(&self) -> std::borrow::Cow<str> {
         match &self {
             Self::Center => "ctr",
             Self::Distributed => "dist",

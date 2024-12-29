@@ -1,5 +1,8 @@
 // cacheField
-use std::io::Cursor;
+use std::{
+    borrow::Cow,
+    io::Cursor,
+};
 
 use quick_xml::{
     Reader,
@@ -33,9 +36,9 @@ pub struct CacheField<'a> {
     number_format_id: UInt32Value,
     shared_items:     SharedItems,
 }
-impl<'a> CacheField<'a> {
+impl CacheField<'_> {
     #[must_use]
-    pub fn get_name(&self) -> &'a str {
+    pub fn get_name(&self) -> Cow<str> {
         self.name.get_value_string()
     }
 

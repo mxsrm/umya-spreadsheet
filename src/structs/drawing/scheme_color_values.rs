@@ -29,7 +29,7 @@ impl Default for SchemeColorValues {
 }
 impl EnumTrait for SchemeColorValues {
     #[inline]
-    fn get_value_string(&self) -> &str {
+    fn get_value_string(&self) -> std::borrow::Cow<str> {
         match &self {
             Self::Accent1 => "accent1",
             Self::Accent2 => "accent2",

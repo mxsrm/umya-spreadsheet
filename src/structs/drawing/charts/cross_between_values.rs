@@ -12,7 +12,7 @@ impl Default for CrossBetweenValues {
     }
 }
 impl EnumTrait for CrossBetweenValues {
-    fn get_value_string(&self) -> &str {
+    fn get_value_string(&self) -> std::borrow::Cow<str> {
         match &self {
             Self::Between => "between",
             Self::MidpointCategory => "midCat",

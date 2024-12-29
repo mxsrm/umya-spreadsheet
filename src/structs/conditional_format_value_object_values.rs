@@ -18,7 +18,7 @@ impl Default for ConditionalFormatValueObjectValues {
 }
 impl EnumTrait for ConditionalFormatValueObjectValues {
     #[inline]
-    fn get_value_string(&self) -> &str {
+    fn get_value_string(&self) -> std::borrow::Cow<str> {
         match &self {
             Self::Formula => "formula",
             Self::Max => "max",

@@ -45,7 +45,7 @@ pub struct OleObject {
 impl OleObject {
     #[inline]
     #[must_use]
-    pub fn get_requires(&self) -> &str {
+    pub fn get_requires(&self) -> std::borrow::Cow<str> {
         self.requires.get_value_string()
     }
 
@@ -57,7 +57,7 @@ impl OleObject {
 
     #[inline]
     #[must_use]
-    pub fn get_prog_id(&self) -> &str {
+    pub fn get_prog_id(&self) -> std::borrow::Cow<str> {
         self.prog_id.get_value_string()
     }
 
@@ -69,7 +69,7 @@ impl OleObject {
 
     #[inline]
     #[must_use]
-    pub fn get_object_extension(&self) -> &str {
+    pub fn get_object_extension(&self) -> std::borrow::Cow<str> {
         &self.object_extension
     }
 

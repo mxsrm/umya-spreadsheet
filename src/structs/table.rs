@@ -55,7 +55,7 @@ impl Table {
 
     #[inline]
     #[must_use]
-    pub fn get_name(&self) -> &str {
+    pub fn get_name(&self) -> std::borrow::Cow<str> {
         &self.name
     }
 
@@ -69,7 +69,7 @@ impl Table {
 
     #[inline]
     #[must_use]
-    pub fn get_display_name(&self) -> &str {
+    pub fn get_display_name(&self) -> std::borrow::Cow<str> {
         &self.display_name
     }
 
@@ -133,7 +133,7 @@ impl Table {
     }
 
     #[inline]
-    pub(crate) fn get_totals_row_shown_str(&self) -> &str {
+    pub(crate) fn get_totals_row_shown_str(&self) -> std::borrow::Cow<str> {
         self.totals_row_shown.get_value_string()
     }
 
@@ -207,7 +207,7 @@ impl TableColumn {
 
     #[inline]
     #[must_use]
-    pub fn get_name(&self) -> &str {
+    pub fn get_name(&self) -> std::borrow::Cow<str> {
         self.name.as_str()
     }
 
@@ -229,7 +229,7 @@ impl TableColumn {
     }
 
     #[inline]
-    pub(crate) fn get_totals_row_label_str(&self) -> &str {
+    pub(crate) fn get_totals_row_label_str(&self) -> std::borrow::Cow<str> {
         self.totals_row_label.get_value_string()
     }
 
@@ -256,7 +256,7 @@ impl TableColumn {
     }
 
     #[inline]
-    pub(crate) fn get_totals_row_function_str(&self) -> &str {
+    pub(crate) fn get_totals_row_function_str(&self) -> std::borrow::Cow<str> {
         self.totals_row_function.get_value_string()
     }
 
@@ -336,7 +336,7 @@ impl TableStyleInfo {
 
     #[inline]
     #[must_use]
-    pub fn get_name(&self) -> &str {
+    pub fn get_name(&self) -> std::borrow::Cow<str> {
         self.name.as_str()
     }
 

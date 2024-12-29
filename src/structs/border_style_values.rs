@@ -1,4 +1,7 @@
-use std::str::FromStr;
+use std::{
+    borrow::Cow,
+    str::FromStr,
+};
 
 use super::EnumTrait;
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd)]
@@ -26,22 +29,22 @@ impl Default for BorderStyleValues {
 }
 impl EnumTrait for BorderStyleValues {
     #[inline]
-    fn get_value_string(&self) -> &str {
+    fn get_value_string(&self) -> Cow<str> {
         match &self {
-            Self::DashDot => "dashDot",
-            Self::DashDotDot => "dashDotDot",
-            Self::Dashed => "dashed",
-            Self::Dotted => "dotted",
-            Self::Double => "double",
-            Self::Hair => "hair",
-            Self::Medium => "medium",
-            Self::MediumDashDot => "mediumDashDot",
-            Self::MediumDashDotDot => "mediumDashDotDot",
-            Self::MediumDashed => "mediumDashed",
-            Self::None => "none",
-            Self::SlantDashDot => "slantDashDot",
-            Self::Thick => "thick",
-            Self::Thin => "thin",
+            Self::DashDot => Cow::Borrowed("dashDot"),
+            Self::DashDotDot => Cow::Borrowed("dashDotDot"),
+            Self::Dashed => Cow::Borrowed("dashed"),
+            Self::Dotted => Cow::Borrowed("dotted"),
+            Self::Double => Cow::Borrowed("double"),
+            Self::Hair => Cow::Borrowed("hair"),
+            Self::Medium => Cow::Borrowed("medium"),
+            Self::MediumDashDot => Cow::Borrowed("mediumDashDot"),
+            Self::MediumDashDotDot => Cow::Borrowed("mediumDashDotDot"),
+            Self::MediumDashed => Cow::Borrowed("mediumDashed"),
+            Self::None => Cow::Borrowed("none"),
+            Self::SlantDashDot => Cow::Borrowed("slantDashDot"),
+            Self::Thick => Cow::Borrowed("thick"),
+            Self::Thin => Cow::Borrowed("thin"),
         }
     }
 }

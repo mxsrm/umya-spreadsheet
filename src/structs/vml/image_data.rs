@@ -44,7 +44,7 @@ impl ImageData {
     }
 
     #[must_use]
-    pub fn get_title(&self) -> &str {
+    pub fn get_title(&self) -> std::borrow::Cow<str> {
         self.title.get_value_string()
     }
 

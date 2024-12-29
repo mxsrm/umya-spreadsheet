@@ -16,7 +16,7 @@ impl Default for ShapeValues {
     }
 }
 impl EnumTrait for ShapeValues {
-    fn get_value_string(&self) -> &str {
+    fn get_value_string(&self) -> std::borrow::Cow<str> {
         match &self {
             Self::Box => "box",
             Self::Cone => "cone",

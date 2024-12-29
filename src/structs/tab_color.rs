@@ -99,7 +99,7 @@ impl TabColor {
     ];
 
     #[inline]
-    pub fn get_argb(&self) -> &str {
+    pub fn get_argb(&self) -> std::borrow::Cow<str> {
         &self.argb.get_value()
     }
 

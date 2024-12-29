@@ -15,7 +15,7 @@ impl Default for LegendPositionValues {
     }
 }
 impl EnumTrait for LegendPositionValues {
-    fn get_value_string(&self) -> &str {
+    fn get_value_string(&self) -> std::borrow::Cow<str> {
         match &self {
             Self::Bottom => "b",
             Self::Left => "l",

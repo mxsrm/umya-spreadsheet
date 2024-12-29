@@ -46,7 +46,7 @@ impl Default for PatternFill {
 impl PatternFill {
     #[inline]
     #[must_use]
-    pub fn get_preset(&self) -> &str {
+    pub fn get_preset(&self) -> std::borrow::Cow<str> {
         &self.preset
     }
 

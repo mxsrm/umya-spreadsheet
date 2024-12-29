@@ -6,7 +6,7 @@ pub struct MediaObject {
 }
 impl MediaObject {
     #[inline]
-    pub fn get_image_title(&self) -> &str {
+    pub fn get_image_title(&self) -> std::borrow::Cow<str> {
         &self.title
     }
 
@@ -17,7 +17,7 @@ impl MediaObject {
     }
 
     #[inline]
-    pub fn get_image_name(&self) -> &str {
+    pub fn get_image_name(&self) -> std::borrow::Cow<str> {
         &self.name
     }
 

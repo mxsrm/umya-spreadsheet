@@ -220,7 +220,7 @@ impl PresetGeometry {
 
     #[inline]
     #[must_use]
-    pub fn get_geometry(&self) -> &str {
+    pub fn get_geometry(&self) -> std::borrow::Cow<str> {
         &self.geometry
     }
 

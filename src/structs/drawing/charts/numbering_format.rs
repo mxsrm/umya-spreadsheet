@@ -23,7 +23,7 @@ pub struct NumberingFormat {
 }
 impl NumberingFormat {
     #[must_use]
-    pub fn get_format_code(&self) -> &str {
+    pub fn get_format_code(&self) -> std::borrow::Cow<str> {
         self.format_code.get_value_string()
     }
 

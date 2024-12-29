@@ -36,7 +36,7 @@ impl Shadow {
     }
 
     #[must_use]
-    pub fn get_color(&self) -> &str {
+    pub fn get_color(&self) -> std::borrow::Cow<str> {
         self.color.get_value_string()
     }
 

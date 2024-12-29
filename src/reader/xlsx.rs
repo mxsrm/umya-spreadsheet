@@ -79,7 +79,7 @@ pub fn read_reader<R: io::Read + io::Seek>(
 
     for sheet in book.get_sheet_collection_mut() {
         for (rel_id, _, rel_target) in &workbook_rel {
-            if sheet.get_r_id() != rel_id {
+            if sheet.get_r_id().as_ref() != rel_id {
                 continue;
             }
             let mut raw_worksheet = RawWorksheet::default();

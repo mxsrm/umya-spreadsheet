@@ -48,7 +48,7 @@ pub struct SheetProtection {
 impl SheetProtection {
     #[inline]
     #[must_use]
-    pub fn get_algorithm_name(&self) -> &str {
+    pub fn get_algorithm_name(&self) -> std::borrow::Cow<str> {
         self.algorithm_name.get_value_string()
     }
 
@@ -60,7 +60,7 @@ impl SheetProtection {
 
     #[inline]
     #[must_use]
-    pub fn get_hash_value(&self) -> &str {
+    pub fn get_hash_value(&self) -> std::borrow::Cow<str> {
         self.hash_value.get_value_string()
     }
 
@@ -72,7 +72,7 @@ impl SheetProtection {
 
     #[inline]
     #[must_use]
-    pub fn get_salt_value(&self) -> &str {
+    pub fn get_salt_value(&self) -> std::borrow::Cow<str> {
         self.salt_value.get_value_string()
     }
 
@@ -96,7 +96,7 @@ impl SheetProtection {
 
     #[inline]
     #[must_use]
-    pub fn get_password_raw(&self) -> &str {
+    pub fn get_password_raw(&self) -> std::borrow::Cow<str> {
         self.password.get_value_string()
     }
 

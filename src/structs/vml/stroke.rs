@@ -24,7 +24,7 @@ pub struct Stroke {
 
 impl Stroke {
     #[must_use]
-    pub fn get_color(&self) -> &str {
+    pub fn get_color(&self) -> std::borrow::Cow<str> {
         self.color.get_value_string()
     }
 
@@ -34,7 +34,7 @@ impl Stroke {
     }
 
     #[must_use]
-    pub fn get_color_2(&self) -> &str {
+    pub fn get_color_2(&self) -> std::borrow::Cow<str> {
         self.color_2.get_value_string()
     }
 
@@ -44,7 +44,7 @@ impl Stroke {
     }
 
     #[must_use]
-    pub fn get_dash_style(&self) -> &str {
+    pub fn get_dash_style(&self) -> std::borrow::Cow<str> {
         self.dash_style.get_value_string()
     }
 

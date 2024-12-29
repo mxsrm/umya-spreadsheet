@@ -14,7 +14,7 @@ impl Default for ConnectValues {
     }
 }
 impl EnumTrait for ConnectValues {
-    fn get_value_string(&self) -> &str {
+    fn get_value_string(&self) -> std::borrow::Cow<str> {
         match &self {
             Self::Custom => "custom",
             Self::None => "none",

@@ -30,7 +30,7 @@ pub struct DataField {
 impl DataField {
     #[inline]
     #[must_use]
-    pub fn get_name(&self) -> &str {
+    pub fn get_name(&self) -> std::borrow::Cow<str> {
         self.name.get_value_string()
     }
 

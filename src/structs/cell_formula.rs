@@ -131,7 +131,7 @@ impl CellFormula {
 
     #[inline]
     #[must_use]
-    pub fn get_r1(&self) -> &str {
+    pub fn get_r1(&self) -> std::borrow::Cow<str> {
         self.r1.get_value_string()
     }
 
@@ -143,7 +143,7 @@ impl CellFormula {
 
     #[inline]
     #[must_use]
-    pub fn get_r2(&self) -> &str {
+    pub fn get_r2(&self) -> std::borrow::Cow<str> {
         self.r2.get_value_string().as_ref()
     }
 
@@ -155,7 +155,7 @@ impl CellFormula {
 
     #[inline]
     #[must_use]
-    pub fn get_reference(&self) -> &str {
+    pub fn get_reference(&self) -> std::borrow::Cow<str> {
         self.reference.get_value_string()
     }
 
@@ -179,7 +179,7 @@ impl CellFormula {
 
     #[inline]
     #[must_use]
-    pub fn get_text(&self) -> &str {
+    pub fn get_text(&self) -> std::borrow::Cow<str> {
         if self.text_view.has_value() {
             return self.text_view.get_value_string();
         }

@@ -62,7 +62,7 @@ pub struct Shape {
 
 impl Shape {
     #[must_use]
-    pub fn get_style(&self) -> &str {
+    pub fn get_style(&self) -> std::borrow::Cow<str> {
         self.style.get_value_string()
     }
 
@@ -72,7 +72,7 @@ impl Shape {
     }
 
     #[must_use]
-    pub fn get_type(&self) -> &str {
+    pub fn get_type(&self) -> std::borrow::Cow<str> {
         self.r_type.get_value_string()
     }
 
@@ -92,7 +92,7 @@ impl Shape {
     }
 
     #[must_use]
-    pub fn get_fill_color(&self) -> &str {
+    pub fn get_fill_color(&self) -> std::borrow::Cow<str> {
         self.fill_color.get_value_string()
     }
 
@@ -112,7 +112,7 @@ impl Shape {
     }
 
     #[must_use]
-    pub fn get_stroke_color(&self) -> &str {
+    pub fn get_stroke_color(&self) -> std::borrow::Cow<str> {
         self.stroke_color.get_value_string()
     }
 
@@ -122,7 +122,7 @@ impl Shape {
     }
 
     #[must_use]
-    pub fn get_stroke_weight(&self) -> &str {
+    pub fn get_stroke_weight(&self) -> std::borrow::Cow<str> {
         self.stroke_weight.get_value_string()
     }
 
@@ -250,7 +250,7 @@ impl Shape {
     }
 
     #[must_use]
-    pub fn get_coordinate_size(&self) -> &str {
+    pub fn get_coordinate_size(&self) -> std::borrow::Cow<str> {
         self.coordinate_size.get_value_string()
     }
 

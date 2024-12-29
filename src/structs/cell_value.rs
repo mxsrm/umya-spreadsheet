@@ -25,7 +25,7 @@ pub struct CellValue {
 impl CellValue {
     #[inline]
     #[must_use]
-    pub fn get_data_type(&self) -> &str {
+    pub fn get_data_type(&self) -> std::borrow::Cow<str> {
         self.raw_value.get_data_type()
     }
 
@@ -36,7 +36,7 @@ impl CellValue {
     }
 
     #[inline]
-    pub(crate) fn get_data_type_crate(&self) -> &str {
+    pub(crate) fn get_data_type_crate(&self) -> std::borrow::Cow<str> {
         match &self.formula {
             Some(_) => "str",
             None => self.raw_value.get_data_type(),
@@ -161,7 +161,7 @@ impl CellValue {
 
     #[inline]
     #[must_use]
-    pub fn get_formula(&self) -> &str {
+    pub fn get_formula(&self) -> std::borrow::Cow<str> {
         match &self.formula {
             Some(v) => v.get_text(),
             None => "",

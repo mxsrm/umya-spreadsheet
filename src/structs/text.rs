@@ -27,7 +27,7 @@ pub(crate) struct Text {
 
 impl Text {
     #[inline]
-    pub(crate) fn get_value(&self) -> &str {
+    pub(crate) fn get_value(&self) -> std::borrow::Cow<str> {
         &self.value
     }
 

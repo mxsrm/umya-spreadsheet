@@ -39,7 +39,7 @@ impl Default for LightRigValues {
 }
 impl EnumTrait for LightRigValues {
     #[inline]
-    fn get_value_string(&self) -> &str {
+    fn get_value_string(&self) -> std::borrow::Cow<str> {
         match &self {
             Self::Balanced => "balanced",
             Self::BrightRoom => "brightRoom",

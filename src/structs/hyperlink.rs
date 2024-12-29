@@ -7,7 +7,7 @@ pub struct Hyperlink {
 impl Hyperlink {
     #[inline]
     #[must_use]
-    pub fn get_url(&self) -> &str {
+    pub fn get_url(&self) -> std::borrow::Cow<str> {
         &self.url
     }
 
@@ -19,7 +19,7 @@ impl Hyperlink {
 
     #[inline]
     #[must_use]
-    pub fn get_tooltip(&self) -> &str {
+    pub fn get_tooltip(&self) -> std::borrow::Cow<str> {
         &self.tooltip
     }
 

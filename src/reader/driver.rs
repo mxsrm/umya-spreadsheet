@@ -35,7 +35,7 @@ pub(crate) use crate::xml_read_loop;
 macro_rules! set_string_from_xml {
     ($self:ident, $e:ident, $attr:ident, $xml_attr:expr) => {{
         if let Some(v) = get_attribute($e, $xml_attr.as_bytes()) {
-            $self.$attr.set_value_string(v);
+            $self.$attr.set_value_string(v.to_string());
         }
     }};
 }

@@ -24,7 +24,7 @@ impl Default for BevelPresetValues {
 }
 impl EnumTrait for BevelPresetValues {
     #[inline]
-    fn get_value_string(&self) -> &str {
+    fn get_value_string(&self) -> std::borrow::Cow<str> {
         match &self {
             Self::Angle => "angle",
             Self::ArtDeco => "artDeco",

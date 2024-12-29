@@ -10,7 +10,7 @@ impl BooleanValue {
     }
 
     #[inline]
-    pub(crate) fn get_value_string(&self) -> &str {
+    pub(crate) fn get_value_string(&self) -> std::borrow::Cow<str> {
         if self.get_value() { "1" } else { "0" }
     }
 
@@ -31,7 +31,7 @@ impl BooleanValue {
     }
 
     #[inline]
-    pub(crate) fn get_hash_string(&self) -> &str {
+    pub(crate) fn get_hash_string(&self) -> std::borrow::Cow<str> {
         if self.has_value() {
             return self.get_value_string();
         }

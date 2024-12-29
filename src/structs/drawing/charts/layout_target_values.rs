@@ -12,7 +12,7 @@ impl Default for LayoutTargetValues {
     }
 }
 impl EnumTrait for LayoutTargetValues {
-    fn get_value_string(&self) -> &str {
+    fn get_value_string(&self) -> std::borrow::Cow<str> {
         match &self {
             Self::Inner => "inner",
             Self::Outer => "outer",

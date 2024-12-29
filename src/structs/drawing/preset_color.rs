@@ -31,7 +31,7 @@ pub struct PresetColor {
 impl PresetColor {
     #[inline]
     #[must_use]
-    pub fn get_val(&self) -> &str {
+    pub fn get_val(&self) -> std::borrow::Cow<str> {
         &self.val
     }
 

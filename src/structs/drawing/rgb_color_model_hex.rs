@@ -42,7 +42,7 @@ pub struct RgbColorModelHex {
 impl RgbColorModelHex {
     #[inline]
     #[must_use]
-    pub fn get_val(&self) -> &str {
+    pub fn get_val(&self) -> std::borrow::Cow<str> {
         self.val.get_value_string()
     }
 

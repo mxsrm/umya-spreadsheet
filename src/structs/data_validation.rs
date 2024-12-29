@@ -106,7 +106,7 @@ impl DataValidation {
 
     #[inline]
     #[must_use]
-    pub fn get_prompt_title(&self) -> &str {
+    pub fn get_prompt_title(&self) -> std::borrow::Cow<str> {
         self.prompt_title.get_value_string()
     }
 
@@ -118,7 +118,7 @@ impl DataValidation {
 
     #[inline]
     #[must_use]
-    pub fn get_prompt(&self) -> &str {
+    pub fn get_prompt(&self) -> std::borrow::Cow<str> {
         self.prompt.get_value_string()
     }
 
@@ -147,7 +147,7 @@ impl DataValidation {
 
     #[inline]
     #[must_use]
-    pub fn get_formula1(&self) -> &str {
+    pub fn get_formula1(&self) -> std::borrow::Cow<str> {
         self.formula1.get_value_string()
     }
 
@@ -159,7 +159,7 @@ impl DataValidation {
 
     #[inline]
     #[must_use]
-    pub fn get_formula2(&self) -> &str {
+    pub fn get_formula2(&self) -> std::borrow::Cow<str> {
         self.formula2.get_value_string()
     }
 

@@ -40,7 +40,7 @@ impl Default for TextBox {
 
 impl TextBox {
     #[must_use]
-    pub fn get_style(&self) -> &str {
+    pub fn get_style(&self) -> std::borrow::Cow<str> {
         self.style.get_value_string()
     }
 
@@ -50,7 +50,7 @@ impl TextBox {
     }
 
     #[must_use]
-    pub fn get_innder(&self) -> &str {
+    pub fn get_innder(&self) -> std::borrow::Cow<str> {
         self.innder.get_value_string()
     }
 

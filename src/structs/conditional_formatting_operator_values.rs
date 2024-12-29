@@ -24,7 +24,7 @@ impl Default for ConditionalFormattingOperatorValues {
 }
 impl EnumTrait for ConditionalFormattingOperatorValues {
     #[inline]
-    fn get_value_string(&self) -> &str {
+    fn get_value_string(&self) -> std::borrow::Cow<str> {
         match &self {
             Self::BeginsWith => "beginsWith",
             Self::Between => "between",

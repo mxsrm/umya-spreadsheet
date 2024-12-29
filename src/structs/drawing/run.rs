@@ -28,7 +28,7 @@ pub struct Run {
 impl Run {
     #[inline]
     #[must_use]
-    pub fn get_text(&self) -> &str {
+    pub fn get_text(&self) -> std::borrow::Cow<str> {
         &self.text
     }
 

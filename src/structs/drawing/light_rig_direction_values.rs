@@ -20,7 +20,7 @@ impl Default for LightRigDirectionValues {
 }
 impl EnumTrait for LightRigDirectionValues {
     #[inline]
-    fn get_value_string(&self) -> &str {
+    fn get_value_string(&self) -> std::borrow::Cow<str> {
         match &self {
             Self::Bottom => "b",
             Self::BottomLeft => "bl",

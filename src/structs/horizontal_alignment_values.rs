@@ -20,7 +20,7 @@ impl Default for HorizontalAlignmentValues {
 }
 impl EnumTrait for HorizontalAlignmentValues {
     #[inline]
-    fn get_value_string(&self) -> &str {
+    fn get_value_string(&self) -> std::borrow::Cow<str> {
         match &self {
             Self::Center => "center",
             Self::CenterContinuous => "centerContinuous",

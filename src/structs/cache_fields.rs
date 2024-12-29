@@ -20,20 +20,20 @@ use crate::{
 };
 
 #[derive(Clone, Default, Debug)]
-pub struct CacheFields {
-    list: Vec<CacheField>,
+pub struct CacheFields<'a> {
+    list: Vec<CacheField<'a>>,
 }
-impl CacheFields {
+impl<'a> CacheFields<'a> {
     #[must_use]
-    pub fn get_list(&self) -> &Vec<CacheField> {
+    pub fn get_list(&self) -> &[CacheField<'a>] {
         &self.list
     }
 
-    pub fn get_list_mut(&mut self) -> &mut Vec<CacheField> {
+    pub fn get_list_mut(&mut self) -> &mut [CacheField<'a>] {
         &mut self.list
     }
 
-    pub fn add_list_mut(&mut self, value: CacheField) -> &mut Self {
+    pub fn add_list_mut(&mut self, value: CacheField<'a>) -> &mut Self {
         self.list.push(value);
         self
     }

@@ -217,7 +217,7 @@ impl Image {
 
     #[inline]
     #[must_use]
-    pub fn get_image_name(&self) -> &str {
+    pub fn get_image_name(&self) -> std::borrow::Cow<str> {
         match self.get_media_object().first() {
             Some(v) => v.get_image_name(),
             None => "",

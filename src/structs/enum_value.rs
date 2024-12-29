@@ -18,7 +18,7 @@ impl<T: EnumTrait + FromStr> EnumValue<T> {
     }
 
     #[inline]
-    pub(crate) fn get_value_string(&self) -> &str {
+    pub(crate) fn get_value_string(&self) -> std::borrow::Cow<str> {
         self.get_value().get_value_string()
     }
 
@@ -42,7 +42,7 @@ impl<T: EnumTrait + FromStr> EnumValue<T> {
     }
 
     #[inline]
-    pub(crate) fn get_hash_string(&self) -> &str {
+    pub(crate) fn get_hash_string(&self) -> std::borrow::Cow<str> {
         if self.has_value() {
             return self.get_value_string();
         }

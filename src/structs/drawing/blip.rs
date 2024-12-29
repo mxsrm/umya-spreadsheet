@@ -55,7 +55,7 @@ impl Blip {
 
     #[inline]
     #[must_use]
-    pub fn get_cstate(&self) -> &str {
+    pub fn get_cstate(&self) -> std::borrow::Cow<str> {
         &self.cstate
     }
 

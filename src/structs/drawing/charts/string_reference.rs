@@ -43,7 +43,7 @@ impl StringReference {
     }
 
     #[must_use]
-    pub fn get_string_cache(&self) -> &StringCache {
+    pub fn get_string_cache(&self) -> std::borrow::Cow<str>ingCache {
         &self.string_cache
     }
 

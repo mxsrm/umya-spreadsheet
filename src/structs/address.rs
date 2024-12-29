@@ -20,7 +20,7 @@ pub struct Address {
 impl Address {
     #[inline]
     #[must_use]
-    pub fn get_sheet_name(&self) -> &str {
+    pub fn get_sheet_name(&self) -> std::borrow::Cow<str> {
         &self.sheet_name
     }
 

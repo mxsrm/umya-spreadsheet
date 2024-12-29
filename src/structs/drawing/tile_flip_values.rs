@@ -16,7 +16,7 @@ impl Default for TileFlipValues {
 }
 impl EnumTrait for TileFlipValues {
     #[inline]
-    fn get_value_string(&self) -> &str {
+    fn get_value_string(&self) -> std::borrow::Cow<str> {
         match &self {
             Self::Horizontal => "x",
             Self::HorizontalAndVertical => "xy",

@@ -23,7 +23,7 @@ pub struct TextFontType {
 impl TextFontType {
     #[inline]
     #[must_use]
-    pub fn get_typeface(&self) -> &str {
+    pub fn get_typeface(&self) -> std::borrow::Cow<str> {
         self.typeface.get_value_string()
     }
 
@@ -35,7 +35,7 @@ impl TextFontType {
 
     #[inline]
     #[must_use]
-    pub fn get_pitch_family(&self) -> &str {
+    pub fn get_pitch_family(&self) -> std::borrow::Cow<str> {
         self.pitch_family.get_value_string()
     }
 
@@ -47,7 +47,7 @@ impl TextFontType {
 
     #[inline]
     #[must_use]
-    pub fn get_charset(&self) -> &str {
+    pub fn get_charset(&self) -> std::borrow::Cow<str> {
         self.charset.get_value_string()
     }
 
@@ -59,7 +59,7 @@ impl TextFontType {
 
     #[inline]
     #[must_use]
-    pub fn get_panose(&self) -> &str {
+    pub fn get_panose(&self) -> std::borrow::Cow<str> {
         self.panose.get_value_string()
     }
 

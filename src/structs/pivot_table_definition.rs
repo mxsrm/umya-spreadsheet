@@ -204,7 +204,7 @@ impl PivotTableDefinition {
 
     #[inline]
     #[must_use]
-    pub fn get_name(&self) -> &str {
+    pub fn get_name(&self) -> std::borrow::Cow<str> {
         self.name.get_value_string()
     }
 
@@ -240,7 +240,7 @@ impl PivotTableDefinition {
 
     #[inline]
     #[must_use]
-    pub fn get_local_name(&self) -> &str {
+    pub fn get_local_name(&self) -> std::borrow::Cow<str> {
         self.local_name.get_value_string()
     }
 
@@ -252,7 +252,7 @@ impl PivotTableDefinition {
 
     #[inline]
     #[must_use]
-    pub fn get_data_caption(&self) -> &str {
+    pub fn get_data_caption(&self) -> std::borrow::Cow<str> {
         self.data_caption.get_value_string()
     }
 

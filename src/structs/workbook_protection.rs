@@ -43,7 +43,7 @@ pub struct WorkbookProtection {
 impl WorkbookProtection {
     #[inline]
     #[must_use]
-    pub fn get_workbook_algorithm_name(&self) -> &str {
+    pub fn get_workbook_algorithm_name(&self) -> std::borrow::Cow<str> {
         self.workbook_algorithm_name.get_value_string()
     }
 
@@ -55,7 +55,7 @@ impl WorkbookProtection {
 
     #[inline]
     #[must_use]
-    pub fn get_workbook_hash_value(&self) -> &str {
+    pub fn get_workbook_hash_value(&self) -> std::borrow::Cow<str> {
         self.workbook_hash_value.get_value_string()
     }
 
@@ -67,7 +67,7 @@ impl WorkbookProtection {
 
     #[inline]
     #[must_use]
-    pub fn get_workbook_salt_value(&self) -> &str {
+    pub fn get_workbook_salt_value(&self) -> std::borrow::Cow<str> {
         self.workbook_salt_value.get_value_string()
     }
 
@@ -91,7 +91,7 @@ impl WorkbookProtection {
 
     #[inline]
     #[must_use]
-    pub fn get_workbook_password_raw(&self) -> &str {
+    pub fn get_workbook_password_raw(&self) -> std::borrow::Cow<str> {
         self.workbook_password.get_value_string()
     }
 
@@ -109,7 +109,7 @@ impl WorkbookProtection {
 
     #[inline]
     #[must_use]
-    pub fn get_revisions_algorithm_name(&self) -> &str {
+    pub fn get_revisions_algorithm_name(&self) -> std::borrow::Cow<str> {
         self.revisions_algorithm_name.get_value_string()
     }
 
@@ -121,7 +121,7 @@ impl WorkbookProtection {
 
     #[inline]
     #[must_use]
-    pub fn get_revisions_hash_value(&self) -> &str {
+    pub fn get_revisions_hash_value(&self) -> std::borrow::Cow<str> {
         self.revisions_hash_value.get_value_string()
     }
 
@@ -133,7 +133,7 @@ impl WorkbookProtection {
 
     #[inline]
     #[must_use]
-    pub fn get_revisions_salt_value(&self) -> &str {
+    pub fn get_revisions_salt_value(&self) -> std::borrow::Cow<str> {
         self.revisions_salt_value.get_value_string()
     }
 
@@ -157,7 +157,7 @@ impl WorkbookProtection {
 
     #[inline]
     #[must_use]
-    pub fn get_revisions_password_raw(&self) -> &str {
+    pub fn get_revisions_password_raw(&self) -> std::borrow::Cow<str> {
         self.revisions_password.get_value_string()
     }
 

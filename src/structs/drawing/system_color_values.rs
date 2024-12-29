@@ -42,7 +42,7 @@ impl Default for SystemColorValues {
 }
 impl EnumTrait for SystemColorValues {
     #[inline]
-    fn get_value_string(&self) -> &str {
+    fn get_value_string(&self) -> std::borrow::Cow<str> {
         match &self {
             Self::ActiveBorder => "activeBorder",
             Self::ActiveCaption => "activeCaption",

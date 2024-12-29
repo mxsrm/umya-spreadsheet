@@ -30,7 +30,7 @@ impl Default for ConditionalFormatValues {
 }
 impl EnumTrait for ConditionalFormatValues {
     #[inline]
-    fn get_value_string(&self) -> &str {
+    fn get_value_string(&self) -> std::borrow::Cow<str> {
         match &self {
             Self::AboveAverage => "aboveAverage",
             Self::BeginsWith => "beginsWith",

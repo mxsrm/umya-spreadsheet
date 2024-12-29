@@ -34,7 +34,7 @@ impl fmt::Display for CellRawValue {
 impl CellRawValue {
     #[inline]
     #[must_use]
-    pub fn get_data_type(&self) -> &str {
+    pub fn get_data_type(&self) -> std::borrow::Cow<str> {
         match self {
             Self::String(_) | Self::RichText(_) => "s",
             Self::Numeric(_) => "n",

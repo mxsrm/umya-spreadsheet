@@ -86,7 +86,7 @@ impl BlipFill {
 
     #[inline]
     #[must_use]
-    pub fn get_stretch(&self) -> &Stretch {
+    pub fn get_stretch(&self) -> std::borrow::Cow<str>etch {
         &self.stretch
     }
 

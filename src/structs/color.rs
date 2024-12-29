@@ -113,7 +113,7 @@ impl Color {
     /// function. In that case, use `get_argb_with_theme(&self`, theme:
     /// &Theme).
     #[must_use]
-    pub fn get_argb(&self) -> &str {
+    pub fn get_argb(&self) -> std::borrow::Cow<str> {
         if self.indexed.has_value() {
             if let Some(v) = INDEXED_COLORS.get(self.indexed.get_value_unchecked() as usize) {
                 return v;

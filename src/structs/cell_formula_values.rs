@@ -16,7 +16,7 @@ impl Default for CellFormulaValues {
 }
 impl EnumTrait for CellFormulaValues {
     #[inline]
-    fn get_value_string(&self) -> &str {
+    fn get_value_string(&self) -> std::borrow::Cow<str> {
         match &self {
             Self::Array => "array",
             Self::DataTable => "dataTable",

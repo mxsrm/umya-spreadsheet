@@ -16,7 +16,7 @@ pub enum DataValidationOperatorValues {
 
 impl EnumTrait for DataValidationOperatorValues {
     #[inline]
-    fn get_value_string(&self) -> &str {
+    fn get_value_string(&self) -> std::borrow::Cow<str> {
         match self {
             Self::Between => "between",
             Self::Equal => "equal",

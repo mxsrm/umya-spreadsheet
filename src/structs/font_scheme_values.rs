@@ -18,7 +18,7 @@ impl Default for FontSchemeValues {
 
 impl EnumTrait for FontSchemeValues {
     #[inline]
-    fn get_value_string(&self) -> &str {
+    fn get_value_string(&self) -> std::borrow::Cow<str> {
         match &self {
             Self::Major => "major",
             Self::Minor => "minor",

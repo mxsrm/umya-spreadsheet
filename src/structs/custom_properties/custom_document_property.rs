@@ -39,7 +39,7 @@ pub struct CustomDocumentProperty {
 impl CustomDocumentProperty {
     #[inline]
     #[must_use]
-    pub fn get_name(&self) -> &str {
+    pub fn get_name(&self) -> std::borrow::Cow<str> {
         self.name.get_value_string()
     }
 
@@ -51,7 +51,7 @@ impl CustomDocumentProperty {
 
     #[inline]
     #[must_use]
-    pub fn get_link_target(&self) -> &str {
+    pub fn get_link_target(&self) -> std::borrow::Cow<str> {
         self.link_target.get_value_string()
     }
 

@@ -25,7 +25,7 @@ pub struct SupplementalFont {
 impl SupplementalFont {
     #[inline]
     #[must_use]
-    pub fn get_script(&self) -> &str {
+    pub fn get_script(&self) -> std::borrow::Cow<str> {
         self.script.get_value_string()
     }
 
@@ -37,7 +37,7 @@ impl SupplementalFont {
 
     #[inline]
     #[must_use]
-    pub fn get_typeface(&self) -> &str {
+    pub fn get_typeface(&self) -> std::borrow::Cow<str> {
         self.typeface.get_value_string()
     }
 

@@ -67,7 +67,7 @@ impl DiagonalBorder {
     }
 
     #[inline]
-    pub fn get_border_style(&self) -> &str {
+    pub fn get_border_style(&self) -> std::borrow::Cow<str> {
         &self.style.get_value_string()
     }
 

@@ -22,7 +22,7 @@ impl Default for MarkerStyleValues {
     }
 }
 impl EnumTrait for MarkerStyleValues {
-    fn get_value_string(&self) -> &str {
+    fn get_value_string(&self) -> std::borrow::Cow<str> {
         match &self {
             Self::Auto => "auto",
             Self::Circle => "circle",
