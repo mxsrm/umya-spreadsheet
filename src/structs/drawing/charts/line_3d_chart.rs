@@ -98,7 +98,7 @@ impl Line3DChart {
         &self.axis_id
     }
 
-    pub fn get_axis_id_mut(&mut self) -> &mut Vec<AxisId> {
+    pub fn get_axis_id_mut(&mut self) -> &mut [AxisId] {
         &mut self.axis_id
     }
 

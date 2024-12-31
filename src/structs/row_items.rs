@@ -31,7 +31,7 @@ impl RowItems {
     }
 
     #[inline]
-    pub fn get_list_mut(&mut self) -> &mut Vec<RowItem> {
+    pub fn get_list_mut(&mut self) -> &mut [RowItem] {
         &mut self.list
     }
 

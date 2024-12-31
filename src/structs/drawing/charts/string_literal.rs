@@ -30,7 +30,7 @@ impl StringLiteral {
         &self.string_point_list
     }
 
-    pub fn get_string_point_list_mut(&mut self) -> &mut Vec<StringPoint> {
+    pub fn get_string_point_list_mut(&mut self) -> &mut [StringPoint] {
         &mut self.string_point_list
     }
 

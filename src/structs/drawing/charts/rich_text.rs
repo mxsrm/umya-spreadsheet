@@ -62,7 +62,7 @@ impl RichText {
         &self.paragraph
     }
 
-    pub fn get_paragraph_mut(&mut self) -> &mut Vec<Paragraph> {
+    pub fn get_paragraph_mut(&mut self) -> &mut [Paragraph] {
         &mut self.paragraph
     }
 

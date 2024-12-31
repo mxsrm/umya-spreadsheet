@@ -35,7 +35,7 @@ impl Properties {
     }
 
     #[inline]
-    pub fn get_custom_document_property_list_mut(&mut self) -> &mut Vec<CustomDocumentProperty> {
+    pub fn get_custom_document_property_list_mut(&mut self) -> &mut [CustomDocumentProperty] {
         &mut self.custom_document_property_list
     }
 

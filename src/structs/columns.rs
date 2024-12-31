@@ -1,6 +1,7 @@
 // fills
 use std::io::Cursor;
 
+use ecow::EcoVec;
 use quick_xml::{
     Reader,
     Writer,
@@ -30,7 +31,7 @@ use crate::{
 
 #[derive(Clone, Default, Debug)]
 pub(crate) struct Columns {
-    column: Vec<Column>,
+    column: EcoVec<Column>,
 }
 
 impl Columns {
@@ -40,8 +41,8 @@ impl Columns {
     }
 
     #[inline]
-    pub(crate) fn get_column_collection_mut(&mut self) -> &mut Vec<Column> {
-        &mut self.column
+    pub(crate) fn get_column_collection_mut(&mut self) -> &mut [Column] {
+        self.column.make_mut()
     }
 
     #[inline]
@@ -130,7 +131,8 @@ impl Columns {
         // col
 
         let mut column_copy = self.column.clone();
-        column_copy.sort_by_key(Column::get_col_num);
+        column_copy.make_mut().sort_by_key(Column::get_col_num);
+
         let mut column_iter = column_copy.iter();
         let mut column_raw = column_iter.next();
         let mut obj = column_raw.unwrap();
@@ -193,15 +195,15 @@ impl Columns {
 }
 impl AdjustmentValue for Columns {
     fn adjustment_insert_value(&mut self, root_num: u32, offset_num: u32) {
-        for column_dimension in &mut self.column {
+        for column_dimension in self.column.make_mut() {
             column_dimension.adjustment_insert_value(root_num, offset_num);
         }
     }
 
     fn adjustment_remove_value(&mut self, root_num: u32, offset_num: u32) {
-        self.get_column_collection_mut()
+        self.column
             .retain(|x| !(x.is_remove_value(root_num, offset_num)));
-        for column_dimension in &mut self.column {
+        for column_dimension in self.column.make_mut() {
             column_dimension.adjustment_remove_value(root_num, offset_num);
         }
     }

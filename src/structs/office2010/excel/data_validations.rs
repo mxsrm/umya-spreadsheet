@@ -36,7 +36,7 @@ impl DataValidations {
     }
 
     #[inline]
-    pub fn get_data_validation_list_mut(&mut self) -> &mut Vec<DataValidation> {
+    pub fn get_data_validation_list_mut(&mut self) -> &mut [DataValidation] {
         &mut self.data_validation_list
     }
 

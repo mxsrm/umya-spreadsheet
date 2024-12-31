@@ -1,6 +1,7 @@
 // mergeCell
 use std::io::Cursor;
 
+use ecow::EcoVec;
 use quick_xml::{
     Reader,
     Writer,
@@ -24,7 +25,7 @@ use crate::{
 
 #[derive(Clone, Default, Debug)]
 pub(crate) struct MergeCells {
-    range: Vec<Range>,
+    range: EcoVec<Range>,
 }
 
 impl MergeCells {
@@ -34,8 +35,8 @@ impl MergeCells {
     }
 
     #[inline]
-    pub(crate) fn get_range_collection_mut(&mut self) -> &mut Vec<Range> {
-        &mut self.range
+    pub(crate) fn get_range_collection_mut(&mut self) -> &mut [Range] {
+        self.range.make_mut()
     }
 
     #[inline]

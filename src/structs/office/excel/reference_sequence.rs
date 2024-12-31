@@ -34,7 +34,7 @@ impl ReferenceSequence {
     }
 
     #[inline]
-    pub fn get_value_mut(&mut self) -> &mut Vec<Range> {
+    pub fn get_value_mut(&mut self) -> &mut [Range] {
         &mut self.value
     }
 

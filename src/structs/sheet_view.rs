@@ -179,7 +179,7 @@ impl SheetView {
     }
 
     #[inline]
-    pub fn get_selection_mut(&mut self) -> &mut Vec<Selection> {
+    pub fn get_selection_mut(&mut self) -> &mut [Selection] {
         &mut self.selection
     }
 

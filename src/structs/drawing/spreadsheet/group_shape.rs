@@ -75,7 +75,7 @@ impl GroupShape {
     }
 
     #[inline]
-    pub fn get_picture_collection_mut(&mut self) -> &mut Vec<Picture> {
+    pub fn get_picture_collection_mut(&mut self) -> &mut [Picture] {
         &mut self.picture_collection
     }
 
@@ -91,7 +91,7 @@ impl GroupShape {
     }
 
     #[inline]
-    pub fn get_shape_collection_mut(&mut self) -> &mut Vec<Shape> {
+    pub fn get_shape_collection_mut(&mut self) -> &mut [Shape] {
         &mut self.shape_collection
     }
 

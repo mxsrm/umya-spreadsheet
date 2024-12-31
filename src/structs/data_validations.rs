@@ -1,6 +1,7 @@
 // dataValidations
 use std::io::Cursor;
 
+use ecow::EcoVec;
 use quick_xml::{
     Reader,
     Writer,
@@ -21,7 +22,7 @@ use crate::{
 
 #[derive(Default, Debug, Clone)]
 pub struct DataValidations {
-    data_validation_list: Vec<DataValidation>,
+    data_validation_list: EcoVec<DataValidation>,
 }
 
 impl DataValidations {
@@ -32,13 +33,13 @@ impl DataValidations {
     }
 
     #[inline]
-    pub fn get_data_validation_list_mut(&mut self) -> &mut Vec<DataValidation> {
-        &mut self.data_validation_list
+    pub fn get_data_validation_list_mut(&mut self) -> &mut [DataValidation] {
+        self.data_validation_list.make_mut()
     }
 
     #[inline]
     pub fn set_data_validation_list(&mut self, value: impl Into<Vec<DataValidation>>) -> &mut Self {
-        self.data_validation_list = value.into();
+        self.data_validation_list = EcoVec::from(value.into());
         self
     }
 

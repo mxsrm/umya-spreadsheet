@@ -31,7 +31,7 @@ impl LineStyleList {
     }
 
     #[inline]
-    pub fn get_outline_collection_mut(&mut self) -> &mut Vec<Outline> {
+    pub fn get_outline_collection_mut(&mut self) -> &mut [Outline] {
         &mut self.outline_collection
     }
 

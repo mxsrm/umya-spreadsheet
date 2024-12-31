@@ -1,6 +1,7 @@
 // mruColors
 use std::io::Cursor;
 
+use ecow::EcoVec;
 use quick_xml::{
     Reader,
     Writer,
@@ -21,7 +22,7 @@ use crate::{
 
 #[derive(Clone, Default, Debug)]
 pub(crate) struct MruColors {
-    color: Vec<Color>,
+    color: EcoVec<Color>,
 }
 
 impl MruColors {
@@ -31,12 +32,12 @@ impl MruColors {
     }
 
     #[inline]
-    pub(crate) fn get_color_mut(&mut self) -> &mut Vec<Color> {
-        &mut self.color
+    pub(crate) fn get_color_mut(&mut self) -> &mut [Color] {
+        self.color.make_mut()
     }
 
     #[inline]
-    pub(crate) fn set_color(&mut self, value: Color) -> &mut Self {
+    pub(crate) fn add_color(&mut self, value: Color) -> &mut Self {
         self.color.push(value);
         self
     }
@@ -52,7 +53,7 @@ impl MruColors {
                 if e.name().into_inner() == b"color" {
                     let mut obj = Color::default();
                     obj.set_attributes(reader, e, true);
-                    self.set_color(obj);
+                    self.add_color(obj);
                 }
             },
             Event::End(ref e) => {

@@ -57,7 +57,7 @@ impl ConditionalFormatting {
     }
 
     #[inline]
-    pub fn get_conditional_collection_mut(&mut self) -> &mut Vec<ConditionalFormattingRule> {
+    pub fn get_conditional_collection_mut(&mut self) -> &mut [ConditionalFormattingRule] {
         &mut self.conditional_collection
     }
 

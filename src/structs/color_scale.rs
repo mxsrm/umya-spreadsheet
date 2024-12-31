@@ -1,5 +1,6 @@
 use std::io::Cursor;
 
+use ecow::EcoVec;
 use quick_xml::{
     Reader,
     Writer,
@@ -23,8 +24,8 @@ use crate::{
 
 #[derive(Clone, Default, Debug)]
 pub struct ColorScale {
-    cfvo_collection:  Vec<ConditionalFormatValueObject>,
-    color_collection: Vec<Color>,
+    cfvo_collection:  EcoVec<ConditionalFormatValueObject>,
+    color_collection: EcoVec<Color>,
 }
 
 impl ColorScale {
@@ -35,8 +36,8 @@ impl ColorScale {
     }
 
     #[inline]
-    pub fn set_cfvo_collection(&mut self, value: Vec<ConditionalFormatValueObject>) -> &mut Self {
-        self.cfvo_collection = value;
+    pub fn set_cfvo_collection(&mut self, value: &[ConditionalFormatValueObject]) -> &mut Self {
+        self.cfvo_collection.make_mut().clone_from_slice(value);
         self
     }
 
@@ -54,7 +55,7 @@ impl ColorScale {
 
     #[inline]
     pub fn set_color_collection(&mut self, value: impl Into<Vec<Color>>) -> &mut Self {
-        self.color_collection = value.into();
+        self.color_collection = EcoVec::from(value.into());
         self
     }
 

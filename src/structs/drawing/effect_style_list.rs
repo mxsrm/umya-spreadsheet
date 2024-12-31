@@ -31,7 +31,7 @@ impl EffectStyleList {
     }
 
     #[inline]
-    pub fn get_effect_style_collection_mut(&mut self) -> &mut Vec<EffectStyle> {
+    pub fn get_effect_style_collection_mut(&mut self) -> &mut [EffectStyle] {
         &mut self.effect_style_collection
     }
 

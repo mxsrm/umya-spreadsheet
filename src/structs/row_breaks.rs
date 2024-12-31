@@ -32,7 +32,7 @@ impl RowBreaks {
     }
 
     #[inline]
-    pub fn get_break_list_mut(&mut self) -> &mut Vec<Break> {
+    pub fn get_break_list_mut(&mut self) -> &mut [Break] {
         &mut self.break_list
     }
 

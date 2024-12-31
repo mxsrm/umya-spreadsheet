@@ -21,16 +21,16 @@ use crate::{
 
 #[derive(Clone, Default, Debug)]
 pub struct CacheFields {
-    list: Vec<CacheField>,
+    list: ecow::EcoVec<CacheField>,
 }
 impl CacheFields {
     #[must_use]
-    pub fn get_list(&self) -> &Vec<CacheField> {
+    pub fn get_list(&self) -> &[CacheField] {
         &self.list
     }
 
-    pub fn get_list_mut(&mut self) -> &mut Vec<CacheField> {
-        &mut self.list
+    pub fn get_list_mut(&mut self) -> &mut [CacheField] {
+        self.list.make_mut()
     }
 
     pub fn add_list_mut(&mut self, value: CacheField) -> &mut Self {

@@ -56,7 +56,7 @@ impl WorksheetDrawing {
     }
 
     #[inline]
-    pub fn get_image_collection_mut(&mut self) -> &mut Vec<Image> {
+    pub fn get_image_collection_mut(&mut self) -> &mut [Image] {
         &mut self.image_collection
     }
 
@@ -109,7 +109,7 @@ impl WorksheetDrawing {
     }
 
     #[inline]
-    pub fn get_chart_collection_mut(&mut self) -> &mut Vec<Chart> {
+    pub fn get_chart_collection_mut(&mut self) -> &mut [Chart] {
         &mut self.chart_collection
     }
 
@@ -162,7 +162,7 @@ impl WorksheetDrawing {
     }
 
     #[inline]
-    pub fn get_one_cell_anchor_collection_mut(&mut self) -> &mut Vec<OneCellAnchor> {
+    pub fn get_one_cell_anchor_collection_mut(&mut self) -> &mut [OneCellAnchor] {
         &mut self.one_cell_anchor_collection
     }
 
@@ -179,7 +179,7 @@ impl WorksheetDrawing {
     }
 
     #[inline]
-    pub fn get_two_cell_anchor_collection_mut(&mut self) -> &mut Vec<TwoCellAnchor> {
+    pub fn get_two_cell_anchor_collection_mut(&mut self) -> &mut [TwoCellAnchor] {
         &mut self.two_cell_anchor_collection
     }
 

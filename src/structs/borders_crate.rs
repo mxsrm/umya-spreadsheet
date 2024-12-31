@@ -1,6 +1,7 @@
 // borders
 use std::io::Cursor;
 
+use ecow::EcoVec;
 use quick_xml::{
     Reader,
     Writer,
@@ -24,7 +25,7 @@ use crate::{
 
 #[derive(Clone, Default, Debug)]
 pub(crate) struct BordersCrate {
-    borders: Vec<Borders>,
+    borders: EcoVec<Borders>,
 }
 
 impl BordersCrate {
@@ -35,8 +36,8 @@ impl BordersCrate {
 
     #[inline]
     #[allow(dead_code)]
-    pub(crate) fn get_borders_mut(&mut self) -> &mut Vec<Borders> {
-        &mut self.borders
+    pub(crate) fn get_borders_mut(&mut self) -> &mut [Borders] {
+        self.borders.make_mut()
     }
 
     #[inline]

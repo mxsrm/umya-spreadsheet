@@ -1,6 +1,7 @@
 // cellStyles
 use std::io::Cursor;
 
+use ecow::EcoVec;
 use quick_xml::{
     Reader,
     Writer,
@@ -21,7 +22,7 @@ use crate::{
 
 #[derive(Clone, Default, Debug)]
 pub struct CellStyles {
-    cell_style: Vec<CellStyle>,
+    cell_style: EcoVec<CellStyle>,
 }
 
 impl CellStyles {
@@ -31,8 +32,8 @@ impl CellStyles {
     }
 
     #[inline]
-    pub fn get_cell_style_mut(&mut self) -> &mut Vec<CellStyle> {
-        &mut self.cell_style
+    pub fn get_cell_style_mut(&mut self) -> &mut [CellStyle] {
+        self.cell_style.make_mut()
     }
 
     #[inline]

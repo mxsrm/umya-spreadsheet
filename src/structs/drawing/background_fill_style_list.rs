@@ -35,7 +35,7 @@ impl BackgroundFillStyleList {
     }
 
     #[inline]
-    pub fn get_solid_fill_mut(&mut self) -> &mut Vec<SolidFill> {
+    pub fn get_solid_fill_mut(&mut self) -> &mut [SolidFill] {
         &mut self.solid_fill
     }
 
@@ -58,7 +58,7 @@ impl BackgroundFillStyleList {
     }
 
     #[inline]
-    pub fn get_gradient_fill_collectionl_mut(&mut self) -> &mut Vec<GradientFill> {
+    pub fn get_gradient_fill_collectionl_mut(&mut self) -> &mut [GradientFill] {
         &mut self.gradient_fill_collection
     }
 

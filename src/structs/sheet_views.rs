@@ -32,7 +32,7 @@ impl SheetViews {
     }
 
     #[inline]
-    pub fn get_sheet_view_list_mut(&mut self) -> &mut Vec<SheetView> {
+    pub fn get_sheet_view_list_mut(&mut self) -> &mut [SheetView] {
         &mut self.sheet_view_list
     }
 

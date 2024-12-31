@@ -31,7 +31,7 @@ impl CellFormats {
     }
 
     #[inline]
-    pub(crate) fn get_cell_format_mut(&mut self) -> &mut Vec<CellFormat> {
+    pub(crate) fn get_cell_format_mut(&mut self) -> &mut [CellFormat] {
         &mut self.cell_format
     }
 

@@ -1,6 +1,7 @@
 // dataFields
 use std::io::Cursor;
 
+use ecow::EcoVec;
 use quick_xml::{
     Reader,
     Writer,
@@ -21,7 +22,7 @@ use crate::{
 
 #[derive(Clone, Default, Debug)]
 pub struct DataFields {
-    list: Vec<DataField>,
+    list: EcoVec<DataField>,
 }
 impl DataFields {
     #[inline]
@@ -31,8 +32,8 @@ impl DataFields {
     }
 
     #[inline]
-    pub fn get_list_mut(&mut self) -> &mut Vec<DataField> {
-        &mut self.list
+    pub fn get_list_mut(&mut self) -> &mut [DataField] {
+        self.list.make_mut()
     }
 
     #[inline]

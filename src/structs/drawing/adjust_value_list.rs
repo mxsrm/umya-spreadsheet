@@ -35,7 +35,7 @@ impl AdjustValueList {
     }
 
     #[inline]
-    pub fn get_shape_guide_collection_mut(&mut self) -> &mut Vec<ShapeGuide> {
+    pub fn get_shape_guide_collection_mut(&mut self) -> &mut [ShapeGuide] {
         &mut self.shape_guide_collection
     }
 

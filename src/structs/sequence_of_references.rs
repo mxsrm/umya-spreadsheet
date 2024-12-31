@@ -14,7 +14,7 @@ impl SequenceOfReferences {
     }
 
     #[inline]
-    pub fn get_range_collection_mut(&mut self) -> &mut Vec<Range> {
+    pub fn get_range_collection_mut(&mut self) -> &mut [Range] {
         &mut self.range_collection
     }
 

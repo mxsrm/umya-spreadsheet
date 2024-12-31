@@ -515,7 +515,7 @@ impl Worksheet {
 
     /// Get Comments in mutable.
     #[inline]
-    pub fn get_comments_mut(&mut self) -> &mut Vec<Comment> {
+    pub fn get_comments_mut(&mut self) -> &mut [Comment] {
         &mut self.comments
     }
 
@@ -621,7 +621,7 @@ impl Worksheet {
 
     // Get Merge Cells in mutable.
     #[inline]
-    pub fn get_merge_cells_mut(&mut self) -> &mut Vec<Range> {
+    pub fn get_merge_cells_mut(&mut self) -> &mut [Range] {
         self.merge_cells.get_range_collection_mut()
     }
 
@@ -704,7 +704,7 @@ impl Worksheet {
 
     /// Get Column Dimension List in mutable.
     #[inline]
-    pub fn get_column_dimensions_mut(&mut self) -> &mut Vec<Column> {
+    pub fn get_column_dimensions_mut(&mut self) -> &mut [Column] {
         self.columns.get_column_collection_mut()
     }
 
@@ -1367,7 +1367,7 @@ impl Worksheet {
 
     /// Get Defined Name (Vec) in mutable.
     #[inline]
-    pub fn get_defined_names_mut(&mut self) -> &mut Vec<DefinedName> {
+    pub fn get_defined_names_mut(&mut self) -> &mut [DefinedName] {
         &mut self.defined_names
     }
 
@@ -1484,7 +1484,7 @@ impl Worksheet {
     }
 
     #[inline]
-    pub fn get_tables_mut(&mut self) -> &mut Vec<Table> {
+    pub fn get_tables_mut(&mut self) -> &mut [Table] {
         &mut self.tables
     }
 
@@ -1506,7 +1506,7 @@ impl Worksheet {
     }
 
     #[inline]
-    pub fn get_pivot_tables_mut(&mut self) -> &mut Vec<PivotTable> {
+    pub fn get_pivot_tables_mut(&mut self) -> &mut [PivotTable] {
         &mut self.pivot_tables
     }
 
@@ -1586,7 +1586,7 @@ impl Worksheet {
     /// # Return value
     /// * `&mut Vec<Image>` - Image Object List.
     #[inline]
-    pub fn get_image_collection_mut(&mut self) -> &mut Vec<Image> {
+    pub fn get_image_collection_mut(&mut self) -> &mut [Image] {
         self.get_worksheet_drawing_mut().get_image_collection_mut()
     }
 
@@ -1650,7 +1650,7 @@ impl Worksheet {
     /// # Return value
     /// * `&mut Vec<Chart>` - Chart Object List.
     #[inline]
-    pub fn get_chart_collection_mut(&mut self) -> &mut Vec<Chart> {
+    pub fn get_chart_collection_mut(&mut self) -> &mut [Chart] {
         self.get_worksheet_drawing_mut().get_chart_collection_mut()
     }
 
@@ -2167,17 +2167,24 @@ impl AdjustmentCoordinate for Worksheet {
         }
 
         // merge cells
-        self.get_merge_cells_mut().retain(|x| {
-            !(x.is_remove_coordinate(root_col_num, offset_col_num, root_row_num, offset_row_num))
-        });
-        for merge_cell in self.get_merge_cells_mut() {
-            merge_cell.adjustment_remove_coordinate(
-                root_col_num,
-                offset_col_num,
-                root_row_num,
-                offset_row_num,
-            );
-        }
+        self.get_merge_cells_mut()
+            .iter_mut()
+            .filter(|x| {
+                !(x.is_remove_coordinate(
+                    root_col_num,
+                    offset_col_num,
+                    root_row_num,
+                    offset_row_num,
+                ))
+            })
+            .for_each(|merge_cell| {
+                merge_cell.adjustment_remove_coordinate(
+                    root_col_num,
+                    offset_col_num,
+                    root_row_num,
+                    offset_row_num,
+                );
+            });
 
         // auto filter
         let is_remove = match self.get_auto_filter() {

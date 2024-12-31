@@ -1,6 +1,7 @@
 // dxfs
 use std::io::Cursor;
 
+use ecow::EcoVec;
 use quick_xml::{
     Reader,
     Writer,
@@ -24,7 +25,7 @@ use crate::{
 
 #[derive(Clone, Default, Debug)]
 pub(crate) struct DifferentialFormats {
-    differential_format: Vec<DifferentialFormat>,
+    differential_format: EcoVec<DifferentialFormat>,
 }
 
 impl DifferentialFormats {
@@ -34,8 +35,8 @@ impl DifferentialFormats {
     }
 
     #[inline]
-    pub(crate) fn get_differential_format_mut(&mut self) -> &mut Vec<DifferentialFormat> {
-        &mut self.differential_format
+    pub(crate) fn get_differential_format_mut(&mut self) -> &mut [DifferentialFormat] {
+        self.differential_format.make_mut()
     }
 
     #[inline]

@@ -267,7 +267,7 @@ impl PlotArea {
         &self.category_axis
     }
 
-    pub fn get_category_axis_mut(&mut self) -> &mut Vec<CategoryAxis> {
+    pub fn get_category_axis_mut(&mut self) -> &mut [CategoryAxis] {
         &mut self.category_axis
     }
 
@@ -286,7 +286,7 @@ impl PlotArea {
         &self.value_axis
     }
 
-    pub fn get_value_axis_mut(&mut self) -> &mut Vec<ValueAxis> {
+    pub fn get_value_axis_mut(&mut self) -> &mut [ValueAxis] {
         &mut self.value_axis
     }
 
@@ -305,7 +305,7 @@ impl PlotArea {
         &self.series_axis
     }
 
-    pub fn get_series_axis_mut(&mut self) -> &mut Vec<SeriesAxis> {
+    pub fn get_series_axis_mut(&mut self) -> &mut [SeriesAxis] {
         &mut self.series_axis
     }
 

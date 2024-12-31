@@ -62,7 +62,7 @@ impl RawRelationships {
     }
 
     #[inline]
-    pub(crate) fn get_relationship_list_mut(&mut self) -> &mut Vec<RawRelationship> {
+    pub(crate) fn get_relationship_list_mut(&mut self) -> &mut [RawRelationship] {
         &mut self.relationship_list
     }
 

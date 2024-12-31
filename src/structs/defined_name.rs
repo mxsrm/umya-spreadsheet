@@ -103,7 +103,7 @@ impl DefinedName {
 
     #[inline]
     #[allow(dead_code)]
-    pub(crate) fn get_address_obj_mut(&mut self) -> &mut Vec<Address> {
+    pub(crate) fn get_address_obj_mut(&mut self) -> &mut [Address] {
         &mut self.address
     }
 

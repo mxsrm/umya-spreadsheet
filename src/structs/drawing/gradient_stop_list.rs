@@ -32,7 +32,7 @@ impl GradientStopList {
     }
 
     #[inline]
-    pub fn get_gradient_stop_mut(&mut self) -> &mut Vec<GradientStop> {
+    pub fn get_gradient_stop_mut(&mut self) -> &mut [GradientStop] {
         &mut self.gradient_stop
     }
 

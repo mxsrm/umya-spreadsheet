@@ -31,7 +31,7 @@ impl PivotFields {
     }
 
     #[inline]
-    pub fn get_list_mut(&mut self) -> &mut Vec<PivotField> {
+    pub fn get_list_mut(&mut self) -> &mut [PivotField] {
         &mut self.list
     }
 

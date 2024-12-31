@@ -214,32 +214,33 @@
     clippy::too_many_lines
 )]
 
-extern crate chrono;
-extern crate fancy_regex;
-#[cfg(feature = "image")]
-extern crate image;
-extern crate md5;
-extern crate quick_xml;
-extern crate thousands;
-extern crate zip;
-
 extern crate aes;
 extern crate base64;
 extern crate byteorder;
 extern crate cbc;
 extern crate cfb;
+extern crate chrono;
+extern crate ecow;
+extern crate fancy_regex;
 extern crate hmac;
 extern crate html_parser;
+extern crate md5;
+extern crate quick_xml;
 extern crate rand;
 extern crate sha2;
+extern crate thousands;
+extern crate zip;
+
+#[cfg(feature = "image")]
+extern crate image;
 
 pub mod helper;
 pub mod reader;
 pub mod structs;
 pub mod traits;
-mod version;
 pub mod writer;
 
+mod version;
 #[allow(unused_imports)]
 pub use version::*;
 

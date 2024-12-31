@@ -31,7 +31,7 @@ impl ColumnFields {
     }
 
     #[inline]
-    pub fn get_list_mut(&mut self) -> &mut Vec<Field> {
+    pub fn get_list_mut(&mut self) -> &mut [Field] {
         &mut self.list
     }
 

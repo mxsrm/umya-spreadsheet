@@ -41,7 +41,7 @@ impl SharedStringTable {
 
     #[inline]
     #[allow(dead_code)]
-    pub(crate) fn get_shared_string_item_mut(&mut self) -> &mut Vec<SharedStringItem> {
+    pub(crate) fn get_shared_string_item_mut(&mut self) -> &mut [SharedStringItem] {
         &mut self.shared_string_item
     }
 

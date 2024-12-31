@@ -62,7 +62,7 @@ impl RawFile {
     }
 
     #[inline]
-    pub(crate) fn get_file_data_mut(&mut self) -> &mut Vec<u8> {
+    pub(crate) fn get_file_data_mut(&mut self) -> &mut [u8] {
         &mut self.file_data
     }
 

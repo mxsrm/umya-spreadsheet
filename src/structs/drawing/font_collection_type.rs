@@ -86,7 +86,7 @@ impl FontCollectionType {
     }
 
     #[inline]
-    pub fn get_supplemental_font_list_mut(&mut self) -> &mut Vec<SupplementalFont> {
+    pub fn get_supplemental_font_list_mut(&mut self) -> &mut [SupplementalFont] {
         &mut self.supplemental_font_list
     }
 

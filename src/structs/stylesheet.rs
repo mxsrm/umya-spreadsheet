@@ -1,6 +1,7 @@
 // styleSheet
 use std::io::Cursor;
 
+use ecow::EcoVec;
 use quick_xml::{
     Reader,
     Writer,
@@ -48,7 +49,7 @@ pub(crate) struct Stylesheet {
     cell_styles:          CellStyles,
     differential_formats: DifferentialFormats,
     colors:               Colors,
-    maked_style_list:     Vec<Style>,
+    maked_style_list:     EcoVec<Style>,
 }
 
 impl Stylesheet {

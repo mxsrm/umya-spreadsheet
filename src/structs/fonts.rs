@@ -35,7 +35,7 @@ impl Fonts {
 
     #[inline]
     #[allow(dead_code)]
-    pub(crate) fn get_font_mut(&mut self) -> &mut Vec<Font> {
+    pub(crate) fn get_font_mut(&mut self) -> &mut [Font] {
         &mut self.font
     }
 

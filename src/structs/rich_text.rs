@@ -55,7 +55,7 @@ impl RichText {
     }
 
     #[inline]
-    pub fn get_rich_text_elements_mut(&mut self) -> &mut Vec<TextElement> {
+    pub fn get_rich_text_elements_mut(&mut self) -> &mut [TextElement] {
         &mut self.rich_text_elements
     }
 

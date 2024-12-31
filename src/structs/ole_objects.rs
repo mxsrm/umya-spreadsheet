@@ -33,7 +33,7 @@ impl OleObjects {
     }
 
     #[inline]
-    pub fn get_ole_object_mut(&mut self) -> &mut Vec<OleObject> {
+    pub fn get_ole_object_mut(&mut self) -> &mut [OleObject] {
         &mut self.ole_object
     }
 
